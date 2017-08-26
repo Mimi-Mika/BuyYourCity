@@ -1,2 +1,0 @@
-# BuyYourCity
-Projet Web CESI
