@@ -19,10 +19,6 @@ Use App\History;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 
 /*
 * GUEST ROUTES WITHOUT AUTH
@@ -36,9 +32,19 @@ Route::post('logout', 'Auth\LoginController@logout');
 * USERS ROUTES WITH AUTH
 */
 Route::group(['middleware' => 'auth:api'], function() {
-	Route::get('place/{id}', function($id) {return Place::find($id);});
+	//USER
+	Route::get('user/{id}', 'UserController@getUser');
+
+	//PLACE
+	Route::get('place/{id}', 'PlaceController@getPlace');
+
+	//PARAMETER
+	Route::get('parameter/{id}', 'ParameterController@getParameter');
+
+	//HISTORY
+	Route::get('history/{id}', 'HistoryController@getHistory');
+
 });
-//Route::get('place/{id}', function($id) {return Place::find($id);})->middleware('auth:api');
 
 
 /*
@@ -47,3 +53,12 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::group(['middleware' => ['auth:api', 'admin']], function() {
 	Route::get('placeadmin/{id}', function($id) {return Place::find($id);});
 });
+
+/*
+*EXEMPLES:
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::get('place/{id}', function($id) {return Place::find($id);})->middleware('auth:api');
+*/
