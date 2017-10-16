@@ -1,0 +1,324 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"point",
+				"pointsGiven"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/Http/Controllers/HistoryController.php",
+			"settings":
+			{
+				"buffer_size": 122,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes/api.php",
+			"settings":
+			{
+				"buffer_size": 1265,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/html/BuyYourCity/backend",
+		"/var/www/html/BuyYourCity/backend/app",
+		"/var/www/html/BuyYourCity/backend/app/Console",
+		"/var/www/html/BuyYourCity/backend/app/Exceptions",
+		"/var/www/html/BuyYourCity/backend/app/Http",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers",
+		"/var/www/html/BuyYourCity/backend/app/Http/Middleware",
+		"/var/www/html/BuyYourCity/backend/database",
+		"/var/www/html/BuyYourCity/backend/routes"
+	],
+	"file_history":
+	[
+		"/var/www/html/BuyYourCity/backend/.gitignore",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/ParameterController.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/HistoryController.php",
+		"/var/www/html/BuyYourCity/backend/.env",
+		"/var/www/html/BuyYourCity/backend/app/History.php",
+		"/var/www/html/BuyYourCity/backend/app/readme.txt",
+		"/var/www/html/byc/routes/api.php",
+		"/var/www/html/byc/app/Http/Controllers/Auth/RegisterController.php",
+		"/var/www/html/byc/vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php",
+		"/var/www/html/byc/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php",
+		"/var/www/html/byc/vendor/laravel/framework/src/Illuminate/Auth/Middleware/AuthenticateWithBasicAuth.php",
+		"/var/www/html/byc/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
+		"/var/www/html/byc/.env",
+		"/var/www/html/byc/config/database.php",
+		"/var/www/html/byc/app/Console/Kernel.php",
+		"/var/www/html/byc/app/Http/Controllers/Auth/LoginController.php",
+		"/var/www/html/byc/database/migrations/2017_10_11_085335_adds_api_token_to_users_table.php",
+		"/var/www/html/byc/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php",
+		"/var/www/html/byc/database/seeds/PlacesTableSeeder.php",
+		"/var/www/html/byc/database/seeds/UsersTableSeeder.php",
+		"/var/www/html/byc/database/seeds/DatabaseSeeder.php",
+		"/var/www/html/byc/database/seeds/HistoriesTableSeeder.php",
+		"/var/www/html/byc/app/Parameter.php",
+		"/var/www/html/byc/database/migrations/2017_10_06_152400_create_places_table.php",
+		"/var/www/html/byc/app/Place.php",
+		"/var/www/html/byc/app/History.php",
+		"/var/www/html/byc/app/User.php",
+		"/var/www/html/byc/app/Parameters.php",
+		"/var/www/html/byc/database/seeds/ParametersTableSeeder.php",
+		"/var/www/html/byc/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/var/www/html/byc/database/migrations/2017_10_06_152453_create_parameters_table.php",
+		"/var/www/html/byc/database/migrations/2017_10_10_094857_create_histories_table.php",
+		"/var/www/html/byc/database/migrations/2014_10_12_100000_create_password_resets_table.php",
+		"/etc/pulse/default.pa",
+		"/var/www/html/byc/database/migrations/2017_10_06_144952_create_articles_table.php",
+		"/var/www/html/byc/untitled.sublime-project",
+		"/var/www/html/byc/database/migrations/2017_10_06_141716_create_places_table.php",
+		"/var/www/html/byc/byc.sql",
+		"/etc/environment",
+		"/etc/bash.bashrc",
+		"/etc/profile",
+		"/bin/bash",
+		"//composer.json"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/Http/Controllers/HistoryController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 122,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								122,
+								122
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "routes/api.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1265,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								975,
+								975
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 378.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "byc.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"routesign",
+				"vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php"
+			],
+			[
+				"registusers",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php"
+			],
+			[
+				"registercontroller",
+				"app/Http/Controllers/Auth/RegisterController.php"
+			],
+			[
+				"authusers",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php"
+			],
+			[
+				"regiuser",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php"
+			],
+			[
+				"registersu",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/var/www/html/index.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 265.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
