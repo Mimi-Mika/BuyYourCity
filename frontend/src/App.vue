@@ -19,6 +19,9 @@
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title"></v-list-tile-title>
           </v-list-tile-content>
+          <!-- <v-list-tile-action>
+            <v-icon v-html="item.keyboard">/v-icon>
+          </v-list-tile-action> -->
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -83,7 +86,8 @@
       </v-list>
     </v-navigation-drawer>
     <v-footer :fixed="fixed">
-      <span>&copy; 2017</span>
+      <v-spacer></v-spacer>
+      <div>&copy; {{ new Date().getFullYear() }}</div>
     </v-footer>
   </v-app>
 </template>
@@ -96,7 +100,9 @@
         drawer: true,
         fixed: false,
         items: [
-          { icon: 'bubble_chart', title: 'Inspire' }
+          { icon: 'home', title: 'Accueil' },
+          { icon: 'account_circle', title: 'Mon compte', keyboard: 'keyboard_arrow_down'},
+          { icon: 'supervisor_account', title: 'Administration', keyboard: 'keyboard_arrow_down'}
         ],
         miniVariant: false,
         right: true,
