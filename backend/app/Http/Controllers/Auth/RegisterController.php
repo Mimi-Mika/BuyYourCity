@@ -66,8 +66,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        \Log::info($data['email']);
-
         Mail::raw('Verify your email !!! '.PHP_EOL.'Click HERE ==> '.env('APP_URL', 'http://localhost:8000').'/api/verifyemail/'.$data['name'].'/'.Crypt::encryptString($data['name'].$data['email']), function($message) use ($data)
         {
             $message->subject('Welcome to Buy Your City');

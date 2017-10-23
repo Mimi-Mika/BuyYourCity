@@ -27,10 +27,14 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
 Route::post('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
+Route::group(['middleware' => 'email'], function() {
+	Route::post('login', 'Auth\LoginController@login');
+});
+
 /*
 * USERS ROUTES WITH AUTH
 */
-Route::group(['middleware' => 'auth:api'], function() {
+Route::group(['middleware' => ['auth:api', 'email']], function() {
 	//USER
 	Route::get('user/{id}', 'UserController@getUser');
 
@@ -45,6 +49,7 @@ Route::group(['middleware' => 'auth:api'], function() {
 
 
 
+
 	Route::post('logout', 'Auth\LoginController@logout');
 
 });
@@ -56,19 +61,6 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::group(['middleware' => ['auth:api', 'admin']], function() {
 	Route::get('placeadmin/{id}', function($id) {return Place::find($id);});
 });
-
-
-/*
-*TEST EMAIL :
- 
-
-Route::get('send_test_email', function(){
-	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-	{
-		$message->to('pauly.matthieu@gmail.com');
-	});
-});
-
 
 /*
 *EXEMPLES:
