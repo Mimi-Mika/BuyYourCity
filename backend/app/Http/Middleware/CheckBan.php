@@ -6,7 +6,7 @@ use Closure;
 
 use Illuminate\Support\Facades\Auth;
 
-class CheckEmail
+class CheckBan
 {
     /**
      * Handle an incoming request.
@@ -15,10 +15,9 @@ class CheckEmail
      * @param  \Closure  $next
      * @return mixed
      */
-
     public function handle($request, Closure $next)
     {
         $user = Auth::guard('api')->user();
-        return $user->validEmail ? $next($request) : response()->json(['error' => 'You need to valid your Email address. Go check your mail NOW & click on the link!!!'], 403);    
+        return !$user->ban ? $next($request) : response()->json(['error' => 'Forbidden. U are ban . . . NOOB Cheater! AHAH!!!'], 403);
     }
 }

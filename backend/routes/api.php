@@ -25,16 +25,20 @@ Use App\History;
 */
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
+Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
-Route::group(['middleware' => 'email'], function() {
-	Route::post('login', 'Auth\LoginController@login');
+/*
+ * Logout route
+ */
+Route::group(['middleware' => ['auth:api', 'email']], function() {
+	Route::post('logout', 'Auth\LoginController@logout');
 });
+
 
 /*
 * USERS ROUTES WITH AUTH
 */
-Route::group(['middleware' => ['auth:api', 'email']], function() {
+Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
 	//USER
 	Route::get('user/{id}', 'UserController@getUser');
 
@@ -47,10 +51,6 @@ Route::group(['middleware' => ['auth:api', 'email']], function() {
 	//HISTORY
 	Route::get('history/{id}', 'HistoryController@getHistory');
 
-
-
-
-	Route::post('logout', 'Auth\LoginController@logout');
 
 });
 
