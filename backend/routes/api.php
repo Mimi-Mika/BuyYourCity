@@ -25,8 +25,7 @@ Use App\History;
 */
 Route::post('register', 'Auth\RegisterController@register');
 Route::post('login', 'Auth\LoginController@login');
-Route::post('logout', 'Auth\LoginController@logout');
-
+Route::post('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
 /*
 * USERS ROUTES WITH AUTH
@@ -44,6 +43,10 @@ Route::group(['middleware' => 'auth:api'], function() {
 	//HISTORY
 	Route::get('history/{id}', 'HistoryController@getHistory');
 
+
+
+	Route::post('logout', 'Auth\LoginController@logout');
+
 });
 
 
@@ -53,6 +56,19 @@ Route::group(['middleware' => 'auth:api'], function() {
 Route::group(['middleware' => ['auth:api', 'admin']], function() {
 	Route::get('placeadmin/{id}', function($id) {return Place::find($id);});
 });
+
+
+/*
+*TEST EMAIL :
+ 
+
+Route::get('send_test_email', function(){
+	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
+	{
+		$message->to('pauly.matthieu@gmail.com');
+	});
+});
+
 
 /*
 *EXEMPLES:
