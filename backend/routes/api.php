@@ -46,8 +46,8 @@ Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
 	Route::get('showPlace/{id}', 'PlaceController@show');
 	Route::get('showPlacesInRadius', 'PlaceController@showInRadius');
 	Route::get('showCurrentUserPlaces', 'PlaceController@showCurrentUserPlaces');
-	Route::patch('sellPlace{id}', 'PlaceController@sellPlace');
-	Route::patch('buyPlace{id}', 'PlaceController@buyPlace');
+	Route::put('sellPlace/{id}', 'PlaceController@sellPlace');
+	Route::put('buyPlace/{id}', 'PlaceController@buyPlace');
 
 	//PARAMETER
 	Route::get('parameter/{id}', 'ParameterController@getParameter');
@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth:api', 'admin']], function() {
 	Route::get('showUserPlaces/{id}', 'PlaceController@showUserPlaces');
 	Route::post('addPlace', 'PlaceController@addPlace');
 	Route::post('addImg/', 'PlaceController@addImg');
-	Route::patch('updatePlace/', 'PlaceController@updatePlace');
+	Route::put('updatePlace/', 'PlaceController@updatePlace');
 	Route::delete('deletePlace/{id}', 'PlaceController@deletePlace');
 });
 
