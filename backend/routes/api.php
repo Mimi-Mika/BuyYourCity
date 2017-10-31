@@ -43,15 +43,17 @@ Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
 	Route::get('user/{id}', 'UserController@getUser');
 
 	//PLACE
-	Route::get('place/{id}', 'PlaceController@getPlace');
+	Route::get('showPlace/{id}', 'PlaceController@show');
+	Route::get('showPlacesInRadius', 'PlaceController@showInRadius');
+	Route::get('showCurrentUserPlaces', 'PlaceController@showCurrentUserPlaces');
+	Route::patch('sellPlace{id}', 'PlaceController@sellPlace');
+	Route::patch('buyPlace{id}', 'PlaceController@buyPlace');
 
 	//PARAMETER
 	Route::get('parameter/{id}', 'ParameterController@getParameter');
 
 	//HISTORY
 	Route::get('history/{id}', 'HistoryController@getHistory');
-
-
 });
 
 
@@ -59,7 +61,13 @@ Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
 * ADMIN ROUTES WITH AUTH + ADMIN CHECK
 */
 Route::group(['middleware' => ['auth:api', 'admin']], function() {
-	Route::get('placeadmin/{id}', function($id) {return Place::find($id);});
+	//PLACE
+	Route::get('showAllPlaces', 'PlaceController@showAll');
+	Route::get('showUserPlaces/{id}', 'PlaceController@showUserPlaces');
+	Route::post('addPlace', 'PlaceController@addPlace');
+	Route::post('addImg/', 'PlaceController@addImg');
+	Route::patch('updatePlace/', 'PlaceController@updatePlace');
+	Route::delete('deletePlace/{id}', 'PlaceController@deletePlace');
 });
 
 /*

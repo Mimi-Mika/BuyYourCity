@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Buy Your City !!!</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 50px;
             }
 
             .links > a {
@@ -66,25 +66,20 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
-            @endif
-
             <div class="content">
+                <div>
+                    <img src="logo.png">
+                </div>
+
                 <div class="title m-b-md">
-                    BUY YOUR CITY
+                    Own The WORLD
                 </div>
 
                 <div class="links">
                     <a href="http://www.buyyourcity.ovh">Get Started !!!</a>
-
+                    <a href="https://github.com/Mimi-Mika/BuyYourCity">Github</a>
+                    <a href="http://www.api.buyyourcity.ovh/phpmyadmin">Phpmyadmin</a>
+                    <a href="http://www.api.buyyourcity.ovh">API</a>
                 </div>
             </div>
         </div>
