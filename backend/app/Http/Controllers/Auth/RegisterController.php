@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -49,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,6 +66,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Mail::raw('Verify your email !!! '.PHP_EOL.'Click HERE ==>  :  http://www.api.buyyourcity.ovh/verifyemail/'.$data['name'].'/'.Crypt::encryptString($data['name'].$data['email']), function($message) use ($data)
+        {
+            $message->subject('Welcome to Buy Your City');
+            $message->from('no.reply.byc@gmail.com', 'Admin Buy Your City');
+            $message->to($data['email']);
+            $message->attach(storage_path('../logo.png'));
+
+        });
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -78,5 +89,21 @@ class RegisterController extends Controller
     {
         $user->generateToken();
         return response()->json(['data' => $user->toArray()], 201);
+    }
+
+    protected function verifyEmail($name, $string)
+    {
+        try{
+            $nameEmail = Crypt::decryptString($string);
+            $user = User::where('name', $name)->first();
+            \Log::info($user->name.$user->email.'---'.$nameEmail);
+
+            $user->name.$user->email == $nameEmail ? $user->validEmail = 1 : $user->validEmail = 0;
+            $user->save();
+            return $user->validEmail ? response()->json(['data' => $user->toArray()], 200) : response()->json(['error' => 'No contents.'], 204);
+        }
+        catch(\Exception $e){
+            return response()->json(['error' => 'No contents.'], 204);
+        }
     }
 }
