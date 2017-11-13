@@ -23,9 +23,18 @@
       </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon >
-        <v-icon>person</v-icon>
+      <v-tooltip bottom>
+        <v-btn icon slot="activator">
+        <v-icon>location_on</v-icon>
       </v-btn>
+        <span>Localisation activé</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <v-btn icon slot="activator">
+          <v-icon>gps_fixed</v-icon>
+        </v-btn>
+        <span>Recentrer la carte</span>
+      </v-tooltip>
     </v-toolbar>
 
     <!-- Reste de l'application -->
@@ -48,7 +57,7 @@
         clipped: false,
         drawer: true,
         miniVariant: false,
-        title: 'Boubinette.js'
+        title: 'Buy your city'
       }
     }
   }

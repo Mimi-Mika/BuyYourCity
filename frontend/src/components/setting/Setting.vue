@@ -91,6 +91,6 @@
 
 <script>
   export default {
-    name: 'home2'
+    name: 'setting'
   }
 </script>

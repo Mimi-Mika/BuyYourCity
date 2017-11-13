@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Frame from '@/components/Frame'
-import Home from '@/components/ex1/Home'
-import Home2 from '@/components/ex2/Home2'
+import Home from '@/components/home/Home'
+import MyAccount from '@/components/account/MyAccount'
+import Setting from '@/components/setting/Setting'
 
 Vue.use(Router)
 
@@ -18,10 +19,15 @@ export default new Router({
       component: Home
     },
     {
-      path: 'home2etcequetuveux',
-      name: 'home2',
-      component: Home2
-    }]
+      path: 'myAccount',
+      name: 'MyAccount',
+      component: MyAccount
+    },
+      {
+        path: 'setting',
+        name: 'Setting',
+        component: Setting
+      }]
   },
     // Default path, avoid 404
     {

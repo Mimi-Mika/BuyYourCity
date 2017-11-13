@@ -2,7 +2,7 @@
   <v-container fluid>
     <v-slide-y-transition mode="out-in">
       <v-layout column align-center>
-        <img src="/static/v.png" alt="Vuetify.js" class="mb-5">
+        <img src="/static/ico.png" alt="Vuetify.js" class="mb-5">
         <blockquote>
           &#8220;Essaye les boutons du menu gauche.&#8221;
           <footer>
