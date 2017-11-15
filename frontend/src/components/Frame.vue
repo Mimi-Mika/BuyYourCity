@@ -6,6 +6,8 @@
       :mini-variant="miniVariant"
       :clipped="clipped"
       v-model="drawer"
+      dark
+      class="grey darken-3"
       enable-resize-watcher
       app
     >
@@ -13,14 +15,8 @@
     </v-navigation-drawer>
 
     <!-- Barre de menu en haut au milieu -->
-    <v-toolbar fixed app :clipped-left="clipped">
+    <v-toolbar fixed app :clipped-left="clipped" dark color="cyan">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>web</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tooltip bottom>
@@ -43,6 +39,12 @@
         <router-view></router-view>
       </v-content>
     </main>
+
+    <!-- Pied de page -->
+    <v-footer class="pa-3" dark color="cyan" fixed>
+      <v-spacer></v-spacer>
+      <div>© {{ new Date().getFullYear() }}</div>
+    </v-footer>
   </div>
 </template>
 <script>
@@ -56,8 +58,12 @@
       return {
         clipped: false,
         drawer: true,
-        miniVariant: false,
-        title: 'Buy your city'
+        miniVariant: false
+      }
+    },
+    computed:{
+      title(){
+        return this.$route.name
       }
     }
   }
