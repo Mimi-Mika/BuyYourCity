@@ -5,15 +5,6 @@
     </v-layout>
     <v-divider></v-divider>
     <v-list>
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon>perm_identity</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-title class="title"></v-list-tile-title>
-      </v-list-tile>
-    </v-list>
-    <v-divider></v-divider>
-    <v-list>
         <v-list-tile @click="goHome">
           <v-list-tile-action>
             <v-icon>home</v-icon>
