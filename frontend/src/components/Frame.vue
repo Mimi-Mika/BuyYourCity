@@ -31,6 +31,24 @@
         </v-btn>
         <span>Recentrer la carte</span>
       </v-tooltip>
+
+      <div class="text-xs-center">
+        <v-menu offset-y>
+          <v-btn flat slot="activator">
+            <v-icon right dark>account_circle</v-icon>  blabla
+          </v-btn>
+          <v-list>
+            <v-list-tile @click="goAccount">
+              <v-list-tile-title>Mon compte</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+          <v-list>
+            <v-list-tile @click="">
+              <v-list-tile-title>Déconnexion</v-list-tile-title>
+            </v-list-tile>
+          </v-list>
+        </v-menu>
+      </div>
     </v-toolbar>
 
     <!-- Reste de l'application -->
@@ -41,7 +59,7 @@
     </main>
 
     <!-- Pied de page -->
-    <v-footer class="pa-3" dark color="cyan" fixed>
+    <v-footer class="pa-3" color="cyan" absolute>
       <v-spacer></v-spacer>
       <div>© {{ new Date().getFullYear() }}</div>
     </v-footer>
@@ -53,6 +71,13 @@
     name: 'frame',
     components: {
       LeftDrawer
+    },
+    methods: {
+      goAccount: function () {
+        this.$router.push({
+          path: '/account'
+        })
+      }
     },
     data () {
       return {

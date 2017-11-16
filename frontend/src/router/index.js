@@ -4,6 +4,7 @@ import Frame from '@/components/Frame'
 import Home from '@/components/home/Home'
 import Information from '@/components/account/Information'
 import Places from '@/components/account/Places'
+import Account from '@/components/account/Account'
 import Ranking from '@/components/account/Ranking'
 import SettingPlaces from '@/components/setting/SettingPlaces'
 import SettingUsers from '@/components/setting/SettingUsers'
@@ -29,28 +30,33 @@ export default new Router({
     },
     {
       path: 'places',
-      name: 'Places',
+      name: 'Mes lieux',
       component: Places
     },
     {
       path: 'ranking',
-      name: 'Ranking',
+      name: 'Classement',
       component: Ranking
     },
     {
       path: 'settingUsers',
-      name: 'SettingUsers',
+      name: 'Gestion des utilisateurs',
       component: SettingUsers
     },
     {
       path: 'settingPlaces',
-      name: 'SettingPlaces',
+      name: 'Gestion des lieux',
       component: SettingPlaces
     },
     {
       path: 'statistical',
-      name: 'Statistical',
+      name: 'Statistique',
       component: Statistical
+    },
+    {
+     path: 'account',
+     name: 'Mon compte',
+     component: Account
     }]
   },
     // Default path, avoid 404
