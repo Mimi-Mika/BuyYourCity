@@ -14,6 +14,7 @@ class CreateHistoriesTable extends Migration
     public function up()
     {
         Schema::create('histories', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('buySell');
             //Foreign key : association between users & places
             $table->integer('user_id')->unsigned();;
