@@ -42,9 +42,6 @@ after you enter this command it will some folder from vendor to public folder
 php artisan l5-swagger:publish-config
 to create config file. From that file you config some information like : Title, auth_token, security_definition, key_inject....
 
-php artisan l5-swagger:publish-assets
-to publish swagger-ui to your public folder
-
 php artisan l5-swagger:publish-views
 to publish views (resources/views/vendor/l5-swagger)
 
