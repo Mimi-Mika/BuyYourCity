@@ -25,8 +25,12 @@ U can see all routes aviable with :
 $ php artisan route:list
 
 
+
 We have our own server at : www.buyyourcity.ovh
 u can use our api at www.api.buyyourcity.ovh
+
+
+
 
 
 NEW !!!!
