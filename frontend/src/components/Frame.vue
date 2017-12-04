@@ -2,15 +2,15 @@
   <div>
     <!-- Menu sur la gauche -->
     <v-navigation-drawer
-      persistent
+      fixed
+      dark
+      class="grey darken-3"
       :mini-variant="miniVariant"
       :clipped="clipped"
       v-model="drawer"
-      dark
-      class="grey darken-3"
-      enable-resize-watcher
       app
     >
+
       <left-drawer></left-drawer>
     </v-navigation-drawer>
 
@@ -52,14 +52,12 @@
     </v-toolbar>
 
     <!-- Reste de l'application -->
-    <main>
-      <v-content>
-        <router-view></router-view>
-      </v-content>
-    </main>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
 
     <!-- Pied de page -->
-    <v-footer class="pa-3" color="cyan" absolute>
+    <v-footer app absolute color="cyan">
       <v-spacer></v-spacer>
       <div>© {{ new Date().getFullYear() }}</div>
     </v-footer>
