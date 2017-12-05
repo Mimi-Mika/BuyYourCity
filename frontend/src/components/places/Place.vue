@@ -1,10 +1,10 @@
-*<template>
+<template>
   <v-flex xs12 sm6 md4>
     <v-card>
       <v-card-media
         class="white--text"
         height="200px"
-        src="/static/doc-images/cards/docks.jpg"
+        v-bind:src="place.pictPath"
       >
         <v-container fill-height fluid>
           <v-layout fill-height>
@@ -15,16 +15,45 @@
         </v-container>
       </v-card-media>
       <v-card-title primary-title>
-        <div>{{place.longitude}}, {{place.latitude}}</div>
+        <div>
+          <strong>Longitude :</strong> {{place.longitude}}<br>
+          <strong>Latitude :</strong> {{place.latitude}}
+        </div>
       </v-card-title>
       <v-card-actions>
+        <v-dialog v-model="dialog" persistent>
+          <v-btn flat color="blue" dark slot="activator">Modifier le lieu</v-btn>
+          <v-card>
+            <v-card-media
+              class="white--text"
+              height="200px"
+              v-bind:src="place.pictPath"
+            >
+              <v-container fill-height fluid>
+                <v-layout fill-height>
+                  <v-flex xs12 align-end flexbox>
+                    <span class="headline">Titre du lieu</span>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-card-media>
+            <v-card-text>
+
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="red darken-1" flat @click.native="dialog = false">Annuler</v-btn>
+              <v-btn color="green darken-1" flat @click.native="dialog = false">Valider</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
           <v-dialog v-model="dialog" persistent>
-            <v-btn flat color="blue" dark slot="activator">Vendre le lieu</v-btn>
+            <v-btn flat color="red" dark slot="activator">Supprimer le lieu</v-btn>
             <v-card>
               <v-card-media
                 class="white--text"
                 height="200px"
-                src="/static/doc-images/cards/docks.jpg"
+                v-bind:src="place.pictPath"
               >
                 <v-container fill-height fluid>
                   <v-layout fill-height>
@@ -41,7 +70,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="green darken-1" flat @click.native="dialog = false">Refuser</v-btn>
+                <v-btn color="red darken-1" flat @click.native="dialog = false">Refuser</v-btn>
                 <v-btn color="green darken-1" flat @click.native="dialog = false">Accepter</v-btn>
               </v-card-actions>
             </v-card>

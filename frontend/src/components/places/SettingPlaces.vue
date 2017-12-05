@@ -1,16 +1,14 @@
 <template>
-  <v-container fluid>
+  <v-container fluid grid-list-lg>
     <v-layout row wrap>
-      <v-flex>
         <place v-for="place in places" :key="place.id" :place="place"></place>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 
 <script>
-  import Place from '../places/Place'
+  import Place from './Place'
 
   export default {
     name: 'settingPlaces',
@@ -38,5 +36,4 @@
     },
 
   }
-
 </script>
