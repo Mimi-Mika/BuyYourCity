@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\History;
 use Illuminate\Http\Request;
 
-class HistoryController extends Controller
+class HistoryController extends ApiController
 {
     /**
      * Display a listing of the resource.
