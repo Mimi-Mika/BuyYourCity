@@ -30,6 +30,9 @@ Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail')
 Route::resource('history', 'HistoryController', ['except' => ['edit', 'update', 'destroy']]);
 Route::resource('parameter', 'ParameterController');
 Route::resource('place', 'PlaceController');
+Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
+Route::get('user/places/{user}', 'UserController@showPlaces');
+
 
 
 /*
@@ -44,8 +47,6 @@ Route::group(['middleware' => ['auth:api', 'email']], function() {
 * USERS ROUTES WITH AUTH
 */
 Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
-
-Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
 
 });
 

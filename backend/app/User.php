@@ -18,43 +18,43 @@ class User extends Authenticatable
      * @var string
      * @SWG\Property(example="SuperUserOfTheDead666")
      */
-    private static $name = "name";
+    protected $name = "name";
 
     /**
      * @var string
      * @SWG\Property(example="example@domain.io")
      */
-    public static $email = "email";
+    protected $email = "email";
 
     /**
      * @var string
      * @SWG\Property()
      */
-    public static $password = "password";
+    protected $password = "password";
 
     /**
      * @var integer
      * @SWG\Property(format="int64")
      */
-    public static $pointsAviable = "pointsAviable";
+    protected $pointsAviable = "pointsAviable";
 
     /**
      * @var boolean
      * @SWG\Property(format="boolean")
      */
-    public static $ban = "ban";
+    protected $ban = "ban";
 
     /**
      * @var boolean
      * @SWG\Property(format="boolean")
      */
-    public static $validEmail = "validEmail";
+    protected $validEmail = "validEmail";
 
     /**
      * @var boolean
      * @SWG\Property(format="boolean")
      */
-    public static $admin = "admin";
+    protected $admin = "admin";
 
 
 
@@ -64,7 +64,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        $name, $email, $password, $pointsAviable, $ban, $validEmail, $admin
+        'name', 'email', 'password', 'pointsAviable', 'ban', 'validEmail', 'admin'
     ];
 
     /**

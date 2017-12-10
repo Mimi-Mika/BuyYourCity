@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Place;
 use Illuminate\Http\Request;
 
 class UserController extends ApiController
@@ -44,14 +45,12 @@ class UserController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
-     *
-     * @SWG\Get(
-     *     path="/user/create",
+     * @SWG\Post(
+     *     path="/user",
      *     description="Return URL to create new user.",
-     *     operationId="user.create",
+     *     operationId="user.store",
      *     produces={"application/json"},
      *     tags={"user"},
      *     @SWG\Response(
@@ -66,16 +65,6 @@ class UserController extends ApiController
      *       {"bearerAuth": {}}
      *     }
      * )
-     */
-    public function create()
-    {
-        return response()->json([
-            'ulr' => 'http://api.buyyourcity.ovh/register',]
-        );
-    }
-
-    /**
-     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -164,4 +153,14 @@ class UserController extends ApiController
     {
         //
     }
+
+    /**
+     * Display all places from current user.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function showPlaces(User $user) {
+        return Place::where('user_id', $user->id)->get()->isEmpty() ? response()->json(['error' => 'No contents.'], 204) : Place::where('user_id', $user->id)->get();
+        }
 }
