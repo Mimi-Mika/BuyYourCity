@@ -1,0 +1,185 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "BYC API",
+        "contact": {
+            "name": "YeuDeLynX",
+            "url": "http://fr.lmgtfy.com/?q=buy+your+city"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/user": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Display a listing of the resource.",
+                "description": "Returns user overview.",
+                "operationId": "user.index",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User overview."
+                    },
+                    "404": {
+                        "description": "User not found"
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/user/create": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Show the form for creating a new resource.",
+                "description": "Return URL to create new user.",
+                "operationId": "user.create",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "That's URL to create new user."
+                    },
+                    "401": {
+                        "description": "Unauthorized action."
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/user/{petId}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "Find user by ID",
+                "description": "Returns a single user",
+                "operationId": "show",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of user to return",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Pet not found"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "description": "Class ApiController",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "description": "Class ApiController",
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "required": [
+                "name",
+                "email",
+                "password",
+                "pointsAviable",
+                "ban",
+                "validEmail",
+                "admin"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "example": "SuperUserOfTheDead666"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "example@domain.io"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "pointsAviable": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ban": {
+                    "type": "boolean",
+                    "format": "boolean"
+                },
+                "validEmail": {
+                    "type": "boolean",
+                    "format": "boolean"
+                },
+                "admin": {
+                    "type": "boolean",
+                    "format": "boolean"
+                }
+            },
+            "type": "object",
+            "xml": {
+                "name": "User"
+            }
+        }
+    },
+    "securityDefinitions": {
+        "bearerAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}

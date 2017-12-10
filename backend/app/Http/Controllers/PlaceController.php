@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Place;
 use Illuminate\Http\Request;
 
-class PlaceController extends Controller
+class PlaceController extends ApiController
 {
     /**
      * Display a listing of the resource.
