@@ -35,6 +35,8 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Barryvdh\Cors\HandleCors::class,
+
         ],
 
         'api' => [
@@ -60,6 +62,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin' => \App\Http\Middleware\CheckAdmin::class,
         'email' => \App\Http\Middleware\CheckEmail::class,
-        'ban' => \App\Http\Middleware\CheckBan::class,        
+        'ban' => \App\Http\Middleware\CheckBan::class,   
+        'cors' => \Barryvdh\Cors\HandleCors::class,
         ];
 }
