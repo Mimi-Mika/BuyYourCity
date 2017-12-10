@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Place;
+use App\History;
 use Illuminate\Http\Request;
 
 class PlaceController extends ApiController
@@ -118,7 +119,7 @@ class PlaceController extends ApiController
             //Modify user_id on place table => user_id = 0
             $place->user_id = 0;    
             //Add points on user account
-            $user->pointsAviable += $place->pointsCost*0.8          //Replace 0.8 with global parameters value
+            $user->pointsAviable += $place->pointsCost*0.8;          //Replace 0.8 with global parameters value
             //Add entry on table history
             $history = new History;
             $history->buySell = 'sell';
