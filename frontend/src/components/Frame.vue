@@ -57,10 +57,10 @@
     </v-content>
 
     <!-- Pied de page -->
-    <v-footer app absolute color="cyan">
-      <v-spacer></v-spacer>
-      <div>© {{ new Date().getFullYear() }}</div>
-    </v-footer>
+    <!--<v-footer app absolute color="cyan">-->
+      <!--<v-spacer></v-spacer>-->
+      <!--<div>© {{ new Date().getFullYear() }}</div>-->
+    <!--</v-footer>-->
   </div>
 </template>
 <script>
