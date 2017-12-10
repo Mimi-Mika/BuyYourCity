@@ -110,7 +110,7 @@
       },
       goPlaces : function(){
         this.$router.push({
-          path: '/places'
+          path: '/placesUser'
         })
       },
       goRanking : function(){

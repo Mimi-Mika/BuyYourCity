@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Frame from '@/components/Frame'
 import Home from '@/components/home/Home'
-import Information from '@/components/account/Information'
-import Places from '@/components/account/Places'
-import Account from '@/components/account/Account'
 import Ranking from '@/components/account/Ranking'
-import SettingPlaces from '@/components/setting/SettingPlaces'
-import SettingUsers from '@/components/setting/SettingUsers'
+import SettingPlaces from '@/components/places/SettingPlaces'
+import PlacesUser from '@/components/places/PlacesUser'
 import Statistical from '@/components/setting/Statistical'
+import SettingUsers from '@/components/users/SettingUsers'
+import UserAccount from '@/components/users/UserAccount'
+import UserInformation from '@/components/users/UserInformation'
 
 Vue.use(Router)
 
@@ -26,12 +26,12 @@ export default new Router({
     {
       path: 'info',
       name: 'Mes informations',
-      component: Information
+      component: UserInformation
     },
     {
-      path: 'places',
+      path: 'placesUser',
       name: 'Mes lieux',
-      component: Places
+      component: PlacesUser
     },
     {
       path: 'ranking',
@@ -56,13 +56,13 @@ export default new Router({
     {
      path: 'account',
      name: 'Mon compte',
-     component: Account
+     component: UserAccount
     }]
   },
-    // Default path, avoid 404
-    {
-      path: '*',
-      redirect: '/home'
-    }]
+  // Default path, avoid 404
+  {
+    path: '*',
+    redirect: '/home'
+  }]
 })
 
