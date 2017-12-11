@@ -15,7 +15,7 @@ class PlaceController extends ApiController
      */
     public function index()
     {
-        $place = Place::all();
+        $place = Place::orderBy('name', 'asc')->get();
         return $place;
     }
 

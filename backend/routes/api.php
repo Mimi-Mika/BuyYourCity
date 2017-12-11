@@ -34,7 +34,6 @@ Route::resource('parameter', 'ParameterController');
 Route::resource('place', 'PlaceController');
 Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
 Route::get('user/places/{user}', 'UserController@showPlaces');
-
 });
 
 

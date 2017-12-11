@@ -40,7 +40,7 @@ class UserController extends ApiController
 
     public function index()
     {
-        $user = User::all();
+        $user = User::orderBy('name', 'asc')->get();
         return $user;
     }
 
