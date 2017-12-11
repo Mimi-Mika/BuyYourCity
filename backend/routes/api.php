@@ -66,3 +66,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('place/{id}', function($id) {return Place::find($id);})->middleware('auth:api');
 */
+
+/*
+
+curl -d '{"key1":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://localhost:3000/data
+
+
+curl -X POST http://localhost:8000/register  -H "Accept: application/json"  -H "Content-Type: application/json"  -d '{"name": "test", "email": "test@test.com", "password": "test", "password_confirmation": "test"}'
+
+
+curl -X POST http://localhost:8000/api/register -H "Accept: application/json" -H "Content-Type: application/json" -d '{"name": "John", "email": "john.doe@toptal.com", "password": "toptal123", "password_confirmation": "toptal123"}'
+*/

@@ -12,52 +12,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-
-
-    /**
-     * @var string
-     * @SWG\Property(example="SuperUserOfTheDead666")
-     */
-    protected $name = "name";
-
-    /**
-     * @var string
-     * @SWG\Property(example="example@domain.io")
-     */
-    protected $email = "email";
-
-    /**
-     * @var string
-     * @SWG\Property()
-     */
-    protected $password = "password";
-
-    /**
-     * @var integer
-     * @SWG\Property(format="int64")
-     */
-    protected $pointsAviable = "pointsAviable";
-
-    /**
-     * @var boolean
-     * @SWG\Property(format="boolean")
-     */
-    protected $ban = "ban";
-
-    /**
-     * @var boolean
-     * @SWG\Property(format="boolean")
-     */
-    protected $validEmail = "validEmail";
-
-    /**
-     * @var boolean
-     * @SWG\Property(format="boolean")
-     */
-    protected $admin = "admin";
-
-
-
     /**
      * The attributes that are mass assignable.
      *
