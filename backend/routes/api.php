@@ -41,7 +41,7 @@ Route::get('user/places/{user}', 'UserController@showPlaces');
 /*
  * Logout route
  */
-Route::group(['middleware' => ['auth:api', 'email', 'cors']]], function() {
+Route::group(['middleware' => ['auth:api', 'email', 'cors']], function() {
 	Route::post('logout', 'Auth\LoginController@logout');
 });
 
