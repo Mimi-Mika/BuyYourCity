@@ -23,7 +23,9 @@ Use App\History;
 /*
 * GUEST/PUBLIC ROUTES WITHOUT AUTH
 */
-Route::post('register', 'Auth\RegisterController@register');
+
+Route::group(['middleware' => ['cors']], function() {
+Route::post('register', 'Auth\RegisterController@register')->middleware('auth:api');;
 Route::post('login', 'Auth\LoginController@login');
 Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
@@ -33,12 +35,13 @@ Route::resource('place', 'PlaceController');
 Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
 Route::get('user/places/{user}', 'UserController@showPlaces');
 
+});
 
 
 /*
  * Logout route
  */
-Route::group(['middleware' => ['auth:api', 'email']], function() {
+Route::group(['middleware' => ['auth:api', 'email', 'cors']]], function() {
 	Route::post('logout', 'Auth\LoginController@logout');
 });
 
@@ -46,7 +49,7 @@ Route::group(['middleware' => ['auth:api', 'email']], function() {
 /*
 * USERS ROUTES WITH AUTH
 */
-Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
+Route::group(['middleware' => ['auth:api', 'email', 'ban', 'cors']], function() {
 
 });
 
@@ -54,7 +57,7 @@ Route::group(['middleware' => ['auth:api', 'email', 'ban']], function() {
 /*
 * ADMIN ROUTES WITH AUTH + ADMIN CHECK
 */
-Route::group(['middleware' => ['auth:api', 'admin']], function() {
+Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
 
 });
 
