@@ -26,11 +26,10 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-        \Log::info('apres validate   :::   ');
         if ($this->attemptLogin($request)) {
-                    \Log::info('dans la condition ');
 
             $user = $this->guard()->user();
+            $user->makeVisible('api_token');
             $user->generateToken();
             return response()->json([
                 'data' => $user->toArray(),
