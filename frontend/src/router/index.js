@@ -2,13 +2,15 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Frame from '@/components/Frame'
 import Home from '@/components/home/Home'
-import Ranking from '@/components/account/Ranking'
 import SettingPlaces from '@/components/places/SettingPlaces'
 import PlacesUser from '@/components/places/PlacesUser'
 import Statistical from '@/components/setting/Statistical'
 import SettingUsers from '@/components/users/SettingUsers'
 import UserAccount from '@/components/users/UserAccount'
 import UserInformation from '@/components/users/UserInformation'
+import UserHistory from '@/components/users/UserHistory'
+import UserRanking from '@/components/users/UserRanking'
+import Authentication from '@/components/authentificate/Authentificate'
 
 Vue.use(Router)
 
@@ -21,6 +23,7 @@ export default new Router({
     children: [{
       path: 'home',
       name: 'Accueil',
+      meta: {auth: true},
       component: Home
     },
     {
@@ -36,7 +39,7 @@ export default new Router({
     {
       path: 'ranking',
       name: 'Classement',
-      component: Ranking
+      component: UserRanking
     },
     {
       path: 'settingUsers',
@@ -57,7 +60,18 @@ export default new Router({
      path: 'account',
      name: 'Mon compte',
      component: UserAccount
+    },
+    {
+      path: 'history',
+      name: 'Mon historique',
+      component: UserHistory
     }]
+  },
+  {
+    path: '/login',
+    name: 'Authentication',
+    component: Authentication,
+    meta: {auth: false}
   },
   // Default path, avoid 404
   {
