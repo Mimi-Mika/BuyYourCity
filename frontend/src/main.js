@@ -8,27 +8,48 @@ import './stylus/main.styl'
 import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
-// import * as VueGoogleMaps from 'vue2-google-maps'
+import Vuelidate from 'vuelidate'
+import * as VueGoogleMaps from 'vue2-google-maps'
+import _ from 'lodash'
+import VueLodash from 'vue-lodash/dist/vue-lodash.min'
+import store from './store'
 
 Vue.use(Vuetify)
 Vue.use(VueResource)
-/*Vue.use(VueGoogleMaps, {
+Vue.use(Vuelidate)
+Vue.use(VueLodash, _)
+Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyBvWE_sIwKbWkiuJQOf8gSk9qzpO96fhfY',
-    libraries: 'places', // This is required if you use the Autocomplete plugin
-    // OR: libraries: 'places,drawing'
-    // OR: libraries: 'places,drawing,visualization'
-    // (as you require)
+    key: 'AIzaSyBunJos5d9DBmZY-qJ6SZUAYEmlyFr9t-Y',
+    libraries: 'places'
   }
-})*/
+})
 Vue.config.productionTip = false
-
+Vue.router = router
 Vue.http.options.root = 'http://www.api.buyyourcity.ovh'
+Vue.use(require('@websanova/vue-auth'), {
+  auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
+  http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x.js'),
+  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
+  rolesVar: 'type',
+  tokenName: 'token',
+  tokenStore: ['localStorage', 'cookie'],
+  authRedirect: {path: '/login'},
+  forbiddenRedirect: {path: '/403'},
+  loginData: {url: 'login'},
+  refreshData: {enabled: false, url: 'user/refresh', interval: 0},
+  fetchData: {enabled: false, url: 'user/refresh'}, // todo a activer (neeed fonction reflesh de l'utilisateur en cas de F5) les memes données qu'a la connexions
+  parseUserData: function _parseUserData (data) {
+    return data || {}
+  }
+})
+
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
