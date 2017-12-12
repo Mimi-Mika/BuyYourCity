@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Place;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+
+
 
 class UserController extends ApiController
 {
@@ -162,5 +166,20 @@ class UserController extends ApiController
      */
     public function showPlaces(User $user) {
         return Place::where('user_id', $user->id)->get()->isEmpty() ? response()->json(['error' => 'No contents.'], 204) : Place::where('user_id', $user->id)->get();
-        }
+    }
+
+    /**
+     * Return current user infos with  token.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function refresh(Request $request) {
+        $user = Auth::guard('api')->user();
+        if ($user->get()->isEmpty()) { \Log::info('KO'); }
+        else { return $user; }
+        //return Auth::guard('api')->user()->get()->isEmpty() ? response()->json(['error' => 'No contents.'], 204) : Auth::guard('api')->user();
+
+
+    }
 }

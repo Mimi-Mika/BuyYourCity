@@ -24,18 +24,30 @@ Use App\History;
 * GUEST/PUBLIC ROUTES WITHOUT AUTH
 */
 
-Route::group(['middleware' => ['cors']], function() {
-Route::post('register', 'Auth\RegisterController@register')->middleware('auth:api');;
-Route::post('login', 'Auth\LoginController@login');
-Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
+Route::get('user/refresh', 'UserController@refresh');
 
-Route::resource('history', 'HistoryController', ['except' => ['edit', 'update', 'destroy']]);
-Route::resource('parameter', 'ParameterController');
-Route::resource('place', 'PlaceController');
-Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
-Route::get('user/places/{user}', 'UserController@showPlaces');
+
+Route::group(['middleware' => 'cors'], function() {
+	Route::post('register', 'Auth\RegisterController@register');
+	Route::post('login', 'Auth\LoginController@login');
+	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
+
+	Route::resource('history', 'HistoryController', ['except' => ['edit', 'update', 'destroy']]);
+	Route::resource('parameter', 'ParameterController');
+	Route::resource('place', 'PlaceController');
+	Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
+	Route::get('user/places/{user}', 'UserController@showPlaces');
+
+
+	//refresh user infos with token
+
+	//retourne la listes des lieux possedé
+	//Route::get('place/purchased', 'PlaceController@');
+
+	//retourne la liste des lieux libres
+	////Route::get('place/available', 'PlaceController@');
+
 });
-
 
 /*
  * Logout route
