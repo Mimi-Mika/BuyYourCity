@@ -4,7 +4,7 @@
       <v-layout align-center row spacer slot="header">
         <v-flex xs1>
           <v-avatar size="36px" slot="activator">
-            <img src="/static/icoUser.png" alt="">
+            <!--<img v-bind:src="imgUser" alt="">-->
           </v-avatar>
         </v-flex>
         <v-flex xs3>
@@ -38,7 +38,7 @@
                 <v-btn icon slot="activator">
                   <v-icon color="blue">mail</v-icon>
                 </v-btn>
-                <span>Adresse mail de l'utilisateur</span>
+                <span>Type d'utilisateur</span>
               </v-tooltip>
             </v-list-tile-action>
             <v-list-tile-content>
@@ -128,6 +128,7 @@
   export default {
     name: 'users',
     props: ['user'],
+    //imgUser: "/src/assets/icons/" + this.user.pictureName,
     data() {
       return {
         dialog : false

@@ -20,7 +20,6 @@
        places: []
       }
     },
-
     beforeMount(){
       this.$http.get('place')
         .then(res => {

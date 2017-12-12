@@ -10,7 +10,6 @@
       v-model="drawer"
       app
     >
-
       <left-drawer></left-drawer>
     </v-navigation-drawer>
 
@@ -19,14 +18,14 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tooltip bottom>
+      <v-tooltip bottom v-if="isHome">
         <v-btn icon slot="activator">
         <v-icon>location_on</v-icon>
       </v-btn>
         <span>Localisation activé</span>
       </v-tooltip>
-      <v-tooltip bottom>
-        <v-btn icon slot="activator">
+      <v-tooltip bottom v-if="isHome && geoLocEnable">
+        <v-btn icon slot="activator" @click="centerPos">
           <v-icon>gps_fixed</v-icon>
         </v-btn>
         <span>Recentrer la carte</span>
@@ -34,16 +33,19 @@
 
       <div class="text-xs-center">
         <v-menu offset-y>
-          <v-btn flat slot="activator">
-            <v-icon right dark>account_circle</v-icon>  blabla
-          </v-btn>
+          <v-chip flat slot="activator" color="transparent" text-color="white">
+            <v-avatar>
+              <img src="../../static/icoUser.png" alt="user">
+            </v-avatar>
+            <strong>{{user.name}}</strong>
+          </v-chip>
           <v-list>
             <v-list-tile @click="goAccount">
               <v-list-tile-title>Mon compte</v-list-tile-title>
             </v-list-tile>
           </v-list>
           <v-list>
-            <v-list-tile @click="">
+            <v-list-tile @click="logOut">
               <v-list-tile-title>Déconnexion</v-list-tile-title>
             </v-list-tile>
           </v-list>
@@ -64,6 +66,7 @@
   </div>
 </template>
 <script>
+  import Vuex from 'vuex'
   import LeftDrawer from './navigation/LeftDrawer'
   export default {
     name: 'frame',
@@ -75,18 +78,32 @@
         this.$router.push({
           path: '/account'
         })
+      },
+      logOut: function () {
+        this.$auth.logout({
+          makeRequest: false,
+          redirect: '/login'
+        })
+      },
+      centerPos: function(){
+        this.$store.dispatch('centerPress')
       }
     },
     data () {
       return {
+        user: this.$auth.user(),
         clipped: false,
         drawer: true,
         miniVariant: false
       }
     },
     computed:{
+      ...Vuex.mapGetters(['geoLocEnable']),
       title(){
         return this.$route.name
+      },
+      isHome(){
+        return this.title === "Accueil"
       }
     }
   }

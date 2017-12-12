@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout column align-center>
-      <img src="/static/logo-2.png" alt="BuyYourCity"/>
+      <img src="/static/logo.png" width="100%" alt="BuyYourCity"/>
     </v-layout>
     <v-divider></v-divider>
     <v-list>
@@ -42,6 +42,14 @@
             <v-icon>map</v-icon>
           </v-list-tile-action>
         </v-list-tile>
+        <v-list-tile itemref="history" @click="goHistory">
+          <v-list-tile-content>
+            <v-list-tile-title>Mon historique</v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-icon>history</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
         <v-list-tile itemref="account" @click="goRanking">
           <v-list-tile-content>
             <v-list-tile-title>Classement</v-list-tile-title>
@@ -52,7 +60,7 @@
         </v-list-tile>
       </v-list-group>
 
-      <v-list-group>
+      <v-list-group v-if="user.admin">
         <v-list-tile slot="item" itemid="setting">
           <v-list-tile-action>
             <v-icon>settings</v-icon>
@@ -95,8 +103,13 @@
 <script>
   import VContent from "vuetify/src/components/VGrid/VContent";
   export default {
-    components: {VContent},
     name:'LeftDrawer',
+    components: {VContent},
+    data () {
+      return {
+        user: this.$auth.user()
+      }
+    },
     methods:{
       goHome : function(){
         this.$router.push({
@@ -111,6 +124,11 @@
       goPlaces : function(){
         this.$router.push({
           path: '/placesUser'
+        })
+      },
+      goHistory : function(){
+        this.$router.push({
+          path: '/history'
         })
       },
       goRanking : function(){
