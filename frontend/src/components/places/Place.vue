@@ -4,99 +4,60 @@
       <v-card-media
         class="white--text"
         height="200px"
-        v-bind:src="place.pictPath"
-      >
-        <v-container fill-height fluid>
-          <v-layout fill-height>
-            <v-flex xs12 align-end flexbox>
-              <span class="headline">{{place.name}}</span>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card-media>
+        :src="imagePlace"
+      ></v-card-media>
       <v-card-title primary-title>
+        <span class="headline">{{place.name}}</span>
+      </v-card-title>
+      <v-card-text>
         <div>
+          <strong>Adresse :</strong> <br>
           <strong>Longitude :</strong> {{place.longitude}}<br>
           <strong>Latitude :</strong> {{place.latitude}}
         </div>
-      </v-card-title>
+      </v-card-text>
       <v-card-actions v-if="isSetings">
         <v-btn flat color="blue" dark slot="activator" @click="dialogEdit = true">Modifier le lieu</v-btn>
         <v-btn flat color="red" dark slot="activator" @click="dialogRemove = true">Supprimer le lieu</v-btn>
       </v-card-actions>
       <v-card-actions v-else>
-        <v-btn flat color="red" dark slot="activator" @click="dialogEdit = true">Vendre le lieu</v-btn>
+        <v-btn flat color="red" dark slot="activator" @click="dialogSale = true">Vendre le lieu</v-btn>
       </v-card-actions>
     </v-card>
+
+    <v-dialog v-model="dialogSale" persistent>
+      <dialog-sale-place :place="place" @closeSalePlaceDialog="closeSalePlaceDialog"></dialog-sale-place>
+    </v-dialog>
     <v-dialog v-model="dialogEdit" persistent>
-
-      <v-card>
-        <v-card-media
-          class="white--text"
-          height="200px"
-          v-bind:src="place.pictPath"
-        >
-          <v-container fill-height fluid>
-            <v-layout fill-height>
-              <v-flex xs12 align-end flexbox>
-                <span class="headline">Titre du lieu</span>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-media>
-        <v-card-text>
-
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red darken-1" flat @click.native="dialogEdit = false">Annuler</v-btn>
-          <v-btn color="green darken-1" flat @click.native="dialogEdit = false">Valider</v-btn>
-        </v-card-actions>
-      </v-card>
+      <dialog-edit-place :place="place" @closeDeletePlaceDialog="closeRemovePlaceDialog"></dialog-edit-place>
     </v-dialog>
     <v-dialog v-model="dialogRemove" persistent>
-
-      <v-card>
-        <v-card-media
-          class="white--text"
-          height="200px"
-          v-bind:src="place.pictPath"
-        >
-          <v-container fill-height fluid>
-            <v-layout fill-height>
-              <v-flex xs12 align-end flexbox>
-                <span class="headline">Titre du lieu</span>
-              </v-flex>
-            </v-layout>
-          </v-container>
-        </v-card-media>
-        <v-card-text>
-          <span class="title">Souhaitez-vous vraiment vendre ce lieu ?</span><br>
-          En vendant ce lieu vous récupérerez :<br>
-          <strong>nombre de points</strong>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="red darken-1" flat @click.native="dialogRemove = false">Refuser</v-btn>
-          <v-btn color="green darken-1" flat @click.native="dialogRemove = false">Accepter</v-btn>
-        </v-card-actions>
-      </v-card>
+      <dialog-delete-place :place="place" @closeEditPlaceDialog="closeEditPlaceDialog"></dialog-delete-place>
     </v-dialog>
     </v-flex>
 </template>
 
 <script>
+  import DialogDeletePlace from './DialogDeletePlace'
+  import DialogEditPlace from './DialogEditPlace'
+  import DialogSalePlace from './DialogSalePlace'
+
   export default {
     name: 'places',
     props: ['place'],
+    components: {
+      DialogDeletePlace,
+      DialogEditPlace,
+      DialogSalePlace
+    },
     data() {
       return {
+        imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
         dialogEdit : false,
-        dialogRemove : false
+        dialogRemove : false,
+        dialogSale : false,
+        afterSalesPoints: 0
       }
-    },
-    beforeMount(){
-     console.log(this.place.id)
     },
     computed:{
       title(){
@@ -105,6 +66,17 @@
       isSetings(){
         return this.title === "Gestion des lieux"
       }
-    }
+    },
+    methods: {
+      closeRemovePlaceDialog: function(){
+        this.dialogRemove = false
+      },
+      closeEditPlaceDialog: function(){
+        this.dialogEdit = false
+      },
+      closeSalePlaceDialog: function(){
+        this.dialogSale = false
+      },
+    },
   }
 </script>

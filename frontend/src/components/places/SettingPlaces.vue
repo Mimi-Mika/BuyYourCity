@@ -2,6 +2,21 @@
   <v-container fluid grid-list-lg>
     <v-layout row wrap>
         <place v-for="place in places" :key="place.id" :place="place"></place>
+      <v-fab-transition>
+        <v-btn
+          color="light-blue"
+          dark
+          fab
+          fixed
+          bottom
+          right
+          v-model="fab"
+          @click=""
+        >
+          <v-icon>add</v-icon>
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-fab-transition>
     </v-layout>
   </v-container>
 </template>

@@ -91,10 +91,11 @@ export default {
         },
         fetchUser: this.fetchUser,
         success(res) {
-          this.$auth.token(null, "ugihjfkldjh")
+          console.log(res.body)
+          this.$auth.token(null, res.body.token)
           this.$auth.user(res.body.data)
         },
-        error(res) {
+        error() {
           this.alertLogIn = "Email ou mot de passe invalide"
         }
       })

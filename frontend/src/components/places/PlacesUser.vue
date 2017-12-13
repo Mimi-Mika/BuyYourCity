@@ -6,9 +6,8 @@
   </v-container>
 </template>
 
-
 <script>
-  import Place from './Place' // TODO http://api.buyyourcity.ovh/user/places/1 à changer
+  import Place from './Place'
   export default {
     name: 'placesUser',
     components: {
@@ -19,10 +18,9 @@
         places: []
       }
     },
-
     beforeMount(){
       let userId = this.$auth.user().id
-      this.$http.get('user/places/'+userId)
+      this.$http.get('user/'+userId+'/places')
         .then(res => {
           this.places = res.body
         })
@@ -30,6 +28,7 @@
           console.log("error");
           console.log(err);
         });
-    },
+
+    }
   }
 </script>

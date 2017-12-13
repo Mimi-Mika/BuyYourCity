@@ -38,7 +38,7 @@ Vue.use(require('@websanova/vue-auth'), {
   forbiddenRedirect: {path: '/403'},
   loginData: {url: 'login'},
   refreshData: {enabled: false, url: 'user/refresh', interval: 0},
-  fetchData: {enabled: false, url: 'user/refresh'}, // todo a activer (neeed fonction reflesh de l'utilisateur en cas de F5) les memes données qu'a la connexions
+  fetchData: {enabled: true, url: 'user/refresh'},
   parseUserData: function _parseUserData (data) {
     return data || {}
   }

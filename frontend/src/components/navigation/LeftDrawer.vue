@@ -42,14 +42,14 @@
             <v-icon>map</v-icon>
           </v-list-tile-action>
         </v-list-tile>
-        <v-list-tile itemref="history" @click="goHistory">
+        <!--<v-list-tile itemref="history" @click="goHistory">
           <v-list-tile-content>
             <v-list-tile-title>Mon historique</v-list-tile-title>
           </v-list-tile-content>
           <v-list-tile-action>
             <v-icon>history</v-icon>
           </v-list-tile-action>
-        </v-list-tile>
+        </v-list-tile>-->
         <v-list-tile itemref="account" @click="goRanking">
           <v-list-tile-content>
             <v-list-tile-title>Classement</v-list-tile-title>
@@ -103,7 +103,7 @@
 <script>
   import VContent from "vuetify/src/components/VGrid/VContent";
   export default {
-    name:'LeftDrawer',
+    name:'leftDrawer',
     components: {VContent},
     data () {
       return {

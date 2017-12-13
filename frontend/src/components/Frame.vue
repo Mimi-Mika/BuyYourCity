@@ -34,8 +34,8 @@
       <div class="text-xs-center">
         <v-menu offset-y>
           <v-chip flat slot="activator" color="transparent" text-color="white">
-            <v-avatar>
-              <img src="../../static/icoUser.png" alt="user">
+            <v-avatar :tile="tile" :size="avatarSize" class="grey lighten-4">
+              <img :src="imageUser" alt="avatar">
             </v-avatar>
             <strong>{{user.name}}</strong>
           </v-chip>
@@ -73,6 +73,13 @@
     components: {
       LeftDrawer
     },
+    data() {
+      return {
+        slider: 56,
+        tile: false,
+        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image',
+      }
+    },
     methods: {
       goAccount: function () {
         this.$router.push({
@@ -104,6 +111,9 @@
       },
       isHome(){
         return this.title === "Accueil"
+      },
+      avatarSize () {
+        return `${this.slider}px`
       }
     }
   }
