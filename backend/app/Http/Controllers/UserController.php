@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Place;
+use App\Image;
+use Response;
+
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -44,8 +48,7 @@ class UserController extends ApiController
 
     public function index()
     {
-        $user = User::orderBy('name', 'asc')->get();
-        return $user;
+        return User::orderBy('name', 'asc')->get();
     }
 
     /**
@@ -179,5 +182,25 @@ class UserController extends ApiController
         if ($user->get()->isEmpty()) { \Log::info('KO'); }
         else { return $user; }
         //return Auth::guard('api')->user()->get()->isEmpty() ? response()->json(['error' => 'No contents.'], 204) : Auth::guard('api')->user();
+    }
+
+    public function showImage(User $user) {
+        $image = Image::where('id', $user->image_id)->get()->first();
+
+        \Log::info("image_id : " . $image->image_path);
+        \Log::info(' -------------------- ');
+
+        $file = Storage::get($image->image_path);
+        $type = Storage::mimeType($image->image_path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
+
+    public function ranking(){
+        //return $user = User::orderBy('name', 'asc')->get();
+        return User::orderBy('pointsAviable', 'desc')->get();
     }
 }

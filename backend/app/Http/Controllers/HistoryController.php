@@ -67,7 +67,7 @@ class HistoryController extends ApiController
     public function show(History $history)
     {
         //return $history;
-        //return !$history ? response()->json(['error' => 'No contents.'], 204) : $history;
+        return !$history ? response()->json(['error' => 'No contents.'], 204) : $history;
 
     }
 

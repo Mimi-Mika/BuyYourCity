@@ -21,9 +21,10 @@ class CreatePlacesTable extends Migration
             $table->double('longitude', 20, 10);
             $table->integer('pointsGiven');
             $table->integer('pointsCost');
-            $table->string('pictPath');
+            $table->integer('image_id')->unsigned()->nullable();
+            $table->foreign('image_id')->references('id')->on('images');
             //define foreign key on user id
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });

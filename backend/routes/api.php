@@ -32,11 +32,15 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
-	Route::resource('history', 'HistoryController', ['except' => ['edit', 'update', 'destroy']]);
-	Route::resource('parameter', 'ParameterController');
-	Route::resource('place', 'PlaceController');
-	Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
-	Route::get('user/places/{user}', 'UserController@showPlaces');
+	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
+	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('user', 'UserController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::get('user/{user}/places/', 'UserController@showPlaces');
+	Route::get('user/{user}/image/', 'UserController@showImage');
+	Route::get('user/ranking', 'UserController@ranking');
+	Route::get('place/{place}/image/', 'PlaceController@showImage');
 
 
 	//refresh user infos with token

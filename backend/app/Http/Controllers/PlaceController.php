@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Place;
 use App\History;
+use App\Image;
+use Response;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PlaceController extends ApiController
 {
@@ -168,6 +172,19 @@ class PlaceController extends ApiController
     	return !$place ? response()->json(['error' => 'No contents. Place not found.'], 204) : $place;
     }
 
+    public function showImage(Place $place) {
 
+        $image = Image::where('id', $place->image_id)->get()->first();
 
+        \Log::info("image_id : " . $image->image_path);
+        \Log::info(' -------------------- ');
+
+        $file = Storage::get($image->image_path);
+        $type = Storage::mimeType($image->image_path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    }
 }
