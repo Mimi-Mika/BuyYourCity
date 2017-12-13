@@ -29,10 +29,11 @@ class LoginController extends Controller
         if ($this->attemptLogin($request)) {
 
             $user = $this->guard()->user();
-            $user->makeVisible('api_token');
+            //$user->makeVisible('api_token');
             $user->generateToken();
             return response()->json([
                 'data' => $user->toArray(),
+                'token' => $user->getAttribute('api_token'),
             ]);
         }
         return $this->sendFailedLoginResponse($request);

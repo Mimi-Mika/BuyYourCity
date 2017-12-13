@@ -179,7 +179,5 @@ class UserController extends ApiController
         if ($user->get()->isEmpty()) { \Log::info('KO'); }
         else { return $user; }
         //return Auth::guard('api')->user()->get()->isEmpty() ? response()->json(['error' => 'No contents.'], 204) : Auth::guard('api')->user();
-
-
     }
 }
