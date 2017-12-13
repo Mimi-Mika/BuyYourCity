@@ -200,7 +200,7 @@ class UserController extends ApiController
     }
 
     public function ranking(){
-        //return $user = User::orderBy('name', 'asc')->get();
         return User::orderBy('pointsAviable', 'desc')->get();
     }
+
 }

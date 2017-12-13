@@ -175,10 +175,7 @@ class PlaceController extends ApiController
     public function showImage(Place $place) {
 
         $image = Image::where('id', $place->image_id)->get()->first();
-
-        \Log::info("image_id : " . $image->image_path);
-        \Log::info(' -------------------- ');
-
+        
         $file = Storage::get($image->image_path);
         $type = Storage::mimeType($image->image_path);
 
