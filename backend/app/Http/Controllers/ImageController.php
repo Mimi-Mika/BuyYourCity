@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Image;
+use Response;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -94,5 +97,19 @@ class ImageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getData(Image $image) {
+
+        $path = storage_path('app/public/' . $image->image_path);
+
+        $file = Storage::disk('local')->get($path);
+        $type = Storage::disk('local')->mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+
     }
 }

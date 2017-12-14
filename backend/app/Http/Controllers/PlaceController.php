@@ -184,4 +184,12 @@ class PlaceController extends ApiController
 
         return $response;
     }
+
+    public function aviable () {
+        return Place::where('user_id', NULL)->get();
+    }
+
+    public function purchased () {
+        return Place::where('user_id', '<>', !NULL)->get();
+    }
 }

@@ -32,15 +32,15 @@ Route::group(['middleware' => 'cors'], function() {
 
 	Route::get('user/refresh', 'UserController@refresh');
 	Route::get('user/ranking', 'UserController@ranking');
-	Route::get('user/{user}/places/', 'UserController@showPlaces');
-	Route::get('user/{user}/image/', 'UserController@showImage');
-	Route::get('user/{user}/history', 'UserController@history'); //A REFAIRE
+	Route::get('user/{user}/places', 'UserController@showPlaces');
+	Route::get('user/{user}/image', 'UserController@showImage');
+	Route::get('user/{user}/history', 'UserController@showHistory');
 
-	Route::get('place/aviable', 'PlaceController@aviable'); //A REFAIRE
-	Route::get('place/purchased', 'PlaceController@purchased'); //A REFAIRE
-	Route::get('place/{place}/image/', 'PlaceController@showImage');
+	Route::get('place/aviable', 'PlaceController@aviable');
+	Route::get('place/purchased', 'PlaceController@purchased');
+	Route::get('place/{place}/image', 'PlaceController@showImage');
 
-	Route::get('image/{image}/data', 'ImageController@getData'); //A DEBUG
+	Route::get('image/{image}/data', 'ImageController@getData');
 
 	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);

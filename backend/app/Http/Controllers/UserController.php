@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Place;
 use App\Image;
+use App\History;
 use Response;
 
 use Illuminate\Http\Request;
@@ -200,4 +201,7 @@ class UserController extends ApiController
         return User::orderBy('pointsAviable', 'desc')->get();
     }
 
+    public function showHistory(User $user) {
+        return History::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+    }
 }
