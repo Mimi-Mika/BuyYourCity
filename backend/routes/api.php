@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 use Illuminate\Http\Request;
 use Illuminate\Auth;
@@ -24,25 +24,30 @@ Use App\History;
 * GUEST/PUBLIC ROUTES WITHOUT AUTH
 */
 
-
-
-
 Route::group(['middleware' => 'cors'], function() {
+	
 	Route::post('register', 'Auth\RegisterController@register');
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
 	Route::get('user/refresh', 'UserController@refresh');
 	Route::get('user/ranking', 'UserController@ranking');
+	Route::get('user/{user}/places/', 'UserController@showPlaces');
+	Route::get('user/{user}/image/', 'UserController@showImage');
+	Route::get('user/{user}/history', 'UserController@history'); //A REFAIRE
+
+	Route::get('place/aviable', 'PlaceController@aviable'); //A REFAIRE
+	Route::get('place/purchased', 'PlaceController@purchased'); //A REFAIRE
+	Route::get('place/{place}/image/', 'PlaceController@showImage');
+
+	Route::get('image/{image}/data', 'ImageController@getData'); //A DEBUG
 
 	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::resource('user', 'UserController', ['except' => ['create', 'edit', 'destroy']]);
-	Route::get('user/{user}/places/', 'UserController@showPlaces');
-	Route::get('user/{user}/image/', 'UserController@showImage');
-	Route::get('place/{place}/image/', 'PlaceController@showImage');
+
 
 
 	//refresh user infos with token
