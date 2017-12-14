@@ -175,9 +175,14 @@ class PlaceController extends ApiController
     public function showImage(Place $place) {
 
         $image = Image::where('id', $place->image_id)->get()->first();
+
+        $path = storage_path('app/public/' . $image->image_path);
         
-        $file = Storage::get($image->image_path);
-        $type = Storage::mimeType($image->image_path);
+        if(!file_exists($path)) {
+            abort(404);
+        }
+        $file = file_get_contents($path);
+        $type = mime_content_type($path);
 
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);

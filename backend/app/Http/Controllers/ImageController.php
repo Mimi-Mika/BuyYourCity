@@ -6,6 +6,8 @@ use App\Image;
 use Response;
 
 use Illuminate\Http\Request;
+
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -103,8 +105,11 @@ class ImageController extends Controller
 
         $path = storage_path('app/public/' . $image->image_path);
 
-        $file = Storage::disk('local')->get($path);
-        $type = Storage::disk('local')->mimeType($path);
+        if(!file_exists($path)) {
+            abort(404);
+        }
+        $file = file_get_contents($path);
+        $type = mime_content_type($path);
 
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
