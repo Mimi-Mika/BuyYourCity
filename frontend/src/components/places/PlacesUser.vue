@@ -28,7 +28,6 @@
           console.log("error");
           console.log(err);
         });
-
     }
   }
 </script>

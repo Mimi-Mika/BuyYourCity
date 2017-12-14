@@ -73,13 +73,6 @@
     components: {
       LeftDrawer
     },
-    data() {
-      return {
-        slider: 56,
-        tile: false,
-        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image',
-      }
-    },
     methods: {
       goAccount: function () {
         this.$router.push({
@@ -101,7 +94,10 @@
         user: this.$auth.user(),
         clipped: false,
         drawer: true,
-        miniVariant: false
+        miniVariant: false,
+        slider: 56,
+        tile: false,
+        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image'
       }
     },
     computed:{

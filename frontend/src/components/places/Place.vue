@@ -63,7 +63,7 @@
       title(){
         return this.$route.name
       },
-      isSetings(){
+      isSettings(){
         return this.title === "Gestion des lieux"
       }
     },
@@ -76,7 +76,7 @@
       },
       closeSalePlaceDialog: function(){
         this.dialogSale = false
-      },
-    },
+      }
+    }
   }
 </script>

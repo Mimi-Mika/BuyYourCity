@@ -16,17 +16,7 @@
     },
     data() {
       return {
-        users: [],
-        direction: "top",
-        fab: false,
-        fling: false,
-        hover: false,
-        tabs: null,
-        top: false,
-        right: true,
-        bottom: true,
-        left: false,
-        transition: 'slide-y-reverse-transition'
+        users: []
       }
     },
     beforeMount() {
@@ -39,19 +29,5 @@
           console.log(err);
         });
     },
-    watch: {
-      top (val) {
-        this.bottom = !val
-      },
-      right (val) {
-        this.left = !val
-      },
-      bottom (val) {
-        this.top = !val
-      },
-      left (val) {
-        this.right = !val
-      }
-    }
   }
 </script>
