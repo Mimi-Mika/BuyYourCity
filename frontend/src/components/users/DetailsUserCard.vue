@@ -3,9 +3,12 @@
     <v-card class="grey lighten-3">
       <v-card-title>
         <v-flex  class="text-xs-center">
-          <v-avatar tile="true" :size="200" class="grey lighten-4" v-if="isSettings">
-            <img :src="imageUser" alt="avatar"/>
-          </v-avatar>
+          <a>
+            <v-avatar tile="true" :size="200" class="grey lighten-4" v-if="isSettings">
+              <img :src="imageUser" alt="avatar"/>
+            </v-avatar><br>
+            <v-icon color="blue">image</v-icon> Changer d'avatar
+          </a>
         </v-flex>
         <!--<v-menu offset-y>
            <v-icon>more_vert</v-icon>
@@ -123,6 +126,20 @@
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>{{user.updated_at}}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider inset v-if="isSettings"></v-divider>
+          <v-list-tile v-if="isSettings">
+            <v-list-tile-action>
+              <v-tooltip v-model="show" bottom>
+                <v-btn icon slot="activator">
+                  <v-icon color="blue">lock</v-icon>
+                </v-btn>
+                <span>Mot de passe</span>
+              </v-tooltip>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title><a>Changer de mot de passe</a></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>

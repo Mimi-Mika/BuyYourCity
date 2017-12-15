@@ -12,12 +12,6 @@
       <v-form v-model="valid" ref="form" lazy-validation>
         <v-text-field label="Name" :counter="60" required v-model="name"></v-text-field>
         <v-text-field label="E-mail" v-model="email" required></v-text-field>
-        <v-text-field label="Mot de passe" min="6" hint="6 caratères minimum" v-model="password"
-                      :append-icon="e1 ? 'visibility' : 'visibility_off'"
-                      :append-icon-cb="() => (e1 = !e1)"
-                      :type="e1 ? 'password' : 'text'"
-                      counter required></v-text-field>
-        <v-text-field label="Confirmer le mot de passe" v-model="password_confirm" required></v-text-field>
         <v-text-field label="Date de création du compte" v-bind:value="user.created_at" disabled></v-text-field>
 
         <v-spacer></v-spacer>
@@ -40,8 +34,7 @@
         imageUser : 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image',
         valid : true,
         name : this.user.name,
-        email : this.user.email,
-        password : this.user.password
+        email : this.user.email
       }
     },
     methods: {
@@ -49,6 +42,9 @@
         if (this.$refs.form.validate()) {
 
         }
+      },
+      closeEditUserDialog: function () {
+        this.$emit('closeEditUserDialog')
       },
       clear () {
         this.$refs.form.reset()

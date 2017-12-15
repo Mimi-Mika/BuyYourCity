@@ -13,8 +13,10 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import _ from 'lodash'
 import VueLodash from 'vue-lodash/dist/vue-lodash.min'
 import store from './store'
+import VueChart from 'vue-chart-js'
 
 Vue.use(Vuetify)
+Vue.use(VueChart)
 Vue.use(VueResource)
 Vue.use(Vuelidate)
 Vue.use(VueLodash, _)
@@ -44,7 +46,6 @@ Vue.use(require('@websanova/vue-auth'), {
   }
 })
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -53,4 +54,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
 
