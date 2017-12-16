@@ -8,7 +8,10 @@ use App\Image;
 use Response;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+
+Use App\Place;
+use App\User;
 
 class PlaceController extends ApiController
 {
@@ -137,7 +140,6 @@ class PlaceController extends ApiController
         else {
             return response()->json(['error' => 'This is not your place !'], 403);
         }
-        
 	}
 
 	//Route::update('buyPlace{id}', 'PlaceController@buyPlace');

@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth:api', 'email', 'ban', 'cors']], function() 
 * ADMIN ROUTES WITH AUTH + ADMIN CHECK
 */
 Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
-
+	
 });
 
 /*
