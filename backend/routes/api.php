@@ -25,6 +25,7 @@ Use App\History;
 */
 
 
+Route::get('image/{image}/data', 'ImageController@getData');
 
 Route::group(['middleware' => 'cors'], function() {
 	
