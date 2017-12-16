@@ -24,6 +24,8 @@ Use App\History;
 * GUEST/PUBLIC ROUTES WITHOUT AUTH
 */
 
+
+
 Route::group(['middleware' => 'cors'], function() {
 	
 	Route::post('register', 'Auth\RegisterController@register');
@@ -39,6 +41,8 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('place/aviable', 'PlaceController@aviable');
 	Route::get('place/purchased', 'PlaceController@purchased');
 	Route::get('place/{place}/image', 'PlaceController@showImage');
+	Route::post('place/{place}/buy', 'PlaceController@buyPlace');
+	Route::post('place/{place}/sell', 'PlaceController@sellPlace');
 
 	Route::get('image/{image}/data', 'ImageController@getData');
 
@@ -47,8 +51,6 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::resource('user', 'UserController', ['except' => ['create', 'edit', 'destroy']]);
-
-
 
 	//refresh user infos with token
 

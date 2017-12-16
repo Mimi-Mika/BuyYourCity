@@ -13,13 +13,6 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'darkaonline/l5-swagger' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'L5Swagger\\L5SwaggerServiceProvider',
-    ),
-  ),
   'barryvdh/laravel-cors' => 
   array (
     'providers' => 

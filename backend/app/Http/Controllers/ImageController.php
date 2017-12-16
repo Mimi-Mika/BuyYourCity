@@ -62,7 +62,7 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Image $image)
     {
         return !$image ? response()->json(['error' => 'No contents.'], 204) : $image;
     }
@@ -73,7 +73,7 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Image $image)
     {
         //
     }
@@ -102,19 +102,44 @@ class ImageController extends Controller
     }
 
     public function getData(Image $image) {
-
-        $path = storage_path('app/public/' . $image->image_path);
+        $path = '/var/www/html/BuyYourCity/backend/storage/app/public/' . $image->image_path;
 
         if(!file_exists($path)) {
             abort(404);
         }
+
+        $path = '/var/www/html/BuyYourCity/backend/storage/app/public/test.txt';
+
         $file = file_get_contents($path);
         $type = mime_content_type($path);
+        //header('Content-Type: image/png');
+        //readfile($path);
+        $content = file_get_contents($path);
+        return response($path, 200)->header('Content-Type', $type);
 
-        $response = Response::make($file, 200);
-        $response->header("Content-Type", $type);
+
+        //$file = Storage::get('/var/www/html/BuyYourCity/backend/storage/app/public/logo.png', true);
+        //return response($file, 200)->header('Content-Type', $type);
+        //return response()->download($path);
+        /*
+
+        $path = storage_path('app/public/' . $image->image_path);
+        \Log::info($path);
+
+        $file = file_get_contents($path);
+        $type = mime_content_type($path);
+9
+        //\Log::info($file);
+        //file_put_contents('test.txt', $file);
+
+        $response = Response::file($path);
+        //$response = Response::make($file, 200);
+        $response->header("Content-Type", 'image/jpeg');
+        //$response->header("Content-Length", filesize($path));
 
         return $response;
 
+        //return Image::make($storagePath)->response();
+*/
     }
 }

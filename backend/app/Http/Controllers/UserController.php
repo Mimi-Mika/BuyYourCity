@@ -197,7 +197,7 @@ class UserController extends ApiController
 
         $file = file_get_contents($path);
         $type = mime_content_type($path);
-
+        
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
 
