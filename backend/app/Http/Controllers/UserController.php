@@ -138,15 +138,15 @@ class UserController extends ApiController
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'required|string|unique',
-            'email' => 'required|string|unique',
+            'name' => 'required|string',
+            'email' => 'required|string',
             'pointsAviable' => 'required|numeric',
             'ban' => 'required|boolean',
             'validEmail' => 'required|boolean',
             'admin' => 'required|boolean',
             'image_id' => 'required|integer',
         ]);
-
+        \Log::info($user->id);
         try {
             $user->name = $request->name;
             $user->email = $request->email;
@@ -158,6 +158,7 @@ class UserController extends ApiController
             $user->save();
         }
         catch (Exception $e) {
+            return $e;
             \Log::info($e);
         }
     }
