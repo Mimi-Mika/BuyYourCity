@@ -9,8 +9,8 @@ use Response;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
-Use App\Place;
 use App\User;
 
 class PlaceController extends ApiController
@@ -178,14 +178,20 @@ class PlaceController extends ApiController
 
         $image = Image::where('id', $place->image_id)->get()->first();
 
-        $file = Storage::get('/var/www/html/BuyYourCity/backend/public/storage/logo.png');
-        \Log::info($file);
-        $type = Storage::mimeType($image->image_path);
+        $path = storage_path('app/public/' . $image->image_path);
+
+        if(!file_exists($path)) {
+            abort(404);
+        }
+
+        $file = file_get_contents($path);
+        $type = mime_content_type($path);
 
         $response = Response::make($file, 200);
         $response->header("Content-Type", $type);
 
         return $response;
+
     }
 
     public function aviable () {
