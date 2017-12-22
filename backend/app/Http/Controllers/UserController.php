@@ -141,10 +141,10 @@ class UserController extends ApiController
             'name' => 'required|string|unique',
             'email' => 'required|string|unique',
             'pointsAviable' => 'required|numeric',
-            'ban' => 'required|boolean',
-            'validEmail' => 'required|boolean',
-            'admin' => 'required|boolean',
-            'image_id' => 'required|integer',
+            'ban' => 'required|numeric',
+            'validEmail' => 'required|numeric',
+            'admin' => 'required|numeric',
+            'image_id' => 'required|numeric',
         ]);
 
         try {
