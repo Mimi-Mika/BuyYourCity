@@ -224,14 +224,14 @@ class UserController extends ApiController
     }
 
     public function changePassword(Request $request) {
-        
+
         $user = Auth::guard('api')->user();
 
         $request->validate([
             'password' => 'required|string|min:6|confirmed',
         ]);
         try {
-            $user->password => bcrypt($request->password);
+            $user->password = bcrypt($request->password);
             $user->save();
         } catch (Exception $e) {
             \Log::info($e);
