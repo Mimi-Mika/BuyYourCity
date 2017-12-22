@@ -146,6 +146,7 @@ class UserController extends ApiController
             'admin' => 'required|numeric',
             'image_id' => 'required|numeric',
         ]);
+
         try {
             $user->name = $request->name;
             $user->email = $request->email;
@@ -220,5 +221,20 @@ class UserController extends ApiController
 
     public function showHistory(User $user) {
         return History::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function changePassword(Request $request) {
+        
+        $user = Auth::guard('api')->user();
+
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        try {
+            $user->password => bcrypt($request->password);
+            $user->save();
+        } catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 }

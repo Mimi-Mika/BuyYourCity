@@ -73,7 +73,7 @@ Route::group(['middleware' => ['auth:api', 'email', 'cors']], function() {
 * USERS ROUTES WITH AUTH
 */
 Route::group(['middleware' => ['auth:api', 'email', 'ban', 'cors']], function() {
-
+	Route::put('user/password', 'UserController@changePassword');
 });
 
 
