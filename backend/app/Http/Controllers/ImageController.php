@@ -23,16 +23,6 @@ class ImageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -68,28 +58,28 @@ class ImageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Image $image)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Image $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Image $image)
     {
-        //
-    }
+        $request->validate([
+            'image_path' => 'required|string',
+            'description' => 'required|string',
+        ]);
 
+        try {
+            $image->path = $request->image_path;
+            $image->description = $request->description;
+            $image->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+        }
+    }
     /**
      * Remove the specified resource from storage.
      *

@@ -27,22 +27,6 @@ class PlaceController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return response()->json([
-            'name' => 'STRING',
-            'latitude' => 'DOUBLE : -43.999681',
-            'longitude' => 'DOUBLE : -68.591644',
-            'pointsGiven' => 'INT',
-            'pointsCost' => 'INT',]
-        );
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -84,17 +68,6 @@ class PlaceController extends ApiController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Place $place)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -103,7 +76,26 @@ class PlaceController extends ApiController
      */
     public function update(Request $request, Place $place)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'pointsGiven' => 'required|integer',
+            'pointsCost' => 'required|integer',
+            'image_id' => 'required|integer'
+        ]);
+
+        try {
+            $place->name = $request->name;
+            $place->latitude = $request->latitude;
+            $place->longitude = $request->longitude;
+            $place->pointsGiven = $request->pointsGiven;
+            $place->pointsCost = $request->pointsCost;
+            $place->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 
     /**

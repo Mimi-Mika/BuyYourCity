@@ -7,6 +7,7 @@ Use App\User;
 Use App\Place;
 Use App\Parameter;
 Use App\History;
+Use App\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,6 @@ Use App\History;
 /*
 * GUEST/PUBLIC ROUTES WITHOUT AUTH
 */
-
-
-Route::get('image/{image}/data', 'ImageController@getData');
 
 Route::group(['middleware' => 'cors'], function() {
 	

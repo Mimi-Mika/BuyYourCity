@@ -129,17 +129,6 @@ class UserController extends ApiController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -148,7 +137,29 @@ class UserController extends ApiController
      */
     public function update(Request $request, User $user)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|unique',
+            'email' => 'required|string|unique',
+            'pointsAviable' => 'required|numeric',
+            'ban' => 'required|boolean',
+            'validEmail' => 'required|boolean',
+            'admin' => 'required|boolean',
+            'image_id' => 'required|integer',
+        ]);
+
+        try {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->pointsAviable = $request->pointsAviable;
+            $user->ban = $request->ban;
+            $user->validEmail = $request->validEmail;
+            $user->admin = $request->admin;
+            $user->image_id = $request->image_id;
+            $user->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 
     /**
