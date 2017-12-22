@@ -138,7 +138,29 @@ class UserController extends ApiController
     public function update(Request $request, User $user)
     {
         \Log::info($request);
+        $request->validate([
+            'name' => 'required|string|unique',
+            'email' => 'required|string|unique',
+            'pointsAviable' => 'required|numeric',
+            'ban' => 'required|numeric',
+            'validEmail' => 'required|numeric',
+            'admin' => 'required|numeric',
+            'image_id' => 'required|numeric',
+        ]);
 
+        try {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->pointsAviable = $request->pointsAviable;
+            $user->ban = $request->ban;
+            $user->validEmail = $request->validEmail;
+            $user->admin = $request->admin;
+            $user->image_id = $request->image_id;
+            $user->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 
     /**
