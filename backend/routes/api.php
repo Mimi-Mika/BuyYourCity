@@ -36,6 +36,8 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('user/{user}/places', 'UserController@showPlaces');
 	Route::get('user/{user}/image', 'UserController@showImage');
 	Route::get('user/{user}/history', 'UserController@showHistory');
+	Route::put('user/password', 'UserController@changePassword');
+
 
 	Route::get('place/aviable', 'PlaceController@aviable');
 	Route::get('place/purchased', 'PlaceController@purchased');
@@ -73,7 +75,6 @@ Route::group(['middleware' => ['auth:api', 'email', 'cors']], function() {
 * USERS ROUTES WITH AUTH
 */
 Route::group(['middleware' => ['auth:api', 'email', 'ban', 'cors']], function() {
-	Route::put('user/password', 'UserController@changePassword');
 });
 
 
