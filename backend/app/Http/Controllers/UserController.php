@@ -146,7 +146,7 @@ class UserController extends ApiController
             'admin' => 'required|numeric',
             'image_id' => 'required|numeric',
         ]);
-        \Log::info($request);
+        try {
             $user->name = $request->name;
             $user->email = $request->email;
             $user->pointsAviable = $request->pointsAviable;
@@ -155,6 +155,10 @@ class UserController extends ApiController
             $user->admin = $request->admin;
             $user->image_id = $request->image_id;
             $user->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 
     /**
