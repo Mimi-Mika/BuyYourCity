@@ -141,10 +141,10 @@ class UserController extends ApiController
             'name' => 'required|string',
             'email' => 'required|string',
             'pointsAviable' => 'required|numeric',
-            'ban' => 'required|boolean',
-            'validEmail' => 'required|boolean',
-            'admin' => 'required|boolean',
-            'image_id' => 'required|integer',
+            'ban' => 'required|numeric',
+            'validEmail' => 'required|numeric',
+            'admin' => 'required|numeric',
+            'image_id' => 'required|numeric',
         ]);
         \Log::info($user->id);
         try {
@@ -222,5 +222,22 @@ class UserController extends ApiController
 
     public function showHistory(User $user) {
         return History::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+    }
+
+    public function changePassword(Request $request) {
+
+
+        $user = Auth::guard('api')->user();
+        
+        \Log::info($user->name);
+        $request->validate([
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+        try {
+            $user->password = bcrypt($request->password);
+            $user->save();
+        } catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 }
