@@ -137,18 +137,16 @@ class UserController extends ApiController
      */
     public function update(Request $request, User $user)
     {
-        \Log::info($request);
         $request->validate([
-            'name' => 'required|string|unique',
-            'email' => 'required|string|unique',
+            'name' => 'required|string',
+            'email' => 'required|string',
             'pointsAviable' => 'required|numeric',
             'ban' => 'required|numeric',
             'validEmail' => 'required|numeric',
             'admin' => 'required|numeric',
             'image_id' => 'required|numeric',
         ]);
-
-        try {
+        \Log::info($request);
             $user->name = $request->name;
             $user->email = $request->email;
             $user->pointsAviable = $request->pointsAviable;
@@ -157,10 +155,6 @@ class UserController extends ApiController
             $user->admin = $request->admin;
             $user->image_id = $request->image_id;
             $user->save();
-        }
-        catch (Exception $e) {
-            \Log::info($e);
-        }
     }
 
     /**
