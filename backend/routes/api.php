@@ -31,6 +31,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
+
 	Route::get('user/refresh', 'UserController@refresh');
 	Route::get('user/ranking', 'UserController@ranking');
 	Route::get('user/{user}/places', 'UserController@showPlaces');
@@ -45,7 +46,20 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('place/{place}/buy', 'PlaceController@buyPlace');
 	Route::post('place/{place}/sell', 'PlaceController@sellPlace');
 
+
 	Route::get('image/{image}/data', 'ImageController@getData');
+
+
+	Route::get('history/sell/day', 'History@sellLastDay');
+	Route::get('history/sell/week', 'History@sellLastWeek');
+	Route::get('history/sell/mouth', 'History@sellLastMouth');
+	Route::get('history/sell/year', 'History@sellLastYear');
+
+	Route::get('history/buy/day', 'History@buyLastDay');
+	Route::get('history/buy/week', 'History@buyLastWeek');
+	Route::get('history/buy/mouth', 'History@buyLastMouth');
+	Route::get('history/buy/year', 'History@buyLastYear');
+
 
 	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);

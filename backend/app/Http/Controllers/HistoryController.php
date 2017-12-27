@@ -71,37 +71,41 @@ class HistoryController extends ApiController
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(History $history)
-    {
-        //
+
+//GET : /history/sell/day
+    public function sellLastDay() {
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::today())->get();
+    }
+//GET : /history/sell/week
+    public function sellLastWeek() {
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfWeek())->get();
+    }
+//GET : /history/sell/mouth
+    public function sellLastMouth() {
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+    }
+//GET : /history/sell/year
+    public function sellLastYear() {
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfYear())->get();
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, History $history)
-    {
-        //
+
+//GET : /history/buy/day
+    public function buyLastDay() {
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::today())->get();
+    }
+//GET : /history/buy/week
+    public function buyLastWeek() {
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfWeek())->get();
+    }
+//GET : /history/buy/mouth
+    public function buyLastMouth() {
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+    }
+//GET : /history/buy/year
+    public function buyLastYear() {
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfYear())->get();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\History  $history
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(History $history)
-    {
-        //
-    }
+
 }
