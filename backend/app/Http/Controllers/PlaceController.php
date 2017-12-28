@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Place;
 use App\History;
 use App\Image;
+use App\Parameter;
 use Response;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
 
 use App\User;
 
@@ -192,5 +194,24 @@ class PlaceController extends ApiController
 
     public function purchased () {
         return Place::where('user_id', '<>', !NULL)->get();
+    }
+
+    public function showInRadius(Request $request) {
+        $request->validate([
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        $sql = "* , ((ACOS(SIN( " . $request->latitude . " * PI() / 180) * SIN( places.latitude * PI() / 180) + COS( " . $request->latitude . "  * PI() / 180) * COS( places.latitude * PI() / 180) * COS((" . $request->longitude . "  - places.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344) as distance";
+        
+        $places = Place::selectRaw($sql);
+
+        $parameter = Parameter::select('seeRadius')->where('id', env('DB_PARAMETER_ID', '1'))->first();
+
+        \Log::info($parameter);
+
+        $places->havingRaw('distance BETWEEN 0 AND ' . $parameter->seeRadius); // TODO replace $outer_radius with parameter->radius !!!!!
+
+        return $places->get();
     }
 }
