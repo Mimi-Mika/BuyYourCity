@@ -1850,3 +1850,13 @@ X-Ratelimit-Remaining: 59
 #46 /var/www/html/BuyYourCity/backend/server.php(21): require_once('/var/www/html/B...')
 #47 {main}
 "} 
+[2017-12-27 16:05:06] production.INFO:   
+[2017-12-27 16:05:06] production.INFO: 1  
+[2017-12-27 16:05:06] production.INFO:   
+[2017-12-27 16:05:06] production.INFO:   
+[2017-12-27 16:05:06] production.INFO:   
+[2017-12-27 16:05:06] production.INFO:   
+[2017-12-27 16:05:06] production.INFO: 1  
+[2017-12-27 16:05:06] production.INFO: 1  
+[2017-12-27 16:05:06] production.INFO: 1  
+[2017-12-27 16:05:06] production.INFO: 1  

@@ -164,14 +164,38 @@ class UserController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the current resource from storage. Need 
      *
-     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy()
+    {   
+         try {
+            $user = Auth::guard('api')->user();
+            $user->softDeletes();
+            $user->save();
+        } catch (Exception $e) {
+            \Log::info($e);
+            return response()->json(['error' => $e], 404);
+        }
+        return response()->json(['ok' => 'User soft deleted.'], 200);
+    }
+
+    /**
+     * Restore the current resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(User $user)
     {
-        //
+        try {
+            $user->deleted_at = NULL;
+            $user->save();
+        } catch (Exception $e) {
+            \Log::info($e);
+            return response()->json(['error' => $e], 404);
+        }
+        return response()->json(['ok' => 'User restored.'], 200);
     }
 
     /**
