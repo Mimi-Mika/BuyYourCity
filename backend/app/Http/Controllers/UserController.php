@@ -249,8 +249,6 @@ class UserController extends ApiController
     }
 
     public function changePassword(Request $request) {
-
-
         $user = Auth::guard('api')->user();
         
         \Log::info($user->name);
@@ -264,4 +262,13 @@ class UserController extends ApiController
             \Log::info($e);
         }
     }
+
+    public function redirectToFrontend() {
+        $url = 'http://google.com';
+        // redirects to http://google.com
+        return redirect('http://www.buyyourcity.ovh');
+
+        //return redirect('http://www.api.buyyourcity.ovh');
+    }
+
 }

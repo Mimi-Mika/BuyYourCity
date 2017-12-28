@@ -39,6 +39,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('user/{user}/history', 'UserController@showHistory');
 	Route::put('user/password', 'UserController@changePassword');
 	Route::put('user/{user}/restore', 'UserController@restore');
+	Route::get('user/redirect', 'UserController@redirectToFrontend');
 
 
 	Route::get('place/aviable', 'PlaceController@aviable');
