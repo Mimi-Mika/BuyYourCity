@@ -109,16 +109,21 @@ class PlaceController extends ApiController
      */
     public function destroy(Place $place)
     {
-        if ($place->user_id != NULL) {
-            $user = User::where('id', $place->user_id);
-            $user->pointsAviable += $place->pointsCost;
-            $place->user_id = NULL;
-            $user->save();
+        try {
+            if ($place->user_id != NULL) {
+                $user = User::where('id', $place->user_id);
+                $user->pointsAviable += $place->pointsCost;
+                $place->user_id = NULL;
+                $user->save();
+            }
+            $place->softDeletes();
+            $place->save();
+        } catch (Exception $e) {
+            \Log::info($e);
+            return response()->json(['error' => $e], 404);
         }
-        $place->softDeletes();
-        $place->save();
+        return response()->json(['ok' => 'Place soft deleted.'], 200);
     }
-
 
 	//Route::update('sellPlace{id}', 'PlaceController@sellPlace');
 	public function sellPlace(Place $place) { 

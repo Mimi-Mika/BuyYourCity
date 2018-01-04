@@ -170,18 +170,17 @@ class UserController extends ApiController
      */
     public function destroy()
     {   
-         try {
+        try {
             $user = Auth::guard('api')->user();
             $places = Place::where('user_id', $user->id);
 
-            //TODO
-            /*
-                Count places number
-                if > 0
-                    loop on each places
-                        sell place (user_id = NULL)
-                        restore sell place points to user
-            */
+            if ($places->count() > 0) {
+                foreach ($places as $key => $place) {
+                    $user->pointsAviable += $place->pointsCost;
+                    $place->user_id = NULL;
+                    $place->save();
+                }
+            }
             $user->api_token = NULL;
             $user->softDeletes();
             $user->save();
