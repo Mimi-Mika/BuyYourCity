@@ -107,7 +107,7 @@ Route::get('routes', function(){
 
 
 	$routes = Route::getRoutes()->get();
-	$routes->displayRoutes();
+	Route::displayRoutes();
 
 	
 });
