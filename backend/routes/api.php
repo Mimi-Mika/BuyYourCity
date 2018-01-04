@@ -66,9 +66,9 @@ Route::group(['middleware' => 'cors'], function() {
 
 	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);
-	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit']]);
 	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
-	Route::resource('user', 'UserController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
 
 	//refresh user infos with token
 

@@ -164,7 +164,7 @@ class UserController extends ApiController
     }
 
     /**
-     * Remove the current resource from storage. Need 
+     * Remove the current resource from storage. 
      *
      * @return \Illuminate\Http\Response
      */
@@ -172,6 +172,17 @@ class UserController extends ApiController
     {   
          try {
             $user = Auth::guard('api')->user();
+            $places = Place::where('user_id', $user->id);
+
+            //TODO
+            /*
+                Count places number
+                if > 0
+                    loop on each places
+                        sell place (user_id = NULL)
+                        restore sell place points to user
+            */
+            $user->api_token = NULL;
             $user->softDeletes();
             $user->save();
         } catch (Exception $e) {

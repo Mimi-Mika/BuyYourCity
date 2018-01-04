@@ -6,6 +6,8 @@ use App\Place;
 use App\History;
 use App\Image;
 use App\Parameter;
+use App\User;
+
 use Response;
 
 use Illuminate\Http\Request;
@@ -13,7 +15,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 
-use App\User;
 
 class PlaceController extends ApiController
 {
@@ -108,7 +109,14 @@ class PlaceController extends ApiController
      */
     public function destroy(Place $place)
     {
-        //
+        if ($place->user_id != NULL) {
+            $user = User::where('id', $place->user_id);
+            $user->pointsAviable += $place->pointsCost;
+            $place->user_id = NULL;
+            $user->save();
+        }
+        $place->softDeletes();
+        $place->save();
     }
 
 
