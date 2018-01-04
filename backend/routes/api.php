@@ -31,7 +31,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
-
+	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
 	Route::get('user/refresh', 'UserController@refresh');
 	Route::get('user/ranking', 'UserController@ranking');
 	Route::get('user/{user}/places', 'UserController@showPlaces');
@@ -42,6 +42,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('user/redirect', 'UserController@redirectToFrontend');
 
 
+	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit']]);
 	Route::get('place/aviable', 'PlaceController@aviable');
 	Route::get('place/purchased', 'PlaceController@purchased');
 	Route::get('place/{place}/image', 'PlaceController@showImage');
@@ -50,9 +51,10 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('place/inradius', 'PlaceController@showInRadius');
 
 
+	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::get('image/{image}/data', 'ImageController@getData');
 
-
+	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::get('history/sell/day', 'HistoryController@sellLastDay');
 	Route::get('history/sell/week', 'HistoryController@sellLastWeek');
 	Route::get('history/sell/mouth', 'HistoryController@sellLastMouth');
@@ -64,11 +66,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('history/buy/year', 'HistoryController@buyLastYear');
 
 
-	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);
-	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit']]);
-	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
-	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
 
 	//refresh user infos with token
 
@@ -106,12 +104,48 @@ Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
 Route::get('routes', function(){
 
 
-	$routes = Route::getRoutes()->get();
-	Route::displayRoutes();
+    $routeCollection = Route::getRoutes()->get();
 
-	
+
+    echo "<table id='routes-table' class='table table-bordered table-responsive'>";
+        echo "<tr>";
+            echo "<td width='10%'><h4>HTTP Method</h4></td>";
+            echo "<td width='30%'><h4>Route</h4></td>";
+            echo "<td width='35%'><h4>Corresponding Action</h4></td>";
+            echo "<td width='15%'><h4>Middlewares</h4></td>";
+        echo "</tr>";
+        foreach ($routeCollection as $route) {
+        	$middlewares = $route->gatherMiddleware();
+            echo "<tr>";
+                echo "<td>" . $route->methods()[0] . "</td>";
+                echo "<td>http://api.buyyourcity.ovh/" . $route->uri . "</td>";
+                echo "<td>" . $route->getActionName() . "</td>";
+                echo "<td>";
+                foreach ($middlewares as $key => $middleware) {
+                	echo $middleware . ",";
+                }
+                echo "</td>";
+
+            echo "</tr>";
+        }
+    echo "</table>";
 });
+/*
 
+
+
+
+
+
+
+                        <td>{{$route->uri}}</td>
+                        <td>{{$route->getName()}}</td>
+                        <td>{{$route->getPrefix()}}</td>
+                        <td>{{$route->getActionMethod()}}</td>
+
+
+
+*/
 
 /*
 *EXEMPLES:
