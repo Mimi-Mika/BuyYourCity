@@ -115,7 +115,7 @@ Route::get('routes', function(){
 	$response = Response::make(json_encode($results, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
 	$response->header('Content-Type', 'text/plain');
 	return $response;
-}
+});
 
 
 /*
