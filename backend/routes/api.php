@@ -31,7 +31,6 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
-	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
 	Route::get('user/refresh', 'UserController@refresh');
 	Route::get('user/ranking', 'UserController@ranking');
 	Route::get('user/{user}/places', 'UserController@showPlaces');
@@ -42,7 +41,6 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('user/redirect', 'UserController@redirectToFrontend');
 
 
-	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit']]);
 	Route::get('place/aviable', 'PlaceController@aviable');
 	Route::get('place/purchased', 'PlaceController@purchased');
 	Route::get('place/{place}/image', 'PlaceController@showImage');
@@ -51,10 +49,8 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('place/inradius', 'PlaceController@showInRadius');
 
 
-	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
 	Route::get('image/{image}/data', 'ImageController@getData');
 
-	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
 	Route::get('history/sell/day', 'HistoryController@sellLastDay');
 	Route::get('history/sell/week', 'HistoryController@sellLastWeek');
 	Route::get('history/sell/mouth', 'HistoryController@sellLastMouth');
@@ -65,7 +61,10 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('history/buy/mouth', 'HistoryController@buyLastMouth');
 	Route::get('history/buy/year', 'HistoryController@buyLastYear');
 
-
+	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
+	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
+	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit']]);
 	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);
 
 	//refresh user infos with token
@@ -102,11 +101,7 @@ Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
 
 
 Route::get('routes', function(){
-
-
     $routeCollection = Route::getRoutes()->get();
-
-
     echo "<table id='routes-table' class='table table-bordered table-responsive'>";
         echo "<tr>";
             echo "<td width='10%'><h4>HTTP Method</h4></td>";
@@ -130,22 +125,6 @@ Route::get('routes', function(){
         }
     echo "</table>";
 });
-/*
-
-
-
-
-
-
-
-                        <td>{{$route->uri}}</td>
-                        <td>{{$route->getName()}}</td>
-                        <td>{{$route->getPrefix()}}</td>
-                        <td>{{$route->getActionMethod()}}</td>
-
-
-
-*/
 
 /*
 *EXEMPLES:
