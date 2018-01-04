@@ -30,6 +30,11 @@
         @click="center=marker.position"
       ></gmap-marker>
     </gmap-map>
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+      <v-icon>warning</v-icon> &nbsp;
+      Une erreur interne est survenue lors du chargement des lieux !
+      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -39,6 +44,7 @@
     name: 'home',
       data(){
         return {
+          snackbarKO: false,
           center: {lat: 0.0, lng: 0.0},
           markers: [],
           zoom: 15,
@@ -91,6 +97,7 @@
             this.filterPlaces()
           })
           .catch(err => {
+            this.snackbarKO = true;
             console.log("error");
             console.log(err);
           });
@@ -101,6 +108,7 @@
             this.filterPlaces()
           })
           .catch(err => {
+            this.snackbarKO = true;
             console.log("error");
             console.log(err);
           });

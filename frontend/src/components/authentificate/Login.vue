@@ -91,7 +91,6 @@ export default {
         },
         fetchUser: this.fetchUser,
         success(res) {
-          console.log(res.body)
           this.$auth.token(null, res.body.token)
           this.$auth.user(res.body.data)
         },

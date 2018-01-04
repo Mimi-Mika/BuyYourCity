@@ -41,9 +41,6 @@
         imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image',
       }
     },
-    beforeMount(){
-      console.log(this.user.id)
-    },
     computed:{
       avatarSize () {
         return `${this.slider}px`

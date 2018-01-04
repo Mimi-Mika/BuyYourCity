@@ -10,6 +10,11 @@
         </v-card-text>
       </v-card>
     </v-flex>
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+      <v-icon>warning</v-icon> &nbsp;
+      Une erreur interne est survenue !
+      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -24,6 +29,7 @@
     },
     data () {
       return {
+        snackbarKO: false,
         places: [],
         nbPlaceFree : 0,
         nbPlaceOccupied : 0
@@ -35,6 +41,7 @@
           this.places = res.body
         })
         .catch(err => {
+          snackbarKO = true;
           console.log("error");
           console.log(err);
         });

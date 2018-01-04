@@ -14,9 +14,14 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="red darken-1" flat @click.native="closeRemoveUserDialog()">Refuser</v-btn>
-      <v-btn color="green darken-1" flat @click.native="dialogRemove = false" @Click="">Accepter</v-btn>
+      <v-btn color="red darken-1" flat @click="closeRemoveUserDialog">Annuler</v-btn>
+      <v-btn color="green darken-1" flat @click="removeUser">Confirmer</v-btn>
     </v-card-actions>
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarOK" color="success">
+      <v-icon>check_circle</v-icon> &nbsp;
+      Votre compte a bien été supprimé !
+      <v-btn flat color="white" @click.native="snackbarOK = false">Close</v-btn>
+    </v-snackbar>
   </v-card>
 </template>
 
@@ -26,12 +31,18 @@
     props: ['user'],
     data() {
       return {
+        snackbarOK : false,
         imageUser : 'http://www.api.buyyourcity.ovh/user/'+this.user.id+'/image',
       }
     },
     methods:{
       closeRemoveUserDialog: function () {
         this.$emit('closeRemoveUserDialog')
+      },
+      removeUser: function () {
+
+        this.closeRemoveUserDialog()
+        //this.snackbarOK = true;
       }
     }
   }

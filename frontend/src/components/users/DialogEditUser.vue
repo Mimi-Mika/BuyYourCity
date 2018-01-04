@@ -12,10 +12,9 @@
       <v-form v-model="valid" ref="form" lazy-validation>
         <v-text-field label="Name" :counter="60" required v-model="name"></v-text-field>
         <v-text-field label="E-mail" v-model="email" required></v-text-field>
-        <v-text-field label="Date de création du compte" v-bind:value="user.created_at" disabled></v-text-field>
 
         <v-spacer></v-spacer>
-        <v-btn color="red darken-1" flat @click.native="closeEditUserDialog()">Refuser</v-btn>
+        <v-btn color="red darken-1" flat @click.native="closeEditUserDialog">Refuser</v-btn>
         <v-btn color="warning darken-1" flat  @click="clear">Effacer</v-btn>
         <v-btn color="blue darken-1" flat @click="submit" :disabled="!valid">Envoyer</v-btn>
       </v-form>

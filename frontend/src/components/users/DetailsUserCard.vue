@@ -2,27 +2,12 @@
   <v-flex xs12 sm6 offset-sm3>
     <v-card class="grey lighten-3">
       <v-card-title>
-        <v-flex  class="text-xs-center">
-          <a>
-            <v-avatar tile="true" :size="200" class="grey lighten-4" v-if="isSettings">
-              <img :src="imageUser" alt="avatar"/>
-            </v-avatar><br>
+        <v-flex class="text-xs-center">
+          <a v-if="isSettings">
+            <img :src="imageUser" alt="avatar" width="150px"/><br>
             <v-icon color="blue">image</v-icon> Changer d'avatar
           </a>
         </v-flex>
-        <!--<v-menu offset-y>
-           <v-icon>more_vert</v-icon>
-           <v-list>
-             <v-list-tile @click="">
-               <v-list-tile-title>Modifier</v-list-tile-title>
-             </v-list-tile>
-           </v-list>
-           <v-list>
-             <v-list-tile @click="">
-               <v-list-tile-title>Supprimer</v-list-tile-title>
-             </v-list-tile>
-           </v-list>
-         </v-menu>-->
       </v-card-title>
       <v-card-text>
         <div class="display-1" align="center">{{user.name}}</div>
@@ -30,7 +15,7 @@
         <v-list two-line class="grey lighten-3">
           <v-list-tile>
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">mail</v-icon>
                 </v-btn>
@@ -45,7 +30,7 @@
           <v-divider inset></v-divider>
           <v-list-tile>
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">plus_one</v-icon>
                 </v-btn>
@@ -59,7 +44,7 @@
           <v-divider inset v-if="isSettings"></v-divider>
           <v-list-tile v-if="isSettings">
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">pin_drop</v-icon>
                 </v-btn>
@@ -73,7 +58,7 @@
           <v-divider inset v-if="!isSettings"></v-divider>
           <v-list-tile v-if="!isSettings">
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">person</v-icon>
                 </v-btn>
@@ -88,7 +73,7 @@
           <v-divider inset  v-if="!isSettings"></v-divider>
           <v-list-tile v-if="!isSettings">
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">close</v-icon>
                 </v-btn>
@@ -103,7 +88,7 @@
           <v-divider inset></v-divider>
           <v-list-tile>
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">person_add</v-icon>
                 </v-btn>
@@ -117,7 +102,7 @@
           <v-divider inset></v-divider>
           <v-list-tile>
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">edit</v-icon>
                 </v-btn>
@@ -131,7 +116,7 @@
           <v-divider inset v-if="isSettings"></v-divider>
           <v-list-tile v-if="isSettings">
             <v-list-tile-action>
-              <v-tooltip v-model="show" bottom>
+              <v-tooltip bottom>
                 <v-btn icon slot="activator">
                   <v-icon color="blue">lock</v-icon>
                 </v-btn>
@@ -139,7 +124,7 @@
               </v-tooltip>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title><a>Changer de mot de passe</a></v-list-tile-title>
+              <v-list-tile-title><a slot="activator" @click="dialogPassword = true">Changer de mot de passe</a></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -148,13 +133,40 @@
         <v-btn flat color="red" slot="activator" @click="dialogRemove = true">Supprimer mon compte</v-btn>
         <v-btn flat color="blue" slot="activator" @click="dialogEdit = true">Modifier mon compte</v-btn>
       </v-card-actions>
+      <v-card-actions v-else>
+        <v-btn flat color="red" slot="activator" @click="dialogBan = true" v-if="!user.ban">Bannir</v-btn>
+        <v-btn flat color="red" slot="activator" @click="dialogBan = true" v-else>Débannir</v-btn>
+        <v-btn flat color="blue" slot="activator" @click="dialogAdmin = true" v-if="!user.admin">Rendre administrateur</v-btn>
+        <v-btn flat color="blue" slot="activator" @click="dialogAdmin = true" v-else>Enlever les droits administrateur</v-btn>
+      </v-card-actions>
+
+      <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+        <v-icon>warning</v-icon> &nbsp;
+        Une erreur interne est survenue !
+        <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
+      </v-snackbar>
+      <v-snackbar :timeout="6000" top="top" right="right" v-model="editOK" @snackbarOK="snackbarOK" color="success">
+        <v-icon>check_circle</v-icon> &nbsp;
+        Le changement a bien été pris en compte.
+        <v-btn flat color="white" @click="editOK = false">Close</v-btn>
+      </v-snackbar>
+
     </v-card>
 
     <v-dialog v-model="dialogEdit" persistent>
-      <dialog-edit-user :user="user" @closeDeleteUserDialog="closeRemoveUserDialog"></dialog-edit-user>
+      <dialog-edit-user :user="user" @closeEditUserDialog="closeEditUserDialog"></dialog-edit-user>
     </v-dialog>
     <v-dialog v-model="dialogRemove" persistent>
-      <dialog-delete-user :user="user" @closeEditUserDialog="closeEditUserDialog"></dialog-delete-user>
+      <dialog-delete-user :user="user" @closeRemoveUserDialog="closeRemoveUserDialog"></dialog-delete-user>
+    </v-dialog>
+    <v-dialog v-model="dialogPassword" persistent>
+      <dialog-password-user :user="user" @closePasswordUserDialog="closePasswordUserDialog"></dialog-password-user>
+    </v-dialog>
+    <v-dialog v-model="dialogAdmin" persistent>
+      <dialog-admin-user :user="user" @closeAdminUserDialog="closeAdminUserDialog"></dialog-admin-user>
+    </v-dialog>
+    <v-dialog v-model="dialogBan" persistent>
+      <dialog-ban-user :user="user" @closeBanUserDialog="closeBanUserDialog"></dialog-ban-user>
     </v-dialog>
   </v-flex>
 </template>
@@ -162,20 +174,32 @@
 <script>
   import DialogDeleteUser from './DialogDeleteUser'
   import DialogEditUser from './DialogEditUser'
+  import DialogPasswordUser from './DialogPasswordUser'
+  import DialogAdminUser from './DialogAdminUser'
+  import DialogBanUser from './DialogBanUser'
   export default {
     name: 'detailsUserCard',
     props: ['user'],
     components: {
       DialogDeleteUser,
-      DialogEditUser
+      DialogEditUser,
+      DialogPasswordUser,
+      DialogAdminUser,
+      DialogBanUser
     },
     data() {
       return {
+        snackbarKO: false,
+        editOK: false,
+        OK: false,
         places : [],
         imageUser : 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image',
         nbPlacesUser : 0,
         dialogEdit : false,
         dialogRemove : false,
+        dialogPassword : false,
+        dialogAdmin : false,
+        dialogBan : false
       }
     },
     beforeMount(){
@@ -185,6 +209,7 @@
           this.nbPlacesUser = this.places.length
         })
         .catch(err => {
+          this.snackbarKO = true;
           console.log("error");
           console.log(err);
         });
@@ -196,9 +221,6 @@
       },
       isSettings(){
         return this.title === "Mes informations"
-      },
-      avatarSize () {
-        return `${this.slider}px`
       }
     },
     methods: {
@@ -207,6 +229,18 @@
       },
       closeEditUserDialog: function () {
         this.dialogEdit = false
+      },
+      closePasswordUserDialog: function () {
+        this.dialogPassword = false
+      },
+      closeAdminUserDialog: function () {
+        this.dialogAdmin = false
+      },
+      closeBanUserDialog: function () {
+        this.dialogBan = false
+      },
+      snackbarOK: function () {
+       this.editOK = true;
       }
     }
   }

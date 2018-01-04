@@ -16,23 +16,31 @@
           <strong>Latitude :</strong> {{place.latitude}}
         </div>
       </v-card-text>
-      <v-card-actions v-if="isSetings">
+      <v-card-actions v-if="isSettings">
         <v-btn flat color="blue" dark slot="activator" @click="dialogEdit = true">Modifier le lieu</v-btn>
         <v-btn flat color="red" dark slot="activator" @click="dialogRemove = true">Supprimer le lieu</v-btn>
       </v-card-actions>
       <v-card-actions v-else>
         <v-btn flat color="red" dark slot="activator" @click="dialogSale = true">Vendre le lieu</v-btn>
       </v-card-actions>
+
+
+      <v-snackbar :timeout="6000" top="top" right="right" v-model="placeUpdateOK" color="success">
+        <v-icon>check_circle</v-icon> &nbsp;
+        Le lieu a bien été mit à jour !
+        <v-btn flat color="white" @click.native="placeUpdateOK = false">Close</v-btn>
+      </v-snackbar>
+
     </v-card>
 
     <v-dialog v-model="dialogSale" persistent>
       <dialog-sale-place :place="place" @closeSalePlaceDialog="closeSalePlaceDialog"></dialog-sale-place>
     </v-dialog>
-    <v-dialog v-model="dialogEdit" persistent>
-      <dialog-edit-place :place="place" @closeDeletePlaceDialog="closeRemovePlaceDialog"></dialog-edit-place>
-    </v-dialog>
     <v-dialog v-model="dialogRemove" persistent>
-      <dialog-delete-place :place="place" @closeEditPlaceDialog="closeEditPlaceDialog"></dialog-delete-place>
+      <dialog-delete-place :place="place" @closeRemovePlaceDialog="closeRemovePlaceDialog"></dialog-delete-place>
+    </v-dialog>
+    <v-dialog v-model="dialogEdit" persistent>
+      <dialog-edit-place :place="place" @closeEditPlaceDialog="closeEditPlaceDialog"></dialog-edit-place>
     </v-dialog>
     </v-flex>
 </template>
@@ -56,7 +64,8 @@
         dialogEdit : false,
         dialogRemove : false,
         dialogSale : false,
-        afterSalesPoints: 0
+        afterSalesPoints: 0,
+        placeUpdateOK: false
       }
     },
     computed:{
@@ -73,9 +82,13 @@
       },
       closeEditPlaceDialog: function(){
         this.dialogEdit = false
+        this.placeUpdateOK = this.snackbarOK()
       },
       closeSalePlaceDialog: function(){
         this.dialogSale = false
+      },
+      snackbarOK: function(){
+        this.placeUpdateOK = true
       }
     }
   }
