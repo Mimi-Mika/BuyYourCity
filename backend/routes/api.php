@@ -104,17 +104,8 @@ Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
 
 
 Route::get('routes', function(){
-	$routes = Route::getRoutes();
-	$results = array();
-	foreach ($routes as $route) {
-		$path = $route->getPath();
-		$readable = preg_replace('/\/\{(one|two|three|four|five)\?\}/', '', $path);
-		$results[] = $readable;
-	}
-	sort($results);
-	$response = Response::make(json_encode($results, JSON_PRETTY_PRINT|JSON_UNESCAPED_SLASHES));
-	$response->header('Content-Type', 'text/plain');
-	return $response;
+	$routes = Route::getRoutes()->get();
+	return !$routes ? response()->json(['error' => 'No contents.'], 204) : $routes;
 });
 
 
