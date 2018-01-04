@@ -104,8 +104,12 @@ Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
 
 
 Route::get('routes', function(){
+
+
 	$routes = Route::getRoutes()->get();
-	return !$routes ? response()->json(['error' => 'No contents.'], 204) : $routes;
+	$routes->displayRoutes();
+
+	
 });
 
 
