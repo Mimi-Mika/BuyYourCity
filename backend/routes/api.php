@@ -53,15 +53,15 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('image/{image}/data', 'ImageController@getData');
 
 
-	Route::get('history/sell/day', 'History@sellLastDay');
-	Route::get('history/sell/week', 'History@sellLastWeek');
-	Route::get('history/sell/mouth', 'History@sellLastMouth');
-	Route::get('history/sell/year', 'History@sellLastYear');
+	Route::get('history/sell/day', 'HistoryController@sellLastDay');
+	Route::get('history/sell/week', 'HistoryController@sellLastWeek');
+	Route::get('history/sell/mouth', 'HistoryController@sellLastMouth');
+	Route::get('history/sell/year', 'HistoryController@sellLastYear');
 
-	Route::get('history/buy/day', 'History@buyLastDay');
-	Route::get('history/buy/week', 'History@buyLastWeek');
-	Route::get('history/buy/mouth', 'History@buyLastMouth');
-	Route::get('history/buy/year', 'History@buyLastYear');
+	Route::get('history/buy/day', 'HistoryController@buyLastDay');
+	Route::get('history/buy/week', 'HistoryController@buyLastWeek');
+	Route::get('history/buy/mouth', 'HistoryController@buyLastMouth');
+	Route::get('history/buy/year', 'HistoryController@buyLastYear');
 
 
 	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
