@@ -141,12 +141,12 @@ class UserController extends ApiController
             'name' => 'required|string',
             'email' => 'required|string',
             'pointsAviable' => 'required|numeric',
-            'ban' => 'required|numeric',
-            'validEmail' => 'required|numeric',
-            'admin' => 'required|numeric',
+            'ban' => 'required|boolean',
+            'validEmail' => 'required|boolean',
+            'admin' => 'required|boolean',
             'image_id' => 'required|numeric',
         ]);
-        \Log::info($user->id);
+        //\Log::info($user->id);
         try {
             $user->name = $request->name;
             $user->email = $request->email;
