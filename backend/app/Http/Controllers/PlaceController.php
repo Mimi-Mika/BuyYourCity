@@ -111,12 +111,12 @@ class PlaceController extends ApiController
     {
         try {
             if ($place->user_id != NULL) {
-                $user = User::where('id', $place->user_id);
+                $user = User::where('id', $place->user_id)->first();
                 $user->pointsAviable += $place->pointsCost;
                 $place->user_id = NULL;
                 $user->save();
             }
-            $place->softDeletes();
+            $place->delete();
             $place->save();
         } catch (Exception $e) {
             \Log::info($e);

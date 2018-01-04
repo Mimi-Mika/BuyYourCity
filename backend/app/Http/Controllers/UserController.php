@@ -168,10 +168,9 @@ class UserController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy()
+    public function destroy(User $user)
     {   
         try {
-            $user = Auth::guard('api')->user();
             $places = Place::where('user_id', $user->id);
 
             if ($places->count() > 0) {
@@ -182,7 +181,7 @@ class UserController extends ApiController
                 }
             }
             $user->api_token = NULL;
-            $user->softDeletes();
+            $user->delete();
             $user->save();
         } catch (Exception $e) {
             \Log::info($e);
