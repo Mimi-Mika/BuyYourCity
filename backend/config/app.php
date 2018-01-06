@@ -167,11 +167,12 @@ return [
         /*
          * Package Service Providers...
          */
+        Barryvdh\Cors\ServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        Barryvdh\Cors\ServiceProvider::class,
+        
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

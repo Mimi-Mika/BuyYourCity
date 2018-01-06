@@ -7,6 +7,7 @@ Use App\User;
 Use App\Place;
 Use App\Parameter;
 Use App\History;
+Use App\Image;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,18 +25,57 @@ Use App\History;
 * GUEST/PUBLIC ROUTES WITHOUT AUTH
 */
 
-Route::group(['middleware' => ['cors']], function() {
-Route::post('register', 'Auth\RegisterController@register')->middleware('auth:api');;
-Route::post('login', 'Auth\LoginController@login');
-Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
+Route::group(['middleware' => 'cors'], function() {
+	
+	Route::post('register', 'Auth\RegisterController@register');
+	Route::post('login', 'Auth\LoginController@login');
+	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
-Route::resource('history', 'HistoryController', ['except' => ['edit', 'update', 'destroy']]);
-Route::resource('parameter', 'ParameterController');
-Route::resource('place', 'PlaceController');
-Route::resource('user', 'UserController', ['except' => ['edit', 'update', 'destroy']]);
-Route::get('user/places/{user}', 'UserController@showPlaces');
+	Route::get('user/refresh', 'UserController@refresh');
+	Route::get('user/ranking', 'UserController@ranking');
+	Route::get('user/{user}/places', 'UserController@showPlaces');
+	Route::get('user/{user}/image', 'UserController@showImage');
+	Route::get('user/{user}/history', 'UserController@showHistory');
+	Route::put('user/password', 'UserController@changePassword');
+	Route::put('user/{user}/restore', 'UserController@restore');
+	Route::get('user/redirect', 'UserController@redirectToFrontend');
+
+
+	Route::get('place/aviable', 'PlaceController@aviable');
+	Route::get('place/purchased', 'PlaceController@purchased');
+	Route::get('place/{place}/image', 'PlaceController@showImage');
+	Route::post('place/{place}/buy', 'PlaceController@buyPlace');
+	Route::post('place/{place}/sell', 'PlaceController@sellPlace');
+	Route::post('place/inradius', 'PlaceController@showInRadius');
+
+
+	Route::get('image/{image}/data', 'ImageController@getData');
+
+	Route::get('history/sell/day', 'HistoryController@sellLastDay');
+	Route::get('history/sell/week', 'HistoryController@sellLastWeek');
+	Route::get('history/sell/mouth', 'HistoryController@sellLastMouth');
+	Route::get('history/sell/year', 'HistoryController@sellLastYear');
+
+	Route::get('history/buy/day', 'HistoryController@buyLastDay');
+	Route::get('history/buy/week', 'HistoryController@buyLastWeek');
+	Route::get('history/buy/mouth', 'HistoryController@buyLastMouth');
+	Route::get('history/buy/year', 'HistoryController@buyLastYear');
+
+	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
+	Route::resource('image', 'ImageController', ['except' => ['create', 'edit', 'destroy']]);
+	Route::resource('history', 'HistoryController', ['except' => ['create', 'edit', 'update', 'destroy']]);
+	Route::resource('place', 'PlaceController', ['except' => ['create', 'edit']]);
+	Route::resource('parameter', 'ParameterController', ['except' => ['create', 'edit', 'destroy']]);
+
+	//refresh user infos with token
+
+	//retourne la listes des lieux possedé
+	//Route::get('place/purchased', 'PlaceController@');
+
+	//retourne la liste des lieux libres
+	////Route::get('place/available', 'PlaceController@');
+
 });
-
 
 /*
  * Logout route
@@ -49,7 +89,6 @@ Route::group(['middleware' => ['auth:api', 'email', 'cors']], function() {
 * USERS ROUTES WITH AUTH
 */
 Route::group(['middleware' => ['auth:api', 'email', 'ban', 'cors']], function() {
-
 });
 
 
@@ -57,7 +96,34 @@ Route::group(['middleware' => ['auth:api', 'email', 'ban', 'cors']], function() 
 * ADMIN ROUTES WITH AUTH + ADMIN CHECK
 */
 Route::group(['middleware' => ['auth:api', 'admin', 'cors']], function() {
+	
+});
 
+
+Route::get('routes', function(){
+    $routeCollection = Route::getRoutes()->get();
+    echo "<table id='routes-table' class='table table-bordered table-responsive'>";
+        echo "<tr>";
+            echo "<td width='10%'><h4>HTTP Method</h4></td>";
+            echo "<td width='30%'><h4>Route</h4></td>";
+            echo "<td width='35%'><h4>Corresponding Action</h4></td>";
+            echo "<td width='15%'><h4>Middlewares</h4></td>";
+        echo "</tr>";
+        foreach ($routeCollection as $route) {
+        	$middlewares = $route->gatherMiddleware();
+            echo "<tr>";
+                echo "<td>" . $route->methods()[0] . "</td>";
+                echo "<td>http://api.buyyourcity.ovh/" . $route->uri . "</td>";
+                echo "<td>" . $route->getActionName() . "</td>";
+                echo "<td>";
+                foreach ($middlewares as $key => $middleware) {
+                	echo $middleware . ",";
+                }
+                echo "</td>";
+
+            echo "</tr>";
+        }
+    echo "</table>";
 });
 
 /*

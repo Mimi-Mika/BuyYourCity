@@ -17,8 +17,8 @@ class CreateHistoriesTable extends Migration
             $table->increments('id');
             $table->string('buySell');
             //Foreign key : association between users & places
-            $table->integer('user_id')->unsigned();;
-            $table->integer('place_id')->unsigned();;
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->integer('place_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('place_id')->references('id')->on('places');
             $table->timestamps();

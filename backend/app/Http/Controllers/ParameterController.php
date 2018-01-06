@@ -19,21 +19,6 @@ class ParameterController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return response()->json([
-            'name'=>'STRING',
-            'perimeter' => 'INT',
-            'sellPercent' =>  'INT',
-            'seeRadius' =>  'INT',]
-        );
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -72,17 +57,6 @@ class ParameterController extends ApiController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Parameter  $parameter
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Parameter $parameter)
-    {
-        
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -99,7 +73,6 @@ class ParameterController extends ApiController
         ]);
 
         try {
-            $parameter = new Parameter;
             $parameter->buySell = $request->buySell;
             $parameter->user_id = $request->user_id;
             $parameter->place_id = $request->place_id;
@@ -107,7 +80,7 @@ class ParameterController extends ApiController
         }
         catch (Exception $e) {
             \Log::info($e);
-        }
+        }    
     }
 
     /**

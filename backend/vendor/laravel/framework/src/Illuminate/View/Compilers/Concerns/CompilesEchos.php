@@ -15,6 +15,7 @@ trait CompilesEchos
         foreach ($this->getEchoMethods() as $method) {
             $value = $this->$method($value);
         }
+        \Log::info(':::ICI:::');
 
         return $value;
     }

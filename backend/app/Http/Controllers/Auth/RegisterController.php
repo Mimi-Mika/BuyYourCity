@@ -96,11 +96,10 @@ class RegisterController extends Controller
         try{
             $nameEmail = Crypt::decryptString($string);
             $user = User::where('name', $name)->first();
-            \Log::info($user->name.$user->email.'---'.$nameEmail);
-
             $user->name.$user->email == $nameEmail ? $user->validEmail = 1 : $user->validEmail = 0;
             $user->save();
-            return $user->validEmail ? response()->json(['data' => $user->toArray()], 200) : response()->json(['error' => 'No contents.'], 204);
+            //return $user->validEmail ? response()->json(['data' => $user->toArray()], 200) : response()->json(['error' => 'No contents.'], 204);
+            return redirect('http://buyyourcity.ovh');
         }
         catch(\Exception $e){
             return response()->json(['error' => 'No contents.'], 204);

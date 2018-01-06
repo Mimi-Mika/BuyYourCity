@@ -65,21 +65,28 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div class="flex-center position-ref full-height"> 
+            
             <div class="content">
+
                 <div>
                     <img src="logo.png">
                 </div>
 
-                <div class="title m-b-md">
-                    Own The WORLD
-                </div>
+                <div class="content">
 
-                <div class="links">
-                    <a href="http://www.buyyourcity.ovh">Get Started !!!</a>
-                    <a href="https://github.com/Mimi-Mika/BuyYourCity">Github</a>
-                    <a href="http://www.api.buyyourcity.ovh/phpmyadmin">Phpmyadmin</a>
-                    <a href="http://www.api.buyyourcity.ovh">API</a>
+                    <div class="title m-b-md">
+                        Own The WORLD
+                    </div>
+
+                    <div class="links">
+                        <a href="http://www.buyyourcity.ovh">Get Started !!!</a>
+                        <a href="https://github.com/Mimi-Mika/BuyYourCity">Github</a>
+                        <a href="http://www.api.buyyourcity.ovh/phpmyadmin">Phpmyadmin</a>
+                        <a href="http://www.api.buyyourcity.ovh">API</a>
+                        <a href="http://www.api.buyyourcity.ovh/documentation">Documentation</a>
+                    </div>
+
                 </div>
             </div>
         </div>

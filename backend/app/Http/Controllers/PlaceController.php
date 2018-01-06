@@ -4,7 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Place;
 use App\History;
+use App\Image;
+use App\Parameter;
+use App\User;
+
+use Response;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class PlaceController extends ApiController
 {
@@ -17,22 +27,6 @@ class PlaceController extends ApiController
     {
         $place = Place::orderBy('name', 'asc')->get();
         return $place;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return response()->json([
-            'name' => 'STRING',
-            'latitude' => 'DOUBLE : -43.999681',
-            'longitude' => 'DOUBLE : -68.591644',
-            'pointsGiven' => 'INT',
-            'pointsCost' => 'INT',]
-        );
     }
 
     /**
@@ -77,17 +71,6 @@ class PlaceController extends ApiController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Place  $place
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Place $place)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -96,7 +79,26 @@ class PlaceController extends ApiController
      */
     public function update(Request $request, Place $place)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'pointsGiven' => 'required|integer',
+            'pointsCost' => 'required|integer',
+            'image_id' => 'required|integer'
+        ]);
+
+        try {
+            $place->name = $request->name;
+            $place->latitude = $request->latitude;
+            $place->longitude = $request->longitude;
+            $place->pointsGiven = $request->pointsGiven;
+            $place->pointsCost = $request->pointsCost;
+            $place->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+        }
     }
 
     /**
@@ -107,9 +109,21 @@ class PlaceController extends ApiController
      */
     public function destroy(Place $place)
     {
-        //
+        try {
+            if ($place->user_id != NULL) {
+                $user = User::where('id', $place->user_id)->first();
+                $user->pointsAviable += $place->pointsCost;
+                $place->user_id = NULL;
+                $user->save();
+            }
+            $place->delete();
+            $place->save();
+        } catch (Exception $e) {
+            \Log::info($e);
+            return response()->json(['error' => $e], 404);
+        }
+        return response()->json(['ok' => 'Place soft deleted.'], 200);
     }
-
 
 	//Route::update('sellPlace{id}', 'PlaceController@sellPlace');
 	public function sellPlace(Place $place) { 
@@ -133,7 +147,6 @@ class PlaceController extends ApiController
         else {
             return response()->json(['error' => 'This is not your place !'], 403);
         }
-        
 	}
 
 	//Route::update('buyPlace{id}', 'PlaceController@buyPlace');
@@ -168,6 +181,50 @@ class PlaceController extends ApiController
     	return !$place ? response()->json(['error' => 'No contents. Place not found.'], 204) : $place;
     }
 
+    public function showImage(Place $place) {
 
+        $image = Image::where('id', $place->image_id)->get()->first();
 
+        $path = storage_path('app/public/' . $image->image_path);
+
+        if(!file_exists($path)) {
+            abort(404);
+        }
+
+        $file = file_get_contents($path);
+        $type = mime_content_type($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+
+    }
+
+    public function aviable () {
+        return Place::where('user_id', NULL)->get();
+    }
+
+    public function purchased () {
+        return Place::where('user_id', '<>', !NULL)->get();
+    }
+
+    public function showInRadius(Request $request) {
+        $request->validate([
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+        ]);
+
+        $sql = "* , ((ACOS(SIN( " . $request->latitude . " * PI() / 180) * SIN( places.latitude * PI() / 180) + COS( " . $request->latitude . "  * PI() / 180) * COS( places.latitude * PI() / 180) * COS((" . $request->longitude . "  - places.longitude) * PI() / 180)) * 180 / PI()) * 60 * 1.1515 * 1.609344) as distance";
+        
+        $places = Place::selectRaw($sql);
+
+        $parameter = Parameter::select('seeRadius')->where('id', env('DB_PARAMETER_ID', '1'))->first();
+
+        \Log::info($parameter);
+
+        $places->havingRaw('distance BETWEEN 0 AND ' . $parameter->seeRadius); // TODO replace $outer_radius with parameter->radius !!!!!
+
+        return $places->get();
+    }
 }

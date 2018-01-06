@@ -26,7 +26,7 @@ class PlacesTableSeeder extends Seeder
 		        'longitude' => $faker->longitude($min = -90, $max = 90),
 		        'pointsGiven'=> $pointsGiven,
 		        'pointsCost'=> $pointsGiven*10,
-		        'pictPath'=> $faker->image($dir = 'storage/app/public/images', $width = 640, $height = 480),
+		        'image_id'=> $pointsGiven,
 		        'user_id'=> $faker->numberBetween($min = 1, $max = 10)
 		    ]);
 		}

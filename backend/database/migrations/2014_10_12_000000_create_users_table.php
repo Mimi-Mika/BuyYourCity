@@ -13,6 +13,10 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+        });
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
@@ -22,9 +26,11 @@ class CreateUsersTable extends Migration
             $table->boolean('ban');
             $table->boolean('validEmail');
             $table->boolean('admin');
+            $table->integer('image_id')->unsigned()->nullable();
+            $table->foreign('image_id')->references('id')->on('images');
             $table->rememberToken();
             $table->timestamps();
-
+            $table->softDeletes();
         });
     }
 
