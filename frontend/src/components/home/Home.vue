@@ -2,7 +2,7 @@
   <v-container>
     <gmap-map
       :center="center"
-      :zoom="15"
+      :zoom="zoom"
       style="width: 100%; height: 100%; position: absolute; left:0; top:0"
     >
       <gmap-marker
@@ -17,6 +17,7 @@
         :position="marker.position"
         :clickable="true"
         :draggable="true"
+        icon="http://maps.google.com/mapfiles/ms/micons/green-dot.png"
         @click="center=marker.position"
       ></gmap-marker>
       <gmap-marker
@@ -25,9 +26,15 @@
         :position="marker.position"
         :clickable="true"
         :draggable="true"
+        icon="http://maps.google.com/mapfiles/ms/micons/ltblue-dot.png"
         @click="center=marker.position"
       ></gmap-marker>
     </gmap-map>
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+      <v-icon>warning</v-icon> &nbsp;
+      Une erreur interne est survenue lors du chargement des lieux !
+      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -37,14 +44,14 @@
     name: 'home',
       data(){
         return {
+          snackbarKO: false,
           center: {lat: 0.0, lng: 0.0},
           markers: [],
+          zoom: 15,
           places: [],
           ownMarkers: [],
           ownPlaces: [],
-          getMap: this.$root.mapping,
           description: '',
-          latLng: {},
           place: null,
           countReturn:0
         }
@@ -58,12 +65,6 @@
         setDescription(description){
           this.description = description
         },
-        setPlace(place){
-          this.latLng = {
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng(),
-          }
-        },
         centerGeoPos(){
           navigator.geolocation.getCurrentPosition(function (position) {
             let pos = {
@@ -72,54 +73,42 @@
             };
             this.center.lat = pos.lat;
             this.center.lng = pos.lng;
-            this.geocodeLatLng(new google.maps.Geocoder, pos, google.maps.InfoWindow);
+            this.zoom = 15;
           }.bind(this));
-        },
-        geocodeLatLng(geocoder, map, infowindow){
-          geocoder.geocode({'location':this.center}, function(results, status){
-            console.log(results, status);
-          });
         },
         filterPlaces(){
           this.countReturn++
           if(this.countReturn == 2){
             let that = this
             that.places = that._.differenceBy(that.places, that.ownPlaces, 'id');
-
-            //{position: {lat: res.latitude, lng: res.longitude}}
-            //rempli la liste des markers
-            // icon marker différent si possédé par l'utilisateur
-
-            that._.forEach(that.places, function(place, key) {
+            that._.forEach(that.places, function(place) {
               that.markers.push({position: {lat: place.latitude, lng: place.longitude}})
             });
-            that._.forEach(that.ownPlaces, function(place, key) {
+            that._.forEach(that.ownPlaces, function(place) {
               that.ownMarkers.push({position: {lat: place.latitude, lng: place.longitude}})
             });
-            console.log(that.markers)
-            console.log(that.ownMarkers)
           }
         }
       },
       beforeMount(){
         this.$http.get('place')
           .then(res => {
-
             this.places = res.body
             this.filterPlaces()
           })
           .catch(err => {
+            this.snackbarKO = true;
             console.log("error");
             console.log(err);
           });
         let userId = this.$auth.user().id
-        this.$http.get('user/places/'+userId)
+        this.$http.get('user/'+userId+'/places')
           .then(res => {
             this.ownPlaces = res.body
             this.filterPlaces()
-
           })
           .catch(err => {
+            this.snackbarKO = true;
             console.log("error");
             console.log(err);
           });
@@ -135,6 +124,10 @@
           this.$store.dispatch('finishCenter')
         }
       },
+      '$route'(to, from) {
+        // Call resizePreserveCenter() on all maps
+        Vue.$gmapDefaultResizeBus.$emit('resize')
+      }
     },
   }
 </script>

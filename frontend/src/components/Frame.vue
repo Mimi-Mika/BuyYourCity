@@ -34,8 +34,8 @@
       <div class="text-xs-center">
         <v-menu offset-y>
           <v-chip flat slot="activator" color="transparent" text-color="white">
-            <v-avatar>
-              <img src="../../static/icoUser.png" alt="user">
+            <v-avatar :tile="tile" :size="avatarSize" class="grey lighten-4">
+              <img :src="imageUser" alt="avatar">
             </v-avatar>
             <strong>{{user.name}}</strong>
           </v-chip>
@@ -94,7 +94,10 @@
         user: this.$auth.user(),
         clipped: false,
         drawer: true,
-        miniVariant: false
+        miniVariant: false,
+        slider: 56,
+        tile: false,
+        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image'
       }
     },
     computed:{
@@ -104,6 +107,9 @@
       },
       isHome(){
         return this.title === "Accueil"
+      },
+      avatarSize () {
+        return `${this.slider}px`
       }
     }
   }

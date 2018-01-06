@@ -13,8 +13,10 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import _ from 'lodash'
 import VueLodash from 'vue-lodash/dist/vue-lodash.min'
 import store from './store'
+import VueChart from 'vue-chart-js'
 
 Vue.use(Vuetify)
+Vue.use(VueChart)
 Vue.use(VueResource)
 Vue.use(Vuelidate)
 Vue.use(VueLodash, _)
@@ -38,12 +40,11 @@ Vue.use(require('@websanova/vue-auth'), {
   forbiddenRedirect: {path: '/403'},
   loginData: {url: 'login'},
   refreshData: {enabled: false, url: 'user/refresh', interval: 0},
-  fetchData: {enabled: false, url: 'user/refresh'}, // todo a activer (neeed fonction reflesh de l'utilisateur en cas de F5) les memes données qu'a la connexions
+  fetchData: {enabled: true, url: 'user/refresh'},
   parseUserData: function _parseUserData (data) {
     return data || {}
   }
 })
-
 
 /* eslint-disable no-new */
 new Vue({
@@ -53,4 +54,5 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
 
