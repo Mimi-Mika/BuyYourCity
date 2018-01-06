@@ -72,7 +72,7 @@ class ImageController extends Controller
         ]);
 
         try {
-            $image->path = $request->image_path;
+            $image->image_path = $request->image_path;
             $image->description = $request->description;
             $image->save();
         }
@@ -93,7 +93,7 @@ class ImageController extends Controller
 
     public function getData(Image $image) {
         $path = '/var/www/html/BuyYourCity/backend/storage/app/public/' . $image->image_path;
-
+        \Log::info($path);
         if(!file_exists($path)) {
             abort(404);
         }
@@ -101,4 +101,38 @@ class ImageController extends Controller
         $content = file_get_contents($path);
         return response($content, 200)->header('Content-Type', $type);
     }
+
+    public function upload (Request $request) {
+        
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'type' => 'required|string',
+        ]);
+
+        $imageName = time().'.'.$request->image->getClientOriginalExtension();
+ 
+        $request->image->move('/var/www/html/BuyYourCity/backend/storage/app/public/', $imageName);
+
+        try {
+            $image = new Image;
+            $image->image_path = $imageName;
+            $image->description = $request->type;
+            $image->save();
+        }
+        catch (Exception $e) {
+            \Log::info($e);
+            return $e;
+        }
+        return $image;
+    }
+
+    public function getUserImages() {
+        return Image::where('description', 'user')->get();
+    }
+
+
+    public function getPlaceImages() {
+        return Image::where('description', 'place')->get();
+    }
+
 }

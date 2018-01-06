@@ -50,6 +50,10 @@ Route::group(['middleware' => 'cors'], function() {
 
 
 	Route::get('image/{image}/data', 'ImageController@getData');
+	Route::get('image/user', 'ImageController@getUserImages');
+	Route::get('image/place', 'ImageController@getPlaceImages');
+	Route::post('image/upload', 'ImageController@upload');
+
 
 	Route::get('history/sell/day', 'HistoryController@sellLastDay');
 	Route::get('history/sell/week', 'HistoryController@sellLastWeek');
