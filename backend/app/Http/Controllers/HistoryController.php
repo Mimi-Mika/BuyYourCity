@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\History;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HistoryController extends ApiController
 {

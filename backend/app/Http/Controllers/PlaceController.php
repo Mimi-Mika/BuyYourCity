@@ -53,9 +53,11 @@ class PlaceController extends ApiController
             $place->pointsGiven = $request->pointsGiven;
             $place->pointsCost = $request->pointsCost;
             $place->save();
+            return $place;
         }
         catch (Exception $e) {
             \Log::info($e);
+            return $e;
         }
     }
 
