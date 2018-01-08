@@ -10,14 +10,14 @@
         </v-card-text>
       </v-card>
 
-      <v-card>
-        <v-card-title primary-title>
-          <div class="headline">Nombre d'achat / vente</div>
-        </v-card-title>
-        <v-card-text>
-          <vue-chart type="doughnut" :data="chartDataNbSellBuy"></vue-chart>
-        </v-card-text>
-      </v-card>
+      <!--<v-card>-->
+        <!--<v-card-title primary-title>-->
+          <!--<div class="headline">Nombre d'achat / vente</div>-->
+        <!--</v-card-title>-->
+        <!--<v-card-text>-->
+          <!--<vue-chart type="doughnut" :data="chartDataNbSellBuy"></vue-chart>-->
+        <!--</v-card-text>-->
+      <!--</v-card>-->
 
 
     </v-flex>
@@ -52,11 +52,11 @@
             {
               label: 'Component 1',
               backgroundColor: ["#3e95cd", "#8e5ea2"],
-              data: [this.placesFree.size(), this.placesPurchased.size()]
+              data: []
             }
           ]
         },
-        chartDataNbSellBuy: {
+        /*chartDataNbSellBuy: {
           labels: ['Achat', 'Vente'],
           datasets: [
             {
@@ -65,20 +65,22 @@
               data: [this.getNbBuyPlaceMonth(), this.getNbSellPlaceMonth()]
             }
           ]
-        },
+        },*/
       }
     },
     beforeMount(){
-      this.$http.get('/place/available')
+      this.$http.get('place/aviable')
         .then(res => {
           this.placesFree = res.body
+          this.chartDataNbPlace.datasets[0].data[0] = this.placesFree.length
         })
         .catch(err => {
           this.snackbarKO = true;
         });
-      this.$http.get('/place/purchased')
+      this.$http.get('place/purchased')
         .then(res => {
           this.placesPurchased = res.body
+          this.chartDataNbPlace.datasets[0].data[1] = this.placesPurchased.length
         })
         .catch(err => {
           this.snackbarKO = true;
@@ -86,7 +88,7 @@
     },
     methods: {
       getNbSellPlaceMonth: function(){
-        this.$http.get('/history/sell/month')
+        this.$http.get('history/sell/month')
           .then(res => {
             this.nbSellPlaceMonth = res.body
           })
@@ -95,7 +97,7 @@
           })
       },
       getNbBuyPlaceMonth: function(){
-        this.$http.get('/history/buy/month')
+        this.$http.get('history/buy/month')
           .then(res => {
             this.nbBuyPlaceMonth = res.body
           })
@@ -103,6 +105,6 @@
             this.snackbarKO = true;
           })
       }
-    },
+    }
   }
 </script>

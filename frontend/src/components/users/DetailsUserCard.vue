@@ -147,22 +147,22 @@
       <v-btn flat color="white" @click.native="messageSnackbar = false">Close</v-btn>
     </v-snackbar>
 
-    <v-dialog v-model="dialogEdit" persistent>
+    <v-dialog lazy v-model="dialogEdit" persistent>
       <dialog-edit-user :user="user" @closeEditUserDialog="closeEditUserDialog" @displaySnackbar="displaySnackbar" ></dialog-edit-user>
     </v-dialog>
-    <v-dialog v-model="dialogRemove" persistent>
+    <v-dialog lazy v-model="dialogRemove" persistent>
       <dialog-delete-user :user="user" @closeRemoveUserDialog="closeRemoveUserDialog" @displaySnackbar="displaySnackbar" ></dialog-delete-user>
     </v-dialog>
-    <v-dialog v-model="dialogPassword" persistent>
+    <v-dialog lazy v-model="dialogPassword" persistent>
       <dialog-password-user :user="user" @closePasswordUserDialog="closePasswordUserDialog" @displaySnackbar="displaySnackbar" ></dialog-password-user>
     </v-dialog>
-    <v-dialog v-model="dialogAdmin" persistent>
+    <v-dialog lazy v-model="dialogAdmin" persistent>
       <dialog-admin-user :user="user" @closeAdminUserDialog="closeAdminUserDialog" @displaySnackbar="displaySnackbar" ></dialog-admin-user>
     </v-dialog>
-    <v-dialog v-model="dialogBan" persistent>
+    <v-dialog lazy v-model="dialogBan" persistent>
       <dialog-ban-user :user="user" @closeBanUserDialog="closeBanUserDialog" @displaySnackbar="displaySnackbar" ></dialog-ban-user>
     </v-dialog>
-    <v-dialog v-model="dialogAvatar" persistent>
+    <v-dialog lazy v-model="dialogAvatar" persistent>
       <change-avatar-dialog :user="user" @closeAvatarDialog="closeAvatarDialog" @displaySnackbar="displaySnackbar" ></change-avatar-dialog>
     </v-dialog>
   </v-flex>

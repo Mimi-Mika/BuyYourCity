@@ -1,7 +1,7 @@
 <template>
   <v-container fluid grid-list-lg>
     <v-layout row wrap>
-      <place v-for="place in places" :key="place.id" :place="place"></place>
+      <place v-for="place in places" :key="place.id" @getPlaces="getPlaces" :place="place"></place>
       <v-alert outline color="info" icon="info" :value="true" v-if="places.length === 0">
         Aucun lieu de trouvé !
       </v-alert>
@@ -49,18 +49,22 @@
       }
     },
     beforeMount(){
-      this.$http.get('place')
-        .then(res => {
-          this.places = res.body
-        })
-        .catch(err => {
-          this.snackbarData.icon = "warning"
-          this.snackbarData.message = "Un problème est survenu lors du chargement de la page, réessayer plus tard."
-          this.snackbarData.color = "error"
-          this.messageSnackbar = true
-        });
+      this.getPlaces()
     },
     methods: {
+      getPlaces: function(){
+        this.places = []
+        this.$http.get('place')
+          .then(res => {
+            this.places = res.body
+          })
+          .catch(err => {
+            this.snackbarData.icon = "warning"
+            this.snackbarData.message = "Un problème est survenu lors du chargement de la page, réessayer plus tard."
+            this.snackbarData.color = "error"
+            this.messageSnackbar = true
+          });
+      },
       closeAddPlaceDialog: function(){
         this.dialogAdd = false
       },
@@ -71,6 +75,8 @@
           this.snackbarData.color = "error"
         }
         else {
+          //refresh places if success
+          this.getPlaces()
           this.snackbarData.icon = "check_circle"
           this.snackbarData.message = dataSnack.message
           this.snackbarData.color = "success"

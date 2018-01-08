@@ -20,10 +20,10 @@ export default new Router({
     redirect: '/home',
     name: 'Frame',
     component: Frame,
+    meta: {auth: true},
     children: [{
       path: 'home',
       name: 'Accueil',
-      meta: {auth: true},
       component: Home
     },
     {

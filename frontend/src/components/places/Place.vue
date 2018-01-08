@@ -95,6 +95,8 @@
           this.snackbarData.color = "error"
         }
         else {
+          //refresh places if success
+          this.$emit('getPlaces')
           this.snackbarData.icon = "check_circle"
           this.snackbarData.message = dataSnack.message
           this.snackbarData.color = "success"
