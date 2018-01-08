@@ -57,12 +57,12 @@ Route::group(['middleware' => 'cors'], function() {
 
 	Route::get('history/sell/day', 'HistoryController@sellLastDay');
 	Route::get('history/sell/week', 'HistoryController@sellLastWeek');
-	Route::get('history/sell/mouth', 'HistoryController@sellLastMouth');
+	Route::get('history/sell/month', 'HistoryController@sellLastMonth');
 	Route::get('history/sell/year', 'HistoryController@sellLastYear');
 
 	Route::get('history/buy/day', 'HistoryController@buyLastDay');
 	Route::get('history/buy/week', 'HistoryController@buyLastWeek');
-	Route::get('history/buy/mouth', 'HistoryController@buyLastMouth');
+	Route::get('history/buy/month', 'HistoryController@buyLastMonth');
 	Route::get('history/buy/year', 'HistoryController@buyLastYear');
 
 	Route::resource('user', 'UserController', ['except' => ['create', 'edit']]);
