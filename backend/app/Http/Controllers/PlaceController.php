@@ -203,7 +203,7 @@ class PlaceController extends ApiController
 
     }
 
-    public function aviable () {
+    public function available () {
         return Place::where('user_id', NULL)->get();
     }
 

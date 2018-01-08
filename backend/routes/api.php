@@ -41,7 +41,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('user/redirect', 'UserController@redirectToFrontend');
 
 
-	Route::get('place/aviable', 'PlaceController@aviable');
+	Route::get('place/available', 'PlaceController@available');
 	Route::get('place/purchased', 'PlaceController@purchased');
 	Route::get('place/{place}/image', 'PlaceController@showImage');
 	Route::post('place/{place}/buy', 'PlaceController@buyPlace');
