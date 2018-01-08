@@ -106,7 +106,7 @@ class ImageController extends Controller
         
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'description' => 'required|string',
+            'description' => 'string',
         ]);
 
         $imageName = time().'.'.$request->image->getClientOriginalExtension();
