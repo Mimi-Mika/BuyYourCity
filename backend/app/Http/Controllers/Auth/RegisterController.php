@@ -81,6 +81,7 @@ class RegisterController extends Controller
             'ban' => 0,
             'validEmail' => 0,
             'admin' => 0,
+            'image_id' => 1,
         ]);
     }
 
