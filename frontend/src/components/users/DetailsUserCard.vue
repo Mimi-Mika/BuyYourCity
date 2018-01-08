@@ -3,7 +3,7 @@
     <v-card class="grey lighten-3">
       <v-card-title>
         <v-flex class="text-xs-center">
-          <a v-if="isSettings">
+          <a slot="activator" @click="dialogAvatar = true" v-if="isSettings">
             <img :src="imageUser" alt="avatar" width="150px"/><br>
             <v-icon color="blue">image</v-icon> Changer d'avatar
           </a>
@@ -139,34 +139,31 @@
         <v-btn flat color="blue" slot="activator" @click="dialogAdmin = true" v-if="!user.admin">Rendre administrateur</v-btn>
         <v-btn flat color="blue" slot="activator" @click="dialogAdmin = true" v-else>Enlever les droits administrateur</v-btn>
       </v-card-actions>
-
-      <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
-        <v-icon>warning</v-icon> &nbsp;
-        Une erreur interne est survenue !
-        <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
-      </v-snackbar>
-      <v-snackbar :timeout="6000" top="top" right="right" v-model="editOK" @snackbarOK="snackbarOK" color="success">
-        <v-icon>check_circle</v-icon> &nbsp;
-        Le changement a bien été pris en compte.
-        <v-btn flat color="white" @click="editOK = false">Close</v-btn>
-      </v-snackbar>
-
     </v-card>
 
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="messageSnackbar" :color="snackbarData.color">
+      <v-icon>{{snackbarData.icon}}</v-icon> &nbsp;
+      {{snackbarData.message}}
+      <v-btn flat color="white" @click.native="messageSnackbar = false">Close</v-btn>
+    </v-snackbar>
+
     <v-dialog v-model="dialogEdit" persistent>
-      <dialog-edit-user :user="user" @closeEditUserDialog="closeEditUserDialog"></dialog-edit-user>
+      <dialog-edit-user :user="user" @closeEditUserDialog="closeEditUserDialog" @displaySnackbar="displaySnackbar" ></dialog-edit-user>
     </v-dialog>
     <v-dialog v-model="dialogRemove" persistent>
-      <dialog-delete-user :user="user" @closeRemoveUserDialog="closeRemoveUserDialog"></dialog-delete-user>
+      <dialog-delete-user :user="user" @closeRemoveUserDialog="closeRemoveUserDialog" @displaySnackbar="displaySnackbar" ></dialog-delete-user>
     </v-dialog>
     <v-dialog v-model="dialogPassword" persistent>
-      <dialog-password-user :user="user" @closePasswordUserDialog="closePasswordUserDialog"></dialog-password-user>
+      <dialog-password-user :user="user" @closePasswordUserDialog="closePasswordUserDialog" @displaySnackbar="displaySnackbar" ></dialog-password-user>
     </v-dialog>
     <v-dialog v-model="dialogAdmin" persistent>
-      <dialog-admin-user :user="user" @closeAdminUserDialog="closeAdminUserDialog"></dialog-admin-user>
+      <dialog-admin-user :user="user" @closeAdminUserDialog="closeAdminUserDialog" @displaySnackbar="displaySnackbar" ></dialog-admin-user>
     </v-dialog>
     <v-dialog v-model="dialogBan" persistent>
-      <dialog-ban-user :user="user" @closeBanUserDialog="closeBanUserDialog"></dialog-ban-user>
+      <dialog-ban-user :user="user" @closeBanUserDialog="closeBanUserDialog" @displaySnackbar="displaySnackbar" ></dialog-ban-user>
+    </v-dialog>
+    <v-dialog v-model="dialogAvatar" persistent>
+      <change-avatar-dialog :user="user" @closeAvatarDialog="closeAvatarDialog" @displaySnackbar="displaySnackbar" ></change-avatar-dialog>
     </v-dialog>
   </v-flex>
 </template>
@@ -177,6 +174,8 @@
   import DialogPasswordUser from './DialogPasswordUser'
   import DialogAdminUser from './DialogAdminUser'
   import DialogBanUser from './DialogBanUser'
+  import ChangeAvatarDialog from './ChangeAvatarDialog'
+
   export default {
     name: 'detailsUserCard',
     props: ['user'],
@@ -185,11 +184,11 @@
       DialogEditUser,
       DialogPasswordUser,
       DialogAdminUser,
-      DialogBanUser
+      DialogBanUser,
+      ChangeAvatarDialog
     },
     data() {
       return {
-        snackbarKO: false,
         editOK: false,
         OK: false,
         places : [],
@@ -199,7 +198,14 @@
         dialogRemove : false,
         dialogPassword : false,
         dialogAdmin : false,
-        dialogBan : false
+        dialogBan : false,
+        dialogAvatar: false,
+        messageSnackbar: false,
+        snackbarData:{
+          color : null,
+          icon : null,
+          message : null
+        }
       }
     },
     beforeMount(){
@@ -236,11 +242,24 @@
       closeAdminUserDialog: function () {
         this.dialogAdmin = false
       },
+      closeAvatarDialog: function (){
+        this.dialogAvatar = false
+      },
       closeBanUserDialog: function () {
         this.dialogBan = false
       },
-      snackbarOK: function () {
-       this.editOK = true;
+      displaySnackbar: function(dataSnack){
+        if(dataSnack.type === "error"){
+          this.snackbarData.icon = "warning"
+          this.snackbarData.message = dataSnack.message
+          this.snackbarData.color = "error"
+        }
+        else {
+          this.snackbarData.icon = "check_circle"
+          this.snackbarData.message = dataSnack.message
+          this.snackbarData.color = "success"
+        }
+        this.messageSnackbar = true
       }
     }
   }

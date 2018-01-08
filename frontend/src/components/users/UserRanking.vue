@@ -12,13 +12,13 @@
           <td><strong><v-chip outline color="primary"disabled>{{ props.index+1 }}</v-chip></strong></td>
           <td><strong>{{ props.item.name }}</strong></td>
           <td><strong>{{ props.item.pointsAviable }}</strong></td>
-          <td><strong>{{ progress }}</strong></td>
+          <!--<td><strong>{{ progress }}</strong></td>-->
         </tr>
         <tr v-else>
           <td><v-chip outline color="primary"disabled>{{ props.index+1 }}</v-chip></td>
           <td>{{ props.item.name }}</td>
           <td>{{ props.item.pointsAviable }}</td>
-          <td>{{ progress }}</td>
+          <!--<td>{{ progress }}</td>-->
         </tr>
       </template>
       <template slot="no-data">
@@ -61,13 +61,13 @@
             align: 'left',
             sortable: false,
             value: 'pointsAviable',
-          },
+          }/*,
           {
             text: 'Progression',
             align: 'left',
             sortable: false,
             value: 'progress'
-          },
+          },*/
         ]
       }
     },

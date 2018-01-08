@@ -1,10 +1,6 @@
 <template>
   <v-card>
-    <v-card-media
-      class="white--text"
-      height="200px"
-      :src="imagePlace"
-    ></v-card-media>
+    <v-card-media class="white--text" height="200px" :src="imagePlace"></v-card-media>
     <v-card-title primary-title>
       <span class="headline">{{place.name}}</span>
     </v-card-title>
@@ -16,12 +12,6 @@
       <v-btn color="red darken-1" flat @click="closeRemovePlaceDialog">Refuser</v-btn>
       <v-btn color="green darken-1" flat @click="deletePlace">Accepter</v-btn>
     </v-card-actions>
-
-    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
-      <v-icon>warning</v-icon> &nbsp;
-      Une erreur interne est survenue !
-      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
-    </v-snackbar>
   </v-card>
 </template>
 
@@ -31,7 +21,6 @@
     props: ['place'],
     data() {
       return {
-        snackbarKO: false,
         imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
       }
     },
@@ -39,16 +28,25 @@
       closeRemovePlaceDialog: function () {
         this.$emit('closeRemovePlaceDialog')
       },
+      displaySnackbar: function(dataSnack) {
+        this.$emit('displaySnackbar', dataSnack)
+      },
       deletePlace: function(){
         this.$http.delete('place/' + this.place.id)
           .then(res => {
-            this.closeBanUserDialog();
-            //this.snackbarOK();
+            let dataSnack = {
+              type : "success",
+              message : "Le lieu a bien été supprimé."
+            }
+            this.displaySnackbar(dataSnack);
+            this.closeRemovePlaceDialog();
           })
           .catch(err => {
-            this.snackbarKO = true;
-            console.log("error");
-            console.log(err);
+            let dataSnack = {
+              type : "error",
+              message : "Impossible de supprimer le lieu, réessayez plus tard."
+            }
+            this.displaySnackbar(dataSnack);
           })
       }
     }

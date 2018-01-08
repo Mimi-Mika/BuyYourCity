@@ -12,16 +12,6 @@
       <v-btn color="red darken-1" flat @click="closeAdminUserDialog">Refuser</v-btn>
       <v-btn color="green darken-1" flat @click="updateAdmin">Accepter</v-btn>
     </v-card-actions>
-    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
-      <v-icon>warning</v-icon> &nbsp;
-      Une erreur interne est survenue !
-      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
-    </v-snackbar>
-    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarOK" color="success">
-      <v-icon>check_circle</v-icon> &nbsp;
-      Le changement a bien été pris en compte.
-      <v-btn flat color="white" @click.native="snackbarOK = false">Close</v-btn>
-    </v-snackbar>
   </v-card>
 </template>
 
@@ -29,27 +19,30 @@
   export default {
     name: 'dialogAdminUser',
     props: ['user'],
-    data () {
-      return {
-        snackbarKO: false,
-        snackbarOK: false
-      }
-    },
     methods:{
       closeAdminUserDialog: function () {
         this.$emit('closeAdminUserDialog')
+      },
+      displaySnackbar: function(dataSnack) {
+        this.$emit('displaySnackbar', dataSnack)
       },
       updateAdmin: function(){
         this.user.admin = !this.user.admin;
         this.$http.put('user/' + this.user.id, this.user)
           .then(res => {
             this.closeAdminUserDialog()
-            this.snackbarOK = true;
+            let dataSnack = {
+              type : "success",
+              message : "La modification de l'utilisateur a bien été prise en compte."
+            }
+            this.displaySnackbar(dataSnack);
           })
           .catch(err => {
-            this.snackbarKO = true;
-            console.log("error");
-            console.log(err);
+            let dataSnack = {
+              type : "error",
+              message : "Impossible de modifier les données de l'utilisateur, réessayez plus tard."
+            }
+            this.displaySnackbar(dataSnack);
           })
       }
     }

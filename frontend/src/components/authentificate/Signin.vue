@@ -83,6 +83,12 @@
       </v-card-actions>
     </v-form>
   </v-card>
+
+  <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+    <v-icon>warning</v-icon> &nbsp;
+    Impossible de créer un compte, réessayer plus tard.
+    <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
+  </v-snackbar>
 </div>
 </template>
 
@@ -92,6 +98,7 @@ export default {
   data () {
     return {
       dialog: false,
+      snackbarKO: false,
       signInCredentials: {
         name: null,
         email: null,
@@ -106,35 +113,19 @@ export default {
     signIn: function () {
       this.alertSignIn = ''
       this.alertSignInDisplay = false
-
       this.$http.post('register', this.signInCredentials)
       .then(response => {
         console.log(response.body)
         this.data = response.body
         this.$emit('redirectToConnect') // Redirect to connect and show an alert for email
-        /*if (this.data.success) {
-          this.$auth.token(null, this.data.token)
-          this.$auth.user(this.data.user)
-
-
-
-          this.signInCredentials.pseudo = null // Clear data
-          this.signInCredentials.email = null
-          this.signInCredentials.password = null
-          this.signInCredentials.confirmPassword = null
-        } else if (this.data.error.code) {
-          this.alertSignIn = this.data.error.msg
-          this.alertSignInDisplay = true
-        } else {
-          this.alertSignIn = this.$t('message.login.server_unavailable')
-          this.alertSignInDisplay = true
-        }*/
       },
       error => {
         if (error) {
           this.alertSignIn = "Erreur pendant l'enregistrement"
           this.alertSignInDisplay = true
         }
+      }).catch(err => {
+        this.snackbarKO = true;
       })
     }
   }

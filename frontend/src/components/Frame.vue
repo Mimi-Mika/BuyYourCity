@@ -39,14 +39,14 @@
             </v-avatar>
             <strong>{{user.name}}</strong>
           </v-chip>
-          <v-list>
+          <!--<v-list>
             <v-list-tile @click="goAccount">
               <v-list-tile-title>Mon compte</v-list-tile-title>
             </v-list-tile>
-          </v-list>
+          </v-list>-->
           <v-list>
             <v-list-tile @click="logOut">
-              <v-list-tile-title>Déconnexion</v-list-tile-title>
+              <v-list-tile-title>Déconnexion <v-icon>exit_to_app</v-icon></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -103,10 +103,10 @@
     computed:{
       ...Vuex.mapGetters(['geoLocEnable']),
       title(){
-        return this.$route.name
+        return this.$route.name  + " - " + this.user.pointsAviable + " points"
       },
       isHome(){
-        return this.title === "Accueil"
+        return this.$route.name === "Accueil"
       },
       avatarSize () {
         return `${this.slider}px`

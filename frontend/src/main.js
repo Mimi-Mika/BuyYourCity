@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
 import Vue from 'vue'
-
 import Vuetify from 'vuetify'
 import './stylus/main.styl'
 import VueResource from 'vue-resource'
@@ -46,6 +45,7 @@ Vue.use(require('@websanova/vue-auth'), {
   }
 })
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -54,5 +54,4 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
-
 

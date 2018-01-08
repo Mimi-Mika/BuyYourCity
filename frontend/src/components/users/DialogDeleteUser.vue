@@ -1,28 +1,31 @@
 <template>
-  <v-card>
-    <v-card-media
-      class="white--text"
-      height="200px"
-      :src="imageUser"
-    ></v-card-media>
-    <v-card-title primary-title>
-      <span class="headline">{{user.name}}</span>
-    </v-card-title>
-    <v-card-text>
-      <span class="title">Souhaitez-vous vraiment supprimer votre compte ?</span><br>
-      Vous perdrez entièrement votre progression !
-    </v-card-text>
-    <v-card-actions>
-      <v-spacer></v-spacer>
-      <v-btn color="red darken-1" flat @click="closeRemoveUserDialog">Annuler</v-btn>
-      <v-btn color="green darken-1" flat @click="removeUser">Confirmer</v-btn>
-    </v-card-actions>
-    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarOK" color="success">
-      <v-icon>check_circle</v-icon> &nbsp;
-      Votre compte a bien été supprimé !
-      <v-btn flat color="white" @click.native="snackbarOK = false">Close</v-btn>
+  <v-flex>
+    <v-card>
+      <v-card-media
+        class="white--text"
+        height="200px"
+        :src="imageUser"
+      ></v-card-media>
+      <v-card-title primary-title>
+        <span class="headline">{{user.name}}</span>
+      </v-card-title>
+      <v-card-text>
+        <span class="title">Souhaitez-vous vraiment supprimer votre compte ?</span><br>
+        Vous perdrez entièrement votre progression !
+      </v-card-text>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-btn color="red darken-1" flat @click="closeRemoveUserDialog">Annuler</v-btn>
+        <v-btn color="green darken-1" flat @click="removeUser">Confirmer</v-btn>
+      </v-card-actions>
+    </v-card>
+
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+      <v-icon>warning</v-icon> &nbsp;
+      Une erreur interne est survenue lors de la suppression de votre compte !
+      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
     </v-snackbar>
-  </v-card>
+  </v-flex>
 </template>
 
 <script>
@@ -31,7 +34,7 @@
     props: ['user'],
     data() {
       return {
-        snackbarOK : false,
+        snackbarKO: false,
         imageUser : 'http://www.api.buyyourcity.ovh/user/'+this.user.id+'/image',
       }
     },
@@ -40,10 +43,22 @@
         this.$emit('closeRemoveUserDialog')
       },
       removeUser: function () {
+        this.$http.delete('user/' + this.user.id, this.user)
+          .then(res => {
+            this.closeRemoveUserDialog()
+            this.logOut()
+          })
+          .catch(err => {
+            this.snackbarKO = true
+          })
+      },
+      logOut: function () {
+        this.$auth.logout({
+          makeRequest: false,
+          redirect: '/login'
+        })
+      },
 
-        this.closeRemoveUserDialog()
-        //this.snackbarOK = true;
-      }
     }
   }
 </script>
