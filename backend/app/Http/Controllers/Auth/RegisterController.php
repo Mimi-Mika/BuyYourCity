@@ -71,8 +71,7 @@ class RegisterController extends Controller
             $message->subject('Welcome to Buy Your City');
             $message->from('no.reply.byc@gmail.com', 'Admin Buy Your City');
             $message->to($data['email']);
-            $message->attach(storage_path('../logo.png'));
-
+            $message->attach(storage_path('app/public/logo.png'));
         });
         return User::create([
             'name' => $data['name'],

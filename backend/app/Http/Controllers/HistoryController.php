@@ -75,37 +75,37 @@ class HistoryController extends ApiController
 
 //GET : /history/sell/day
     public function sellLastDay() {
-        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::today())->get();
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::today())->get()->count();
     }
 //GET : /history/sell/week
     public function sellLastWeek() {
-        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfWeek())->get();
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfWeek())->get()->count();
     }
 //GET : /history/sell/month
     public function sellLastMonth() {
-        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfMonth())->get()->count();
     }
 //GET : /history/sell/year
     public function sellLastYear() {
-        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfYear())->get();
+        return History::where('buySell', 'sell')->where('created_at', '>=', Carbon::now()->startOfYear())->get()->count();
     }
 
 
 //GET : /history/buy/day
     public function buyLastDay() {
-        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::today())->get();
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::today())->get()->count();
     }
 //GET : /history/buy/week
     public function buyLastWeek() {
-        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfWeek())->get();
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfWeek())->get()->count();
     }
 //GET : /history/buy/month
     public function buyLastMonth() {
-        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfMonth())->get()->count();
     }
 //GET : /history/buy/year
     public function buyLastYear() {
-        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfYear())->get();
+        return History::where('buySell', 'buy')->where('created_at', '>=', Carbon::now()->startOfYear())->get()->count();
     }
 
 
