@@ -244,4 +244,22 @@ class PlaceController extends ApiController
     public function countTotal() {
         return Place::all()->count();
     }
+
+
+    /**
+     * Restore the current resource from storage.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(Place $place)
+    {
+        try {
+            $place->deleted_at = NULL;
+            $place->save();
+        } catch (Exception $e) {
+            return response()->json(['error' => $e], 404);
+        }
+        return response()->json(['ok' => 'Place restored.'], 200);
+    }
+
 }
