@@ -43,6 +43,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::get('user/count/ban', 'UserController@countBan');
 	Route::get('user/count/playing', 'UserController@countPlaying');
 	Route::get('user/count/admin', 'UserController@countAdmin');
+	Route::get('user/count/notadmin', 'UserController@countNotAdmin');
 
 	Route::get('place/available', 'PlaceController@available');
 	Route::get('place/purchased', 'PlaceController@purchased');
