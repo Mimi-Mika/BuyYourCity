@@ -4,6 +4,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use App\User;
+
+
 class LoginController extends Controller
 {
     /*
@@ -25,6 +29,14 @@ class LoginController extends Controller
     protected $redirectTo = '/home';
     public function login(Request $request)
     {
+        $user = User::onlyTrashed()->where('email', $request->email)->get();
+
+        if (!$user->isEmpty()){
+            $user = $user->first();
+            $user->deleted_at = NULL;
+            $user->save();
+        }
+
         $this->validateLogin($request);
         if ($this->attemptLogin($request)) {
 
