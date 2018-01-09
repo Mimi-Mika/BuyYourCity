@@ -87,7 +87,7 @@ export default {
         body: this.logInCredentials,
         rememberMe: this.rememberMe,
         redirect: {
-          name: redirect ? redirect.from.path : 'Accueil'
+          name: /*redirect ? redirect.from.path : */'Accueil'
         },
         fetchUser: this.fetchUser,
         success(res) {

@@ -1,16 +1,7 @@
 <template>
   <v-container>
-    <gmap-map
-      :center="center"
-      :zoom="zoom"
-      style="width: 100%; height: 100%; position: absolute; left:0; top:0"
-    >
-      <gmap-marker
-        :position="center"
-        :clickable="false"
-        :draggable="false"
-        icon="https://maps.google.com/mapfiles/kml/pal4/icon25.png"
-      ></gmap-marker>
+    <gmap-map :center="center" :zoom="zoom" style="width: 100%; height: 100%; position: absolute; left:0; top:0">
+      <gmap-marker :position="center" :clickable="false" :draggable="false" icon="https://maps.google.com/mapfiles/kml/pal4/icon25.png"></gmap-marker>
       <gmap-marker
         v-for="marker in markers"
         :key="marker.id"
@@ -98,8 +89,6 @@
           })
           .catch(err => {
             this.snackbarKO = true;
-            console.log("error");
-            console.log(err);
           });
         let userId = this.$auth.user().id
         this.$http.get('user/'+userId+'/places')
@@ -109,8 +98,6 @@
           })
           .catch(err => {
             this.snackbarKO = true;
-            console.log("error");
-            console.log(err);
           });
       },
     computed:{

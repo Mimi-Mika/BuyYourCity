@@ -24,6 +24,12 @@
       </v-btn>
         <span>Localisation activé</span>
       </v-tooltip>
+      <v-tooltip bottom v-if="isHome">
+        <v-btn icon slot="activator">
+          <v-icon>location_off</v-icon>
+        </v-btn>
+        <span>Localisation désactivé</span>
+      </v-tooltip>
       <v-tooltip bottom v-if="isHome && geoLocEnable">
         <v-btn icon slot="activator" @click="centerPos">
           <v-icon>gps_fixed</v-icon>
@@ -40,13 +46,8 @@
             <strong>{{user.name}}</strong>
           </v-chip>
           <v-list>
-            <v-list-tile @click="goAccount">
-              <v-list-tile-title>Mon compte</v-list-tile-title>
-            </v-list-tile>
-          </v-list>
-          <v-list>
             <v-list-tile @click="logOut">
-              <v-list-tile-title>Déconnexion</v-list-tile-title>
+              <v-list-tile-title>Déconnexion <v-icon>exit_to_app</v-icon></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -63,6 +64,12 @@
       <!--<v-spacer></v-spacer>-->
       <!--<div>© {{ new Date().getFullYear() }}</div>-->
     <!--</v-footer>-->
+
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
+      <v-icon>warning</v-icon> &nbsp;
+      Une erreur interne est survenue lors du chargement des lieux !
+      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 <script>
@@ -74,16 +81,17 @@
       LeftDrawer
     },
     methods: {
-      goAccount: function () {
-        this.$router.push({
-          path: '/account'
-        })
-      },
       logOut: function () {
-        this.$auth.logout({
-          makeRequest: false,
-          redirect: '/login'
-        })
+        // this.$http.post('logout', this.token)
+        //   .then(res => {
+            this.$auth.logout({
+              makeRequest: false,
+              redirect: '/login'
+            })
+          // })
+          // .catch(err => {
+          //   this.snackbarKO = true;
+          // })
       },
       centerPos: function(){
         this.$store.dispatch('centerPress')
@@ -92,25 +100,38 @@
     data () {
       return {
         user: this.$auth.user(),
+        snackbarKO: false,
         clipped: false,
         drawer: true,
         miniVariant: false,
         slider: 56,
         tile: false,
-        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image'
+        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image?moment='+ this.$moment()
       }
     },
     computed:{
       ...Vuex.mapGetters(['geoLocEnable']),
       title(){
-        return this.$route.name
+        if(this.$route.name === "Accueil") {
+          return this.$route.name + " - " + this.user.pointsAviable + " points"
+        } else {
+          return this.$route.name
+        }
       },
       isHome(){
-        return this.title === "Accueil"
+        return this.$route.name === "Accueil"
       },
       avatarSize () {
         return `${this.slider}px`
+      },
+      avatar(){
+        return this.user.image_id
       }
-    }
+    },
+    watch: {
+      avatar: function (value) {
+        this.imageUser = 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment()
+      },
+    },
   }
 </script>

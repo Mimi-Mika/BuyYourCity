@@ -16,7 +16,12 @@
     },
     data(){
       return {
-        user: this.$auth.user()
+        user: this.getUser()
+      }
+    },
+    methods: {
+      getUser: function () {
+        return this.$auth.user()
       }
     }
   }

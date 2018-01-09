@@ -1,10 +1,6 @@
 <template>
   <v-card>
-    <v-card-media
-      class="white--text"
-      height="200px"
-      :src="imagePlace"
-    ></v-card-media>
+    <v-card-media class="white--text" height="200px" :src="imagePlace" v-if="this.place.image_id != null"></v-card-media>
     <v-card-title primary-title>
       <span class="headline">{{place.name}}</span>
     </v-card-title>
@@ -20,17 +16,6 @@
       <v-btn color="red darken-1" flat @click="closeSalePlaceDialog">Refuser</v-btn>
       <v-btn color="green darken-1" flat @click="salePlace" @Click="">Accepter</v-btn>
     </v-card-actions>
-    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
-      <v-icon>warning</v-icon> &nbsp;
-      Une erreur interne est survenue lors de la vente de votre lieu !
-      <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
-    </v-snackbar>
-    <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarOK" color="success">
-      <v-icon>check_circle</v-icon> &nbsp;
-      Votre lieu a bien été vendu.
-      Vous recuperez : <strong>{{nbSalePoints}} points</strong> !
-      <v-btn flat color="white" @click.native="snackbarOK = false">Close</v-btn>
-    </v-snackbar>
   </v-card>
 </template>
 
@@ -40,8 +25,6 @@
     props: ['place'],
     data() {
       return {
-        snackbarKO: false,
-        snackbarOK: false,
         imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
         nbSalePoints : this.place.pointsCost * 0.75 // 75% of the initial purchase price of the site.
       }
@@ -49,16 +32,25 @@
       closeSalePlaceDialog : function () {
         this.$emit('closeSalePlaceDialog')
       },
+      displaySnackbar: function(dataSnack) {
+        this.$emit('displaySnackbar', dataSnack)
+      },
       salePlace : function(){
         this.$http.post('place/' + this.place.id + '/sell', this.token)
           .then(res => {
-            this.closeAdminUserDialog()
-            this.snackbarOK = true;
+            let dataSnack = {
+              type : "success",
+              message : "Le lieu a bien été vendu. Vous récupérez : " + this.nbSalePoints + " points."
+            }
+            this.displaySnackbar(dataSnack);
+            this.closeSalePlaceDialog()
           })
           .catch(err => {
-            this.snackbarKO = true;
-            console.log("error");
-            console.log(err);
+            let dataSnack = {
+              type : "error",
+              message : "Impossible de vendre le lieu, réessayez plus tard."
+            }
+            this.displaySnackbar(dataSnack);
           })
       }
     }
