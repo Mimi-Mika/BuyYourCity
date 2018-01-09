@@ -291,4 +291,8 @@ class UserController extends ApiController
     public function countPlaying() {
         return User::where('ban', 0)->count();
     }
+
+    public function countAdmin() {
+        return User::where('admin', 1)->count();
+    }
 }
