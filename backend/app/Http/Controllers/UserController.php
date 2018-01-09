@@ -280,4 +280,15 @@ class UserController extends ApiController
         //return redirect('http://www.api.buyyourcity.ovh');
     }
 
+    public function countTotal() {
+        return User::all()->count();
+    }
+
+    public function countBan() {
+        return User::where('ban', 1)->count();
+    }
+
+    public function countPlaying() {
+        return User::where('ban', 0)->count();
+    }
 }

@@ -232,4 +232,8 @@ class PlaceController extends ApiController
 
         return $places->get();
     }
+
+    public function countTotal() {
+        return Place::all()->count();
+    }
 }

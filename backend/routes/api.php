@@ -39,6 +39,9 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::put('user/password', 'UserController@changePassword');
 	Route::put('user/{user}/restore', 'UserController@restore');
 	Route::get('user/redirect', 'UserController@redirectToFrontend');
+	Route::get('user/count/total', 'UserController@countTotal');
+	Route::get('user/count/ban', 'UserController@countBan');
+	Route::get('user/count/playing', 'UserController@countPlaying');
 
 
 	Route::get('place/available', 'PlaceController@available');
@@ -47,6 +50,7 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('place/{place}/buy', 'PlaceController@buyPlace');
 	Route::post('place/{place}/sell', 'PlaceController@sellPlace');
 	Route::post('place/inradius', 'PlaceController@showInRadius');
+	Route::get('place/count/total', 'PlaceController@countTotal');
 
 
 	Route::get('image/{image}/data', 'ImageController@getData');
