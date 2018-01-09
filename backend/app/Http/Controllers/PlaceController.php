@@ -52,6 +52,7 @@ class PlaceController extends ApiController
             $place->longitude = $request->longitude;
             $place->pointsGiven = $request->pointsGiven;
             $place->pointsCost = $request->pointsCost;
+            $place->image_id = $request->image_id;
             $place->save();
             return $place;
         }
@@ -96,6 +97,7 @@ class PlaceController extends ApiController
             $place->longitude = $request->longitude;
             $place->pointsGiven = $request->pointsGiven;
             $place->pointsCost = $request->pointsCost;
+            $place->image_id = $request->image_id;
             $place->save();
         }
         catch (Exception $e) {
