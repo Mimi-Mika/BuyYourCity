@@ -299,3 +299,4 @@ class UserController extends ApiController
     public function countNotAdmin() {
         return User::where('admin', 0)->count();
     }
+}
