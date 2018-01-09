@@ -43,6 +43,7 @@ class PlaceController extends ApiController
             'longitude' => 'required|numeric',
             'pointsGiven' => 'required|integer',
             'pointsCost' => 'required|integer',
+            'image_id' => 'integer',
         ]);
 
         try {
@@ -88,7 +89,7 @@ class PlaceController extends ApiController
             'longitude' => 'required|numeric',
             'pointsGiven' => 'required|integer',
             'pointsCost' => 'required|integer',
-            'image_id' => 'integer'
+            'image_id' => 'integer',
         ]);
 
         try {
