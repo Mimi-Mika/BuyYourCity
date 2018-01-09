@@ -211,7 +211,7 @@ class PlaceController extends ApiController
     }
 
     public function purchased () {
-        return Place::where('user_id', '<>', !NULL)->get();
+        return Place::where('user_id', '<>', NULL)->get();
     }
 
     public function showInRadius(Request $request) {
@@ -231,6 +231,14 @@ class PlaceController extends ApiController
         $places->havingRaw('distance BETWEEN 0 AND ' . $parameter->seeRadius); // TODO replace $outer_radius with parameter->radius !!!!!
 
         return $places->get();
+    }
+
+    public function countAvailable () {
+        return Place::where('user_id', NULL)->count();
+    }
+
+    public function countPurchased () {
+        return Place::where('user_id', '<>', NULL)->count();
     }
 
     public function countTotal() {

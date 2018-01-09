@@ -52,6 +52,8 @@ Route::group(['middleware' => 'cors'], function() {
 	Route::post('place/{place}/sell', 'PlaceController@sellPlace');
 	Route::post('place/inradius', 'PlaceController@showInRadius');
 	Route::get('place/count/total', 'PlaceController@countTotal');
+	Route::get('place/count/available', 'PlaceController@countAvailable');
+	Route::get('place/count/purchased', 'PlaceController@countPurchased');
 
 
 	Route::get('image/{image}/data', 'ImageController@getData');
