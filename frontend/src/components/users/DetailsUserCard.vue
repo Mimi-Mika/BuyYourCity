@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm6 offset-sm3>
-    <v-card class="grey lighten-3">
+    <v-card class="grey lighten-3 elevation-5">
       <v-card-title>
         <v-flex class="text-xs-center">
           <a slot="activator" @click="dialogAvatar = true" v-if="isSettings">
@@ -96,7 +96,8 @@
               </v-tooltip>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>{{user.created_at}}</v-list-tile-title>
+              <v-list-tile-title v-if="user.created_at != null">{{$moment(user.created_at).format('DD/MM/YYYY à HH:mm:ss')}}</v-list-tile-title>
+              <v-list-tile-title v-else></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider inset></v-divider>
@@ -110,7 +111,8 @@
               </v-tooltip>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>{{user.updated_at}}</v-list-tile-title>
+              <v-list-tile-title v-if="user.updated_at != null">{{$moment(user.updated_at).format('DD/MM/YYYY à HH:mm:ss')}}</v-list-tile-title>
+              <v-list-tile-title v-else></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-divider inset v-if="isSettings"></v-divider>
@@ -192,7 +194,7 @@
         editOK: false,
         OK: false,
         places : [],
-        imageUser : 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image',
+        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment(),
         nbPlacesUser : 0,
         dialogEdit : false,
         dialogRemove : false,
@@ -209,17 +211,7 @@
       }
     },
     beforeMount(){
-      this.$http.get('user/'+this.user.id+'/places')
-        .then(res => {
-          this.places = res.body,
-          this.nbPlacesUser = this.places.length
-        })
-        .catch(err => {
-          this.snackbarKO = true;
-          console.log("error");
-          console.log(err);
-        });
-
+     this.getUserPlaces()
     },
     computed:{
       title(){
@@ -227,6 +219,9 @@
       },
       isSettings(){
         return this.title === "Mes informations"
+      },
+      avatar(){
+        return this.user.image_id
       }
     },
     methods: {
@@ -248,6 +243,25 @@
       closeBanUserDialog: function () {
         this.dialogBan = false
       },
+      moment: function () {
+        return this.$moment();
+      },
+      date: function (date) {
+        return this.$moment(date).format('DD/MM/YYYY à HH:mm:ss');
+      },
+      getUserPlaces: function (){
+        this.$http.get('user/'+this.user.id+'/places')
+          .then(res => {
+            this.places = res.body,
+              this.nbPlacesUser = this.places.length
+          })
+          .catch(err => {
+            this.snackbarData.icon = "warning"
+            this.snackbarData.message = dataSnack.message
+            this.snackbarData.color = "error"
+            this.messageSnackbar = true
+          });
+      },
       displaySnackbar: function(dataSnack){
         if(dataSnack.type === "error"){
           this.snackbarData.icon = "warning"
@@ -258,8 +272,19 @@
           this.snackbarData.icon = "check_circle"
           this.snackbarData.message = dataSnack.message
           this.snackbarData.color = "success"
+          this.$emit('getUser')
         }
         this.messageSnackbar = true
+      }
+    },
+    watch: {
+      avatar: function (value) {
+        this.imageUser = 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment()
+      },
+    },
+    filters: {
+      moment: function (date) {
+        return $moment(date).format('DD/MM/YYYY à HH:mm:ss');
       }
     }
   }

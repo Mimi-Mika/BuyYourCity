@@ -1,6 +1,6 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-content hide-actions>
+    <v-expansion-panel-content hide-actions  class="elevation-5">
       <v-layout align-center row spacer slot="header">
         <v-flex xs1>
           <v-avatar :tile="tile" :size="avatarSize" class="grey lighten-4">

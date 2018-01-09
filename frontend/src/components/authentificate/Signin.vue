@@ -115,7 +115,6 @@ export default {
       this.alertSignInDisplay = false
       this.$http.post('register', this.signInCredentials)
       .then(response => {
-        console.log(response.body)
         this.data = response.body
         this.$emit('redirectToConnect') // Redirect to connect and show an alert for email
       },

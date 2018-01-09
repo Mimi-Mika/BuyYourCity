@@ -1,10 +1,6 @@
 <template>
   <v-card>
-    <v-card-media
-      class="white--text"
-      height="200px"
-      :src="imagePlace"
-    ></v-card-media>
+    <v-card-media class="white--text" height="200px" :src="imagePlace" v-if="this.place.image_id != null"></v-card-media>
     <v-card-title primary-title>
       <span class="headline">{{place.name}}</span>
     </v-card-title>
@@ -42,12 +38,12 @@
       salePlace : function(){
         this.$http.post('place/' + this.place.id + '/sell', this.token)
           .then(res => {
-            this.closeSalePlaceDialog()
             let dataSnack = {
               type : "success",
               message : "Le lieu a bien été vendu. Vous récupérez : " + this.nbSalePoints + " points."
             }
             this.displaySnackbar(dataSnack);
+            this.closeSalePlaceDialog()
           })
           .catch(err => {
             let dataSnack = {

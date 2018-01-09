@@ -9,7 +9,7 @@
 
     <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">
       <v-icon>warning</v-icon> &nbsp;
-      Une erreur interne est survenue lors de l'affichage !
+      Impossible d'afficher les lieux des utilisateurs, réessayez plus tard !
       <v-btn flat color="white" @click.native="snackbarKO = false">Close</v-btn>
     </v-snackbar>
   </v-container>

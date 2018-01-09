@@ -1,12 +1,14 @@
 <template>
   <v-card>
-    <v-card-title>Ajouter un lieu</v-card-title>
+    <v-card-title primary-title>
+      <span class="headline">Ajouter un lieu</span>
+    </v-card-title>
     <v-card-text>
       <v-form>
-        <v-text-field label="Nom du lieu" v-model="namePlace" required></v-text-field>
-        <v-text-field label="Latitude" v-model="lat" required></v-text-field>
-        <v-text-field label="Longitude" v-model="long" required></v-text-field>
-        <v-text-field label="Valeur du lieu (en points)" v-model="pointsCost" required></v-text-field>
+        <v-text-field label="Nom du lieu" v-model="namePlace" required :rules="namePlaceRules"></v-text-field>
+        <v-text-field label="Latitude" v-model="latitude" required :rules="latitudeRules"></v-text-field>
+        <v-text-field label="Longitude" v-model="longitude" required :rules="longitudeRules"></v-text-field>
+        <v-text-field label="Valeur du lieu (en points)" v-model="pointsCost" required :rules="pointsCostRules"></v-text-field>
         <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" v-on:vdropzone-success="getImageId"></vue-dropzone>
       </v-form>
     </v-card-text>
@@ -21,6 +23,7 @@
 <script>
   import vue2Dropzone from 'vue2-dropzone'
   import 'vue2-dropzone/dist/vue2Dropzone.css'
+
   export default {
     name: 'dialogAddPlace',
     components: {
@@ -28,16 +31,37 @@
     },
     data() {
       return {
-        lat: null,
-        long: null,
+        latitude: null,
+        longitude: null,
         namePlace: null,
         pointsCost: null,
-        // image
+        namePlaceRules: [
+          (v) => !!v || 'Le nom du lieu est obligatoire.'
+        ],
+        latitudeRules: [
+          (v) => !!v || 'La latitude est obligatoire.',
+          (v) => /^[0-9]+[.[0-9]+]?$/.test(v) || 'Latitude invalide. Double attendu'
+        ],
+        longitudeRules: [
+          (v) => !!v || 'La longitude est obligatoire.',
+          (v) => /^[0-9]+[.[0-9]+]?$/.test(v) || 'Longitude invalide. Double attendu'
+        ],
+        pointsCostRules: [
+          (v) => !!v || 'Le nombre de points est obligatoire.',
+          (v) => /^[0-9]*$/.test(v) || 'Nombre de points invalide. Entier attendu'
+        ],
         imageId : null,
         dropzoneOptions: {
           url: 'http://api.buyyourcity.ovh/image/upload',
           maxFilesize: 0.5,
-          paramName : "image"
+          paramName : "image",
+          acceptedFiles: ".jpeg,.jpg,.png,.gif,.JPEG,.JPG,.PNG,.GIF",
+          maxFiles: 1,
+          maxfilesexceeded: function(file) {
+            this.removeAllFiles();
+            this.addFile(file);
+          },
+          dictDefaultMessage: "<i class=\"material-icons\">file_upload</i><Br> Pour une image au lieu, merci de placer votre image ici !",
         }
       }
     },methods:{

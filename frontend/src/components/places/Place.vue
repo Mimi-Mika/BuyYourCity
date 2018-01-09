@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm6 md4>
-    <v-card>
+    <v-card class="elevation-5">
       <v-card-media
         class="white--text"
         height="200px"
