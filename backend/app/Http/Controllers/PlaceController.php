@@ -136,7 +136,7 @@ class PlaceController extends ApiController
         //Controle if current user belongs place
         if ($place->user_id == $user->id){
             //Modify user_id on place table => user_id = 0
-            $place->user_id = 0;    
+            $place->user_id = NULL;    
             //Add points on user account
             $user->pointsAviable += $place->pointsCost*0.8;          //Replace 0.8 with global parameters value
             //Add entry on table history
