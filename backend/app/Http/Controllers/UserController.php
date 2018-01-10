@@ -259,25 +259,28 @@ class UserController extends ApiController
 
     public function changePassword(Request $request) {
         $user = Auth::guard('api')->user();
-        
-        \Log::info($user->name);
+        $hidden = $user->getHidden();
+
         $request->validate([
+            'old_password' => 'required|string|min:6',
             'password' => 'required|string|min:6|confirmed',
         ]);
-        try {
-            $user->password = bcrypt($request->password);
-            $user->save();
-        } catch (Exception $e) {
-            \Log::info($e);
+
+        if (Hash::check($request->old_password, $hidden->password)) {
+            try {
+                $user->password = bcrypt($request->password);
+                $user->save();
+            } catch (Exception $e) {
+                \Log::info($e);
+                return response()->json(['error' => $e], 404)
+            }
+            return response()->json(['ok' => 'password changed successfully'], 200);
         }
     }
 
     public function redirectToFrontend() {
-        $url = 'http://google.com';
-        // redirects to http://google.com
-        return redirect('http://www.buyyourcity.ovh');
-
-        //return redirect('http://www.api.buyyourcity.ovh');
+        $url = 'http://www.buyyourcity.ovh';
+        return redirect($url);
     }
 
     public function countTotal() {
