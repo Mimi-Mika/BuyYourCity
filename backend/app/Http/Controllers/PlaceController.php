@@ -117,7 +117,7 @@ class PlaceController extends ApiController
         try {
             if ($place->user_id != NULL) {
                 $user = User::where('id', $place->user_id)->first();
-                $user->pointsAviable += $place->pointsCost;
+                $user->pointsavailable += $place->pointsCost;
                 $place->user_id = NULL;
                 $user->save();
             }
@@ -138,7 +138,7 @@ class PlaceController extends ApiController
             //Modify user_id on place table => user_id = 0
             $place->user_id = NULL;    
             //Add points on user account
-            $user->pointsAviable += $place->pointsCost*0.8;          //Replace 0.8 with global parameters value
+            $user->pointsavailable += $place->pointsCost*0.8;          //Replace 0.8 with global parameters value
             //Add entry on table history
             $history = new History;
             $history->buySell = 'sell';
@@ -159,10 +159,10 @@ class PlaceController extends ApiController
         $user = Auth::guard('api')->user();
         //Controle if nobody belongs place
         if ($place->user_id == 0) {
-            //check if user have necessary point aviable
-            if ($user->pointsAviable >= $place->pointsCost) {
+            //check if user have necessary point available
+            if ($user->pointsavailable >= $place->pointsCost) {
                 //Remove points on user account
-                $user->pointsAviable -= $place->pointsCost;
+                $user->pointsavailable -= $place->pointsCost;
                 //Modify user_id on place table => user_id = user.id
                 $place->user_id = $user->id;
                 //Add entry on table history
@@ -261,5 +261,4 @@ class PlaceController extends ApiController
         }
         return response()->json(['ok' => 'Place restored.'], 200);
     }
-
 }

@@ -21,7 +21,7 @@ You can access the API by the URL: http://localhost:8000/
 
 Enjoy !!! ;)
 
-U can see all routes aviable with : 
+U can see all routes available with : 
 $ php artisan route:list
 
 
