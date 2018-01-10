@@ -272,7 +272,7 @@ class UserController extends ApiController
                 $user->save();
             } catch (Exception $e) {
                 \Log::info($e);
-                return response()->json(['error' => $e], 404)
+                return response()->json(['error' => $e], 404);
             }
             return response()->json(['ok' => 'password changed successfully'], 200);
         }
