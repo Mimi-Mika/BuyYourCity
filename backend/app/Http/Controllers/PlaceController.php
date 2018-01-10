@@ -158,7 +158,7 @@ class PlaceController extends ApiController
 	public function buyPlace(Place $place){
         $user = Auth::guard('api')->user();
         //Controle if nobody belongs place
-        if ($place->user_id == 0) {
+        if ($place->user_id == NULL) {
             //check if user have necessary point available
             if ($user->pointsAvailable >= $place->pointsCost) {
                 //Remove points on user account
