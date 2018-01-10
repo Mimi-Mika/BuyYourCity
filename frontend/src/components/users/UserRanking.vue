@@ -11,13 +11,13 @@
         <tr v-if="userId === props.item.id" class="blue lighten-4">
           <td><strong><v-chip outline color="primary"disabled>{{ props.index+1 }}</v-chip></strong></td>
           <td><strong>{{ props.item.name }}</strong></td>
-          <td><strong>{{ props.item.pointsAviable }}</strong></td>
+          <td><strong>{{ props.item.pointsAvailable }}</strong></td>
           <!--<td><strong>{{ progress }}</strong></td>-->
         </tr>
         <tr v-else>
           <td><v-chip outline color="primary"disabled>{{ props.index+1 }}</v-chip></td>
           <td>{{ props.item.name }}</td>
-          <td>{{ props.item.pointsAviable }}</td>
+          <td>{{ props.item.pointsAvailable }}</td>
           <!--<td>{{ progress }}</td>-->
         </tr>
       </template>
@@ -67,7 +67,7 @@
             text: 'Nombre de points',
             align: 'left',
             sortable: false,
-            value: 'pointsAviable',
+            value: 'pointsAvailable',
           }/*,
           {
             text: 'Progression',

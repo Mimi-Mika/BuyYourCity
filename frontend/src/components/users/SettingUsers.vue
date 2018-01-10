@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-layout row wrap class="elevation-5">
       <user v-for="user in users" :key="user.id" :user="user"></user>
     </v-layout>
     <v-snackbar :timeout="6000" top="top" right="right" v-model="snackbarKO" color="error">

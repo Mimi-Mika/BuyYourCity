@@ -82,16 +82,16 @@
     },
     methods: {
       logOut: function () {
-        // this.$http.post('logout', this.token)
-        //   .then(res => {
+        this.$http.post('logout', this.token)
+          .then(res => {
             this.$auth.logout({
               makeRequest: false,
               redirect: '/login'
             })
-          // })
-          // .catch(err => {
-          //   this.snackbarKO = true;
-          // })
+          })
+          .catch(err => {
+            this.snackbarKO = true;
+          })
       },
       centerPos: function(){
         this.$store.dispatch('centerPress')
@@ -113,7 +113,7 @@
       ...Vuex.mapGetters(['geoLocEnable']),
       title(){
         if(this.$route.name === "Accueil") {
-          return this.$route.name + " - " + this.user.pointsAviable + " points"
+          return this.$route.name + " - " + this.user.pointsAvailable + " points"
         } else {
           return this.$route.name
         }
