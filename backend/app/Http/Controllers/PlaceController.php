@@ -179,11 +179,9 @@ class PlaceController extends ApiController
             }
         }
         else {
-            return response()->json(['error' => 'This not your place, Your can\'t sell it !!!!'], 403);
+            return response()->json(['error' => 'This not your place, Your can\'t buy it !!!!'], 403);
         }
-    	$user = Auth::guard('api')->user();
-    	$place = Place::find($id);
-    	return !$place ? response()->json(['error' => 'No contents. Place not found.'], 204) : $place;
+    	return $place;
     }
 
     public function showImage(Place $place) {
