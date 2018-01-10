@@ -140,7 +140,7 @@ class UserController extends ApiController
         $request->validate([
             'name' => 'required|string',
             'email' => 'required|string',
-            'pointsavailable' => 'required|numeric',
+            'pointsAvailable' => 'required|numeric',
             'ban' => 'required|boolean',
             'validEmail' => 'required|boolean',
             'admin' => 'required|boolean',
@@ -150,7 +150,7 @@ class UserController extends ApiController
         try {
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->pointsavailable = $request->pointsavailable;
+            $user->pointsAvailable = $request->pointsAvailable;
             $user->ban = $request->ban;
             $user->validEmail = $request->validEmail;
             $user->admin = $request->admin;
@@ -175,7 +175,7 @@ class UserController extends ApiController
 
             if ($places->count() > 0) {
                 foreach ($places as $key => $place) {
-                    $user->pointsavailable += $place->pointsCost;
+                    $user->pointsAvailable += $place->pointsCost;
                     $place->user_id = NULL;
                     $place->save();
                 }
@@ -250,7 +250,7 @@ class UserController extends ApiController
     }
 
     public function ranking(){
-        return User::orderBy('pointsavailable', 'desc')->get();
+        return User::orderBy('pointsAvailable', 'desc')->get();
     }
 
     public function showHistory(User $user) {

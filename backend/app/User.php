@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * @SWG\Definition(required={"name", "email", "password", "pointsavailable", "ban", "validEmail", "admin"}, type="object", @SWG\Xml(name="User"))
+ * @SWG\Definition(required={"name", "email", "password", "pointsAvailable", "ban", "validEmail", "admin"}, type="object", @SWG\Xml(name="User"))
  */
 class User extends Authenticatable
 {
@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'pointsavailable', 'ban', 'validEmail', 'admin', 'image_id',
+        'name', 'email', 'password', 'pointsAvailable', 'ban', 'validEmail', 'admin', 'image_id',
     ];
 
     /**

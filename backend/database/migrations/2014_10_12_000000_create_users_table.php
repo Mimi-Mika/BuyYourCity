@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('name')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('pointsavailable');
+            $table->integer('pointsAvailable');
             $table->boolean('ban');
             $table->boolean('validEmail');
             $table->boolean('admin');

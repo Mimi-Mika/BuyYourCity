@@ -117,7 +117,7 @@ class PlaceController extends ApiController
         try {
             if ($place->user_id != NULL) {
                 $user = User::where('id', $place->user_id)->first();
-                $user->pointsavailable += $place->pointsCost;
+                $user->pointsAvailable += $place->pointsCost;
                 $place->user_id = NULL;
                 $user->save();
             }
@@ -138,7 +138,7 @@ class PlaceController extends ApiController
             //Modify user_id on place table => user_id = 0
             $place->user_id = NULL;    
             //Add points on user account
-            $user->pointsavailable += $place->pointsCost*0.8;          //Replace 0.8 with global parameters value
+            $user->pointsAvailable += $place->pointsCost*0.8;          //Replace 0.8 with global parameters value
             //Add entry on table history
             $history = new History;
             $history->buySell = 'sell';
@@ -160,9 +160,9 @@ class PlaceController extends ApiController
         //Controle if nobody belongs place
         if ($place->user_id == 0) {
             //check if user have necessary point available
-            if ($user->pointsavailable >= $place->pointsCost) {
+            if ($user->pointsAvailable >= $place->pointsCost) {
                 //Remove points on user account
-                $user->pointsavailable -= $place->pointsCost;
+                $user->pointsAvailable -= $place->pointsCost;
                 //Modify user_id on place table => user_id = user.id
                 $place->user_id = $user->id;
                 //Add entry on table history

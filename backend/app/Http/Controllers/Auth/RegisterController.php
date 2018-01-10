@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'pointsavailable' => 10,
+            'pointsAvailable' => 30,
             'ban' => 0,
             'validEmail' => 0,
             'admin' => 0,
