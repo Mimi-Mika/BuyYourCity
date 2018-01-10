@@ -6,9 +6,7 @@ import SettingPlaces from '@/components/places/SettingPlaces'
 import PlacesUser from '@/components/places/PlacesUser'
 import Statistical from '@/components/setting/Statistical'
 import SettingUsers from '@/components/users/SettingUsers'
-import UserAccount from '@/components/users/UserAccount'
 import UserInformation from '@/components/users/UserInformation'
-import UserHistory from '@/components/users/UserHistory'
 import UserRanking from '@/components/users/UserRanking'
 import Authentication from '@/components/authentificate/Authentificate'
 
@@ -20,10 +18,10 @@ export default new Router({
     redirect: '/home',
     name: 'Frame',
     component: Frame,
+    meta: {auth: true},
     children: [{
       path: 'home',
       name: 'Accueil',
-      meta: {auth: true},
       component: Home
     },
     {
@@ -44,6 +42,7 @@ export default new Router({
     {
       path: 'settingUsers',
       name: 'Gestion des utilisateurs',
+      meta: {auth: [{"admin": "1"}]},
       component: SettingUsers
     },
     {
@@ -55,16 +54,6 @@ export default new Router({
       path: 'statistical',
       name: 'Statistique',
       component: Statistical
-    },
-    {
-     path: 'account',
-     name: 'Mon compte',
-     component: UserAccount
-    },
-    {
-      path: 'history',
-      name: 'Mon historique',
-      component: UserHistory
     }]
   },
   {

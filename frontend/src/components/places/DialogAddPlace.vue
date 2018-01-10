@@ -1,8 +1,7 @@
 <template>
   <v-card>
-    <v-card-media class="white--text" height="200px" :src="imagePlace" v-if="this.place.image_id != null"></v-card-media>
     <v-card-title primary-title>
-      <span class="headline">Modifier un lieu</span>
+      <span class="headline">Ajouter un lieu</span>
     </v-card-title>
     <v-card-text>
       <v-form>
@@ -15,8 +14,8 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="red darken-1" flat @click="closeEditPlaceDialog">Annuler</v-btn>
-      <v-btn color="green darken-1" flat @click="updatePlace">Valider</v-btn>
+      <v-btn color="red darken-1" flat @click="closeAddPlaceDialog">Annuler</v-btn>
+      <v-btn color="green darken-1" flat @click="addPlace">Valider</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -26,17 +25,16 @@
   import 'vue2-dropzone/dist/vue2Dropzone.css'
 
   export default {
-    name: 'dialogEditPlace',
+    name: 'dialogAddPlace',
     components: {
       vueDropzone: vue2Dropzone
     },
-    props: ['place'],
     data() {
       return {
-        latitude: this.place.latitude,
-        longitude: this.place.longitude,
-        namePlace: this.place.name,
-        pointsCost: this.place.pointsCost,
+        latitude: null,
+        longitude: null,
+        namePlace: null,
+        pointsCost: null,
         namePlaceRules: [
           (v) => !!v || 'Le nom du lieu est obligatoire.'
         ],
@@ -52,7 +50,7 @@
           (v) => !!v || 'Le nombre de points est obligatoire.',
           (v) => /^[0-9]*$/.test(v) || 'Nombre de points invalide. Entier attendu'
         ],
-        imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
+        imageId : null,
         dropzoneOptions: {
           url: 'http://api.buyyourcity.ovh/image/upload',
           maxFilesize: 0.5,
@@ -63,12 +61,12 @@
             this.removeAllFiles();
             this.addFile(file);
           },
-          dictDefaultMessage: "<i class=\"material-icons\">file_upload</i><Br> Pour changer l'image du lieu, merci de placer votre image ici !",
+          dictDefaultMessage: "<i class=\"material-icons\">file_upload</i><Br> Pour une image au lieu, merci de placer votre image ici !",
         }
       }
     },methods:{
-      closeEditPlaceDialog: function () {
-        this.$emit('closeEditPlaceDialog')
+      closeAddPlaceDialog: function () {
+        this.$emit('closeAddPlaceDialog')
       },
       displaySnackbar: function(dataSnack) {
         this.$emit('displaySnackbar', dataSnack)
@@ -76,26 +74,28 @@
       getImageId: function(file, response){
         this.imageId = response.id
       },
-      updatePlace: function(){
-        this.place.name = this.namePlace;
-        this.place.latitude = this.latitude;
-        this.place.longitude = this.longitude;
-        this.place.pointsCost = this.pointsCost;
-        this.place.pointsGiven = Math.round(this.pointsCost * 0.75);
-        this.place.image_id = this.imageId;
-        this.$http.put('place/' + this.place.id, this.place)
+      addPlace: function(){
+        let place = {
+          latitude: this.lat,
+          longitude: this.long,
+          name: this.namePlace,
+          pointsCost: this.pointsCost,
+          pointsGiven: Math.round(this.pointsCost * 0.75),
+          image_id: this.imageId
+        }
+        this.$http.post('place', place)
           .then(res => {
             let dataSnack = {
               type : "success",
-              message : "Le lieu a bien été modifié."
+              message : "Le lieu a bien été ajouté."
             }
             this.displaySnackbar(dataSnack);
-            this.closeEditPlaceDialog();
+            this.closeAddPlaceDialog();
           })
           .catch(err => {
             let dataSnack = {
               type : "error",
-              message : "Impossible de mettre à jours les données, réessayez plus tard."
+              message : "Impossible d'ajouter un lieu, réessayez plus tard."
             }
             this.displaySnackbar(dataSnack);
           })

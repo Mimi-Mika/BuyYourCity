@@ -1,6 +1,6 @@
 <template>
   <v-flex xs12 sm6 md4>
-    <v-card>
+    <v-card class="elevation-5">
       <v-card-media
         class="white--text"
         height="200px"
@@ -11,7 +11,6 @@
       </v-card-title>
       <v-card-text>
         <div>
-          <strong>Adresse :</strong> <br>
           <strong>Longitude :</strong> {{place.longitude}}<br>
           <strong>Latitude :</strong> {{place.latitude}}
         </div>
@@ -23,26 +22,24 @@
       <v-card-actions v-else>
         <v-btn flat color="red" dark slot="activator" @click="dialogSale = true">Vendre le lieu</v-btn>
       </v-card-actions>
-
-
-      <v-snackbar :timeout="6000" top="top" right="right" v-model="placeUpdateOK" color="success">
-        <v-icon>check_circle</v-icon> &nbsp;
-        Le lieu a bien été mit à jour !
-        <v-btn flat color="white" @click.native="placeUpdateOK = false">Close</v-btn>
-      </v-snackbar>
-
     </v-card>
 
+    <v-snackbar :timeout="6000" top="top" right="right" v-model="messageSnackbar" :color="snackbarData.color">
+      <v-icon>{{snackbarData.icon}}</v-icon> &nbsp;
+      {{snackbarData.message}}
+      <v-btn flat color="white" @click.native="messageSnackbar = false">Close</v-btn>
+    </v-snackbar>
+
     <v-dialog v-model="dialogSale" persistent>
-      <dialog-sale-place :place="place" @closeSalePlaceDialog="closeSalePlaceDialog"></dialog-sale-place>
+      <dialog-sale-place :place="place" @closeSalePlaceDialog="closeSalePlaceDialog" @displaySnackbar="displaySnackbar" ></dialog-sale-place>
     </v-dialog>
     <v-dialog v-model="dialogRemove" persistent>
-      <dialog-delete-place :place="place" @closeRemovePlaceDialog="closeRemovePlaceDialog"></dialog-delete-place>
+      <dialog-delete-place :place="place" @closeRemovePlaceDialog="closeRemovePlaceDialog" @displaySnackbar="displaySnackbar" ></dialog-delete-place>
     </v-dialog>
     <v-dialog v-model="dialogEdit" persistent>
-      <dialog-edit-place :place="place" @closeEditPlaceDialog="closeEditPlaceDialog"></dialog-edit-place>
+      <dialog-edit-place :place="place" @closeEditPlaceDialog="closeEditPlaceDialog" @displaySnackbar="displaySnackbar" ></dialog-edit-place>
     </v-dialog>
-    </v-flex>
+  </v-flex>
 </template>
 
 <script>
@@ -60,12 +57,17 @@
     },
     data() {
       return {
-        imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
+        imagePlace : this.place.image_id ?'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image' : null,
         dialogEdit : false,
         dialogRemove : false,
         dialogSale : false,
         afterSalesPoints: 0,
-        placeUpdateOK: false
+        messageSnackbar: false,
+        snackbarData:{
+          color : null,
+          icon : null,
+          message : null
+        }
       }
     },
     computed:{
@@ -82,13 +84,24 @@
       },
       closeEditPlaceDialog: function(){
         this.dialogEdit = false
-        this.placeUpdateOK = this.snackbarOK()
       },
       closeSalePlaceDialog: function(){
         this.dialogSale = false
       },
-      snackbarOK: function(){
-        this.placeUpdateOK = true
+      displaySnackbar: function(dataSnack){
+        if(dataSnack.type === "error"){
+          this.snackbarData.icon = "warning"
+          this.snackbarData.message = dataSnack.message
+          this.snackbarData.color = "error"
+        }
+        else {
+          //refresh places if success
+          this.$emit('getPlaces')
+          this.snackbarData.icon = "check_circle"
+          this.snackbarData.message = dataSnack.message
+          this.snackbarData.color = "success"
+        }
+        this.messageSnackbar = true
       }
     }
   }
