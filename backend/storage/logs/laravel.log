@@ -5839,3 +5839,9 @@ Did you mean one of these?
 #46 /var/www/html/BuyYourCity/backend/server.php(21): require_once('/var/www/html/B...')
 #47 {main}
 "} 
+[2018-01-10 16:03:58] production.INFO: array (
+  0 => 'password',
+  1 => 'remember_token',
+  2 => 'api_token',
+)  
+[2018-01-10 16:06:10] production.INFO: {"id":1,"name":"adminbyc","email":"adminbyc@gmail.com","password":"$2y$10$y8.EQZcTxr3sjoiTkuH8FOk.cGPvI9\/FOoH.qv18bC4kn4feDZ9C.","pointsAviable":0,"ban":0,"validEmail":1,"admin":1,"image_id":1,"remember_token":null,"created_at":null,"updated_at":null,"deleted_at":null,"api_token":"fFTLwh2r0mObiNW7gfHn0dyzYSVCzCZei6bbn6ba1TGuCGbFNIpav1PsGDZt"}  

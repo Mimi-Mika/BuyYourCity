@@ -260,14 +260,14 @@ class UserController extends ApiController
 
     public function changePassword(Request $request) {
         $user = Auth::guard('api')->user();
-        $hidden = $user->getHidden();
+        $user->makeVisible('password');
 
         $request->validate([
             'old_password' => 'required|string|min:6',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
-        if (Hash::check($request->old_password, $hidden->password)) {
+        if (Hash::check($request->old_password, $user->password)) {
             try {
                 $user->password = bcrypt($request->password);
                 $user->save();
