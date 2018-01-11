@@ -29,7 +29,6 @@ Route::group(['middleware' => 'cors'], function() {
 	
 	Route::post('register', 'Auth\RegisterController@register');
 	Route::post('login', 'Auth\LoginController@login');
-	Route::post('logout', 'Auth\LoginController@logout');
 	Route::get('verifyemail/{name}/{string}', 'Auth\RegisterController@verifyEmail');
 
 	Route::get('user/refresh', 'UserController@refresh');
@@ -93,7 +92,9 @@ Route::group(['middleware' => 'cors'], function() {
 /*
  * Logout route
  */
-Route::group(['middleware' => ['auth:api', 'email', 'cors']], function() {
+Route::group(['middleware' => ['auth:api', 'cors']], function() {
+		Route::post('logout', 'Auth\LoginController@logout');
+
 });
 
 
