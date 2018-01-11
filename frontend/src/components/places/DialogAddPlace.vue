@@ -81,7 +81,7 @@
           name: this.namePlace,
           pointsCost: this.pointsCost,
           pointsGiven: Math.round(this.pointsCost * 0.75),
-          image_id: this.imageId
+          image_id : this.imageId != null ? this.imageId != null : null
         }
         this.$http.post('place', place)
           .then(res => {
