@@ -1,0 +1,917 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"place",
+				"place"
+			],
+			[
+				"path",
+				"image_path"
+			],
+			[
+				"route",
+				"routeCollection"
+			],
+			[
+				"h",
+				"history"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"leng",
+				"length1"
+			],
+			[
+				"inp",
+				"input2"
+			],
+			[
+				"point",
+				"pointsGiven"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "backend/routes/api.php",
+			"settings":
+			{
+				"buffer_size": 5979,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "backend/app/Http/Controllers/UserController.php",
+			"settings":
+			{
+				"buffer_size": 8530,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 605.0
+	},
+	"console":
+	{
+		"height": 172.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/var/www/html/BuyYourCity",
+		"/var/www/html/BuyYourCity/backend",
+		"/var/www/html/BuyYourCity/backend/app",
+		"/var/www/html/BuyYourCity/backend/app/Console",
+		"/var/www/html/BuyYourCity/backend/app/Exceptions",
+		"/var/www/html/BuyYourCity/backend/app/Http",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/Auth",
+		"/var/www/html/BuyYourCity/backend/app/Http/Middleware",
+		"/var/www/html/BuyYourCity/backend/app/Providers",
+		"/var/www/html/BuyYourCity/backend/bootstrap",
+		"/var/www/html/BuyYourCity/backend/bootstrap/cache",
+		"/var/www/html/BuyYourCity/backend/config",
+		"/var/www/html/BuyYourCity/backend/database",
+		"/var/www/html/BuyYourCity/backend/database/migrations",
+		"/var/www/html/BuyYourCity/backend/database/seeds",
+		"/var/www/html/BuyYourCity/backend/routes",
+		"/var/www/html/BuyYourCity/frontend",
+		"/var/www/html/BuyYourCity/frontend/src",
+		"/var/www/html/BuyYourCity/frontend/src/components",
+		"/var/www/html/BuyYourCity/frontend/src/components/authentificate"
+	],
+	"file_history":
+	[
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/ImageController.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/ParameterController.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/PlaceController.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Middleware/CheckAdmin.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/HistoryController.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/RequestGuard.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Contracts/Auth/Guard.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/Auth/RegisterController.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php",
+		"/var/www/html/BuyYourCity/backend/database/seeds/UsersTableSeeder.php",
+		"/var/www/html/BuyYourCity/backend/app/User.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/UserController.php",
+		"/var/www/html/BuyYourCity/backend/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/var/www/html/BuyYourCity/backend/readme.txt",
+		"/var/www/html/BuyYourCity/backend/storage/logs/laravel.log",
+		"/var/www/html/BuyYourCity/frontend/src/components/users/DetailsUserCard.vue",
+		"/var/www/html/BuyYourCity/frontend/src/components/users/User.vue",
+		"/var/www/html/BuyYourCity/frontend/src/components/users/UserRanking.vue",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/Auth/LoginController.php",
+		"/var/www/html/BuyYourCity/backend/database/migrations/2017_10_11_155449_create_places_table.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php",
+		"/var/www/html/BuyYourCity/backend/database/migrations/2017_12_11_080818_create_images_table.php",
+		"/var/www/html/BuyYourCity/backend/config/app.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Validation/Factory.php",
+		"/var/www/html/BuyYourCity/backend/vendor/barryvdh/laravel-cors/composer.json",
+		"/var/www/html/BuyYourCity/backend/vendor/nesbot/carbon/composer.json",
+		"/var/www/html/BuyYourCity/backend/vendor/barryvdh/laravel-cors/config/cors.php",
+		"/var/www/html/BuyYourCity/backend/vendor/nesbot/carbon/src/Carbon/Carbon.php",
+		"/var/www/html/BuyYourCity/frontend/src/components/authentificate/Authentificate.vue",
+		"/var/www/html/BuyYourCity/backend/app/Place.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Database/Schema/Blueprint.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Routing/Route.php",
+		"/var/www/html/BuyYourCity/backend/app/Console/Kernel.php",
+		"/var/www/html/BuyYourCity/backend/vendor/sebastian/environment/src/Console.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Support/Facades/Redirect.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Support/Facades/Storage.php",
+		"/var/www/html/BuyYourCity/backend/app/Providers/AppServiceProvider.php",
+		"/var/www/html/BuyYourCity/backend/.env",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php",
+		"/var/www/html/BuyYourCity/backend/app/History.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Contracts/Auth/Authenticatable.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/Authenticatable.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/Controller.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Support/Carbon.php",
+		"/var/www/html/BuyYourCity/backend/routes/api.php",
+		"/home/yeu/.local/share/Trash/files/api.php",
+		"/var/www/html/backend-copy/routes/api.php.old",
+		"/var/www/html/BuyYourCity/backend/app/Http/Controllers/ApiController.php",
+		"/var/www/html/BuyYourCity/backend/app/Http/Kernel.php",
+		"/var/www/html/BuyYourCity/backend/app/Exceptions/Handler.php",
+		"/var/www/html/BuyYourCity/backend/app/Providers/AuthServiceProvider.php",
+		"/var/www/html/BuyYourCity/backend/app/Providers/BroadcastServiceProvider.php",
+		"/var/www/html/BuyYourCity/backend/app/Providers/EventServiceProvider.php",
+		"/var/www/html/BuyYourCity/backend/app/Providers/RouteServiceProvider.php",
+		"/var/www/html/BuyYourCity/backend/config/broadcasting.php",
+		"/var/www/html/BuyYourCity/backend/config/cache.php",
+		"/var/www/html/BuyYourCity/backend/public/.htaccess",
+		"/var/www/html/BuyYourCity/backend/public/index.php",
+		"/var/www/html/BuyYourCity/backend/config/cors.php",
+		"/var/www/html/BuyYourCity/backend/vendor/symfony/http-foundation/Response.php",
+		"/var/www/html/BuyYourCity/backend/vendor/symfony/http-kernel/Client.php",
+		"/var/www/html/BuyYourCity/backend/vendor/filp/whoops/src/Whoops/Run.php",
+		"/var/www/html/BuyYourCity/backend/storage/framework/views/7830aaa59f14eae11067feb056d70dd30823a236.php",
+		"/var/www/html/BuyYourCity/backend/resources/views/welcome.blade.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/View/Compilers/Concerns/CompilesEchos.php",
+		"/var/www/html/BuyYourCity/backend/bootstrap/app.php",
+		"/var/www/html/BuyYourCity/backend/artisan",
+		"/var/www/html/BuyYourCity/backend/vendor/mockery/mockery/tests/Mockery/Fixtures/SemiReservedWordsAsMethods.php",
+		"/var/www/html/BuyYourCity/backend/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Plugins/Loggers/EchoLoggerTest.php",
+		"/var/www/html/BuyYourCity/backend/server.php",
+		"/var/www/html/BuyYourCity/backend/public/reponse3.txt",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Foundation/Application.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
+		"/var/www/html/BuyYourCity/backend/vendor/symfony/http-foundation/BinaryFileResponse.php",
+		"/var/www/html/index.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php",
+		"/var/www/html/BuyYourCity/backend/public/reponse.txt",
+		"/var/www/html/BuyYourCity/backend/public/reponse2.txt",
+		"/var/www/html/BuyYourCity/backend/storage/app/public/test.txt",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Support/Facades/Response.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Contracts/Routing/ResponseFactory.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Http/Resources/Json/Resource.php",
+		"/var/www/html/BuyYourCity/backend/vendor/symfony/http-foundation/Request.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Http/Request.php",
+		"/var/www/html/backend-copy/app/Providers/RouteServiceProvider.php",
+		"/var/www/html/BuyYourCity/frontend/node_modules/webpack-dev-server/node_modules/yargs/lib/usage.js",
+		"/var/www/html/BuyYourCity/backend/config/mail.php",
+		"/var/www/html/BuyYourCity/backend/readme.md",
+		"/var/www/html/BuyYourCity/backend/.env.example",
+		"/var/www/html/backend-copy/.env",
+		"/var/www/html/backend-copy/artisan",
+		"/var/www/html/backend-copy/server.php",
+		"/var/www/html/backend-copy/config/app.php",
+		"/var/www/html/backend-copy/routes/web.php",
+		"/var/www/html/BuyYourCity/backend/routes/web.php",
+		"/var/www/html/BuyYourCity/backend/routes/console.php",
+		"/var/www/html/backend-copy/routes/console.php",
+		"/var/www/html/backend-copy/routes/channels.php",
+		"/var/www/html/BuyYourCity/backend/routes/channels.php",
+		"/var/www/html/backend-copy/routes/api.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/DatabaseUserProvider.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/EloquentUserProvider.php",
+		"/var/www/html/BuyYourCity/backend/database/migrations/2017_10_11_155512_create_parameters_table.php",
+		"/var/www/html/BuyYourCity/backend/database/migrations/2017_10_12_115622_adds_api_token_to_users_table.php",
+		"/var/www/html/BuyYourCity/backend/database/seeds/ParametersTableSeeder.php",
+		"/var/www/html/BuyYourCity/backend/database/seeds/DatabaseSeeder.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Auth/GenericUser.php",
+		"/var/www/html/BuyYourCity/backend/vendor/symfony/http-kernel/Tests/HttpKernelTest.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Routing/Controller.php",
+		"/var/www/html/BuyYourCity/backend/vendor/laravel/framework/src/Illuminate/Contracts/Pagination/Paginator.php",
+		"/var/www/html/BuyYourCity/backend/config/l5-swagger.php",
+		"/home/yeu/Bureau/Nouveau document",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Tests/Api/PetApiInterfaceTest.php",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Api/StoreApiInterface.php",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Api/PetApiInterface.php",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Api/ApiServer.php",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Controller/PetController.php",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Model/Pet.php",
+		"/home/yeu/Téléchargements/php-symfony-server/SymfonyBundle-php/Controller/Controller.php",
+		"/var/www/html/BuyYourCity/backend/app/Providers/GlobalParameterProvider.php",
+		"/var/www/html/BuyYourCity/frontend/src/router/index.js"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 116.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"getHidden(",
+			" getHidden(",
+			"hidden",
+			"pointsavailable",
+			"aviable",
+			"pointsAviable",
+			"aviable",
+			"count",
+			"registered",
+			"$user->generateToken();",
+			"avia",
+			"path",
+			"registered",
+			"create",
+			"middleware",
+			"registered",
+			"',\n",
+			"mou",
+			"computedMiddleware",
+			"middleware",
+			"controller",
+			"middle",
+			"method",
+			"gethttp\t",
+			"http",
+			"httpm",
+			"get",
+			"soft",
+			"deleted_at",
+			"APP_NAME",
+			"$APP_NAME",
+			"env(",
+			"selectRaw",
+			"$$",
+			"lonName",
+			"latName",
+			"            \n",
+			"200",
+			"soft",
+			"buyPer",
+			"sellPer",
+			"Per",
+			"today",
+			"carbon",
+			"echo",
+			"response",
+			"echo ",
+			"compileEchos",
+			"compileRawEchos",
+			"\\t",
+			"echo",
+			"function echo",
+			"sendContent",
+			"tostrin",
+			"tostrinb",
+			"tostrinbg",
+			"\\",
+			"echo",
+			"function call",
+			"setcont",
+			"echo $content",
+			"echo",
+			"function setContent",
+			"setContent",
+			"PREFIX",
+			"APP_NAME",
+			"prefix",
+			"MAIL_USERNAME",
+			"APP_KEY",
+			"APP-KEY"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"pointsAvailable",
+			"available",
+			"$",
+			"$request->longitude",
+			"$request->latitude",
+			"buyLast",
+			"sellLast"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "backend/routes/api.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5979,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2283,
+								2283
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3742,
+										3743
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										616,
+										617
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										3742,
+										3743
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										616,
+										617
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 99.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "backend/app/Http/Controllers/UserController.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8530,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7713,
+								7713
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										7959,
+										7960
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										7290,
+										7291
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										7726,
+										7727
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"brackethighlighter.default"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										7619,
+										7620
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content"
+							],
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 4447.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 41.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 132.0
+	},
+	"pinned_build_system": "",
+	"project": "BYC.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"app/Http/Controllers/Auth/RegisterController.php"
+			],
+			[
+				"routesign",
+				"vendor/laravel/framework/src/Illuminate/Routing/RouteSignatureParameters.php"
+			],
+			[
+				"registusers",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php"
+			],
+			[
+				"registercontroller",
+				"app/Http/Controllers/Auth/RegisterController.php"
+			],
+			[
+				"authusers",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/AuthenticatesUsers.php"
+			],
+			[
+				"regiuser",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php"
+			],
+			[
+				"registersu",
+				"vendor/laravel/framework/src/Illuminate/Foundation/Auth/RegistersUsers.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/var/www/html/index.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 466.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
