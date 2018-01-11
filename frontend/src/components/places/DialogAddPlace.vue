@@ -76,8 +76,8 @@
       },
       addPlace: function(){
         let place = {
-          latitude: this.lat,
-          longitude: this.long,
+          latitude: this.latitude,
+          longitude: this.longitude,
           name: this.namePlace,
           pointsCost: this.pointsCost,
           pointsGiven: Math.round(this.pointsCost * 0.75),

@@ -12,7 +12,8 @@
       <v-card-text>
         <div>
           <strong>Longitude :</strong> {{place.longitude}}<br>
-          <strong>Latitude :</strong> {{place.latitude}}
+          <strong>Latitude :</strong> {{place.latitude}}<br>
+          <strong>Valeur du lieu :</strong> {{place.pointsCost}} points
         </div>
       </v-card-text>
       <v-card-actions v-if="isSettings">

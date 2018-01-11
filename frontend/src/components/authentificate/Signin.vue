@@ -22,6 +22,7 @@
                 v-model="signInCredentials.name"
                 min="3"
                 max="20"
+                :rules="[rules.name]"
                 required
               ></v-text-field>
             </v-flex>
@@ -35,6 +36,7 @@
                 color="teal"
                 prepend-icon="mail"
                 v-model="signInCredentials.email"
+                :rules="[rules.email]"
                 required
               ></v-text-field>
             </v-flex>
@@ -48,8 +50,9 @@
                 color="teal"
                 prepend-icon="lock"
                 v-model="signInCredentials.password"
-                hint="At least 8 characters, one lower and one upper case"
+                hint="Le mot de passe doit posséder au moins 8 caratères."
                 min="8"
+                :rules="[rules.password]"
                 required
               ></v-text-field>
             </v-flex>
@@ -64,6 +67,7 @@
                 prepend-icon="lock"
                 v-model="signInCredentials.password_confirmation"
                 min="8"
+                :rules="[rules.password_confirmation]"
                 required
               ></v-text-field>
             </v-flex>
@@ -93,40 +97,79 @@
 </template>
 
 <script>
-export default {
-  name: 'signin',
-  data () {
-    return {
-      dialog: false,
-      snackbarKO: false,
-      signInCredentials: {
-        name: null,
-        email: null,
-        password: null,
-        password_confirmation: null
-      },
-      alertSignIn: '',
-      alertSignInDisplay: false,
-    }
-  },
-  methods: {
-    signIn: function () {
-      this.alertSignIn = ''
-      this.alertSignInDisplay = false
-      this.$http.post('register', this.signInCredentials)
-      .then(response => {
-        this.data = response.body
-        this.$emit('redirectToConnect') // Redirect to connect and show an alert for email
-      },
-      error => {
-        if (error) {
-          this.alertSignIn = "Erreur pendant l'enregistrement"
-          this.alertSignInDisplay = true
+  export default {
+    name: 'signin',
+    data () {
+      return {
+        dialog: false,
+        snackbarKO: false,
+        signInCredentials: {
+          name: null,
+          email: null,
+          password: null,
+          password_confirmation: null
+        },
+        alertSignIn: '',
+        alertSignInDisplay: false,
+        errorSignIn: null,
+        rules: {
+          // required: (value) => value == null || !!value || this.$t('message.login.required'),
+          name: (value) => {
+            const pattern = /^([a-zA-Z0-9]|(-|_)){3,20}$/
+            if (value == null || !pattern.test(value)) {
+              this.errorSignIn = true
+            } else {
+              this.errorSignIn = false
+            }
+            return value == null || pattern.test(value) ||'Nom utilisateur invalide'
+          },
+          email: (value) => {
+            const pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+            if (value == null || !pattern.test(value)) {
+              this.errorSignIn = true
+            } else {
+              this.errorSignIn = false
+            }
+            return value == null || pattern.test(value) || 'Adresse mail invalide'
+          },
+          password: (value) => {
+            const pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+
+            if (value == null || !pattern.test(value)) {
+              this.errorSignIn = true
+            } else {
+              this.errorSignIn = false
+            }
+            return value == null || pattern.test(value) || 'Mot de passe invalide'
+          },
+          password_confirmation: (value) => {
+            return value == null || value === this.signInCredentials.password || 'Les mots de passe saisie ne sont pas identique'
+          }
         }
-      }).catch(err => {
-        this.snackbarKO = true;
-      })
+      }
+    },
+    methods: {
+      signIn: function () {
+        if (this.errorSignIn) {
+          return
+        }
+        this.alertSignIn = ''
+        this.alertSignInDisplay = false
+        this.$http.post('register', this.signInCredentials)
+        .then(response => {
+          this.data = response.body
+          this.$emit('redirectToConnect') // Redirect to connect and show an alert for email
+        },
+        error => {
+          if (error) {
+            this.alertSignIn = "Erreur pendant l'enregistrement"
+            this.alertSignInDisplay = true
+          }
+        }).catch(err => {
+          this.snackbarKO = true;
+        })
+      }
     }
   }
-}
 </script>

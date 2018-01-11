@@ -110,19 +110,19 @@ export default {
   },
   computed: {
     emailErrors () {
-        const errors = []
-        if (!this.$v.logInCredentials.email.$dirty) return errors
-        !this.$v.logInCredentials.email.email && errors.push("Email invalide")
-        !this.$v.logInCredentials.email.required && errors.push("Email obligatoire")
-        return errors
-      },
+      const errors = []
+      if (!this.$v.logInCredentials.email.$dirty) return errors
+      !this.$v.logInCredentials.email.email && errors.push("Email invalide")
+      !this.$v.logInCredentials.email.required && errors.push("Email obligatoire")
+      return errors
+    },
     passwordErrors () {
-        const errors = []
-        if (!this.$v.logInCredentials.password.$dirty) return errors
-        !this.$v.logInCredentials.password.minLength && errors.push("Mot de passe ")
-        !this.$v.logInCredentials.password.required && errors.push("Mot de passe obligatoire")
-        return errors
-      }
+      const errors = []
+      if (!this.$v.logInCredentials.password.$dirty) return errors
+      !this.$v.logInCredentials.password.minLength && errors.push("Mot de passe ")
+      !this.$v.logInCredentials.password.required && errors.push("Mot de passe obligatoire")
+      return errors
+    }
   }
 }
 </script>

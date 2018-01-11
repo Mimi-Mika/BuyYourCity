@@ -24,7 +24,7 @@ Vue.use(vueMoment);
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyBunJos5d9DBmZY-qJ6SZUAYEmlyFr9t-Y',
-    libraries: 'places'
+    libraries: ['places', 'geometry']
   }
 })
 Vue.config.productionTip = false

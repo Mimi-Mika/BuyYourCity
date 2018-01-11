@@ -82,7 +82,8 @@
         this.place.longitude = this.longitude;
         this.place.pointsCost = this.pointsCost;
         this.place.pointsGiven = Math.round(this.pointsCost * 0.75);
-        this.place.image_id = this.imageId;
+        if(this.imageId != null)
+          this.place.image_id = this.imageId;
         this.$http.put('place/' + this.place.id, this.place)
           .then(res => {
             let dataSnack = {

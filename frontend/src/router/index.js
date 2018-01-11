@@ -42,7 +42,6 @@ export default new Router({
     {
       path: 'settingUsers',
       name: 'Gestion des utilisateurs',
-      meta: {auth: [{"admin": "1"}]},
       component: SettingUsers
     },
     {

@@ -18,7 +18,7 @@
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-tooltip bottom v-if="isHome">
+      <!--<v-tooltip bottom v-if="isHome">
         <v-btn icon slot="activator">
         <v-icon>location_on</v-icon>
       </v-btn>
@@ -29,7 +29,7 @@
           <v-icon>location_off</v-icon>
         </v-btn>
         <span>Localisation désactivé</span>
-      </v-tooltip>
+      </v-tooltip>-->
       <v-tooltip bottom v-if="isHome && geoLocEnable">
         <v-btn icon slot="activator" @click="centerPos">
           <v-icon>gps_fixed</v-icon>
@@ -82,16 +82,16 @@
     },
     methods: {
       logOut: function () {
-        // this.$http.post('logout', this.token)
-        //   .then(res => {
+        this.$http.post('logout', this.token)
+          .then(res => {
             this.$auth.logout({
               makeRequest: false,
               redirect: '/login'
             })
-          // })
-          // .catch(err => {
-          //   this.snackbarKO = true;
-          // })
+          })
+          .catch(err => {
+            this.snackbarKO = true;
+          })
       },
       centerPos: function(){
         this.$store.dispatch('centerPress')
@@ -113,7 +113,7 @@
       ...Vuex.mapGetters(['geoLocEnable']),
       title(){
         if(this.$route.name === "Accueil") {
-          return this.$route.name + " - " + this.user.pointsAviable + " points"
+          return this.$route.name + " - " + this.user.pointsAvailable + " points"
         } else {
           return this.$route.name
         }
