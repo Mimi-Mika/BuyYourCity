@@ -26,7 +26,7 @@
     data() {
       return {
         imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
-        nbSalePoints : this.place.pointsCost * 0.75 // 75% of the initial purchase price of the site.
+        nbSalePoints : Math.round(this.place.pointsCost * 0.75) // 75% of the initial purchase price of the site.
       }
     },methods:{
       closeSalePlaceDialog : function () {
@@ -42,6 +42,8 @@
               type : "success",
               message : "Le lieu a bien été vendu. Vous récupérez : " + this.nbSalePoints + " points."
             }
+            this.$auth.user().pointsAvailable = this.$auth.user().pointsAvailable + this.nbSalePoints
+            this.$emit('refreshAll')
             this.displaySnackbar(dataSnack);
             this.closeSalePlaceDialog()
           })

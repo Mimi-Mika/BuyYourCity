@@ -44,6 +44,8 @@
               type : "success",
               message : "Vous avez bien acheté le lieu. Il vous reste : " + this.points + " points."
             }
+            this.$auth.user().pointsAvailable = this.points
+            this.$emit('refreshAll')
             this.displaySnackbar(dataSnack);
             this.closeBuyPlaceDialog()
           })
