@@ -92,7 +92,7 @@ class UserController extends ApiController
      * @return \Illuminate\Http\Response
      * 
      * @SWG\Get(
-     *     path="/user/{petId}",
+     *     path="/user/{userId}",
      *     summary="Find user by ID",
      *     description="Returns a single user",
      *     operationId="show",
@@ -117,7 +117,7 @@ class UserController extends ApiController
      *     ),
      *     @SWG\Response(
      *         response="404",
-     *         description="Pet not found"
+     *         description="user not found"
      *     ),
      *     security={
      *       {"api_key": {}}
