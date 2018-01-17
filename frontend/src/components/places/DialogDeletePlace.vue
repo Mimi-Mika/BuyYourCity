@@ -21,7 +21,7 @@
     props: ['place'],
     data() {
       return {
-        imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
+        imagePlace : 'https://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
       }
     },
     methods:{

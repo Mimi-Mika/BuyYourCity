@@ -52,7 +52,7 @@
           (v) => !!v || 'Le nombre de points est obligatoire.',
           (v) => /^[0-9]*$/.test(v) || 'Nombre de points invalide. Entier attendu'
         ],
-        imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
+        imagePlace : 'https://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
         dropzoneOptions: {
           url: 'http://api.buyyourcity.ovh/image/upload',
           maxFilesize: 0.5,

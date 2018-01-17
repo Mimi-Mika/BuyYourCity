@@ -82,9 +82,9 @@
                     <div class="links">
                         <a href="http://www.buyyourcity.ovh">Get Started !!!</a>
                         <a href="https://github.com/Mimi-Mika/BuyYourCity">Github</a>
-                        <a href="http://www.api.buyyourcity.ovh/phpmyadmin">Phpmyadmin</a>
-                        <a href="http://www.api.buyyourcity.ovh">API</a>
-                        <a href="http://www.api.buyyourcity.ovh/documentation">Documentation</a>
+                        <a href="https://www.api.buyyourcity.ovh/phpmyadmin">Phpmyadmin</a>
+                        <a href="https://www.api.buyyourcity.ovh">API</a>
+                        <a href="https://www.api.buyyourcity.ovh/documentation">Documentation</a>
                     </div>
 
                 </div>

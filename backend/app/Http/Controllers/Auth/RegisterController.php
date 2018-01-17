@@ -66,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Mail::raw('Verify your email !!! '.PHP_EOL.'Click HERE ==>  :  http://www.api.buyyourcity.ovh/verifyemail/'.$data['name'].'/'.Crypt::encryptString($data['name'].$data['email']), function($message) use ($data)
+        Mail::raw('Verify your email !!! '.PHP_EOL.'Click HERE ==>  :  https://www.api.buyyourcity.ovh/verifyemail/'.$data['name'].'/'.Crypt::encryptString($data['name'].$data['email']), function($message) use ($data)
         {
             $message->subject('Welcome to Buy Your City');
             $message->from('no.reply.byc@gmail.com', 'Admin Buy Your City');

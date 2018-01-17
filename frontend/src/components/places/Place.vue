@@ -57,7 +57,7 @@
     },
     data() {
       return {
-        imagePlace : this.place.image_id ?'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image' : null,
+        imagePlace : this.place.image_id ?'https://www.api.buyyourcity.ovh/place/'+this.place.id+'/image' : null,
         dialogEdit : false,
         dialogRemove : false,
         dialogSale : false,

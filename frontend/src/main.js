@@ -29,7 +29,7 @@ Vue.use(VueGoogleMaps, {
 })
 Vue.config.productionTip = false
 Vue.router = router
-Vue.http.options.root = 'http://www.api.buyyourcity.ovh'
+Vue.http.options.root = 'https://www.api.buyyourcity.ovh'
 Vue.use(require('@websanova/vue-auth'), {
   auth: require('@websanova/vue-auth/drivers/auth/bearer.js'),
   http: require('@websanova/vue-auth/drivers/http/vue-resource.1.x.js'),

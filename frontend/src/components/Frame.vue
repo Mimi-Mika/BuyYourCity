@@ -106,7 +106,7 @@
         miniVariant: false,
         slider: 56,
         tile: false,
-        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image?moment='+ this.$moment()
+        imageUser: 'https://www.api.buyyourcity.ovh/user/' + this.$auth.user().id + '/image?moment='+ this.$moment()
       }
     },
     computed:{
@@ -130,7 +130,7 @@
     },
     watch: {
       avatar: function (value) {
-        this.imageUser = 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment()
+        this.imageUser = 'https://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment()
       },
     },
   }

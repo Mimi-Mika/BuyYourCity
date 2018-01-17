@@ -194,7 +194,7 @@
         editOK: false,
         OK: false,
         places : [],
-        imageUser: 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment(),
+        imageUser: 'https://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment(),
         nbPlacesUser : 0,
         dialogEdit : false,
         dialogRemove : false,
@@ -279,7 +279,7 @@
     },
     watch: {
       avatar: function (value) {
-        this.imageUser = 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment()
+        this.imageUser = 'https://www.api.buyyourcity.ovh/user/' + this.user.id + '/image?moment='+ this.$moment()
       },
     },
     filters: {

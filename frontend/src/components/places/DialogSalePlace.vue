@@ -25,7 +25,7 @@
     props: ['place'],
     data() {
       return {
-        imagePlace : 'http://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
+        imagePlace : 'https://www.api.buyyourcity.ovh/place/'+this.place.id+'/image',
         nbSalePoints : this.place.pointsCost * 0.75 // 75% of the initial purchase price of the site.
       }
     },methods:{

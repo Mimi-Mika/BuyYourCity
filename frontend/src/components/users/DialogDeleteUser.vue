@@ -35,7 +35,7 @@
     data() {
       return {
         snackbarKO: false,
-        imageUser : 'http://www.api.buyyourcity.ovh/user/'+this.user.id+'/image',
+        imageUser : 'https://www.api.buyyourcity.ovh/user/'+this.user.id+'/image',
       }
     },
     methods:{

@@ -26,7 +26,7 @@
     props: ['user'],
     data() {
       return {
-        imageUser : 'http://www.api.buyyourcity.ovh/user/' + this.user.id + '/image',
+        imageUser : 'https://www.api.buyyourcity.ovh/user/' + this.user.id + '/image',
         valid : true,
         oldPassword : this.user.password,
         newPassword : '',
