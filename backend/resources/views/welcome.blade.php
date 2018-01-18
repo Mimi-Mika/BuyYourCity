@@ -84,7 +84,7 @@
                         <a href="https://github.com/Mimi-Mika/BuyYourCity">Github</a>
                         <a href="https://www.api.buyyourcity.ovh/phpmyadmin">Phpmyadmin</a>
                         <a href="https://www.api.buyyourcity.ovh">API</a>
-                        <a href="https://www.api.buyyourcity.ovh/documentation">Documentation</a>
+                        <a href="https://www.api.buyyourcity.ovh/api/documentation">Documentation</a>
                     </div>
 
                 </div>
