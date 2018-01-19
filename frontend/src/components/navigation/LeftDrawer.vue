@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-layout column align-center>
-      <img src="/static/logo.png" width="100%" alt="BuyYourCity"/>
+      <img src="https://api.buyyourcity.ovh/logo.png" width="100%" alt="BuyYourCity"/>
     </v-layout>
     <v-divider></v-divider>
     <v-list>

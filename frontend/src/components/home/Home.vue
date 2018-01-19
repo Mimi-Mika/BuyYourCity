@@ -7,8 +7,8 @@
         :key="marker.id"
         :position="marker.position"
         :clickable="true"
-        :draggable="true"
-        icon="http://maps.google.com/mapfiles/ms/micons/green-dot.png"
+        :draggable="false"
+        icon="https://maps.google.com/mapfiles/ms/micons/green-dot.png"
         @click="center=marker.position"
       ></gmap-marker>
       <gmap-marker
@@ -16,8 +16,8 @@
         :key="marker.id"
         :position="marker.position"
         :clickable="true"
-        :draggable="true"
-        icon="http://maps.google.com/mapfiles/ms/micons/ltblue-dot.png"
+        :draggable="false"
+        icon="https://maps.google.com/mapfiles/ms/micons/ltblue-dot.png"
         @click="center=marker.position"
       ></gmap-marker>
     </gmap-map>

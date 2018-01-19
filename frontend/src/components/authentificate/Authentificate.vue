@@ -2,7 +2,7 @@
   <v-container fluid class="blue-grey-1">
     <v-layout row align-center>
       <v-flex xs12 sm8 offset-sm2 md6 offset-md3 lg4 offset-lg4>
-        <img src="/static/logo2.png" alt="logo buy your city" width="100%" :class="marginSize">
+        <img src="https://api.buyyourcity.ovh/logo.png" alt="logo buy your city" width="100%" :class="marginSize">
       </v-flex>
     </v-layout>
     <v-layout row>

@@ -10,7 +10,7 @@
         <v-flex xs3>
           <strong>{{user.name}}</strong>
         </v-flex>
-        <v-flex class="grey--text" ellipsis>{{user.pointsAviable}} points</v-flex>
+        <v-flex class="grey--text" ellipsis>{{user.pointsAvailable}} points</v-flex>
         <v-flex no-wrap>
           <v-chip outline color="primary" v-if="user.admin" disabled>Administrateur</v-chip>
           <v-chip outline color="red" v-if="user.ban" disabled>Utilisateur banni</v-chip>
